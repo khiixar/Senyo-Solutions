@@ -1,0 +1,28 @@
+{
+  "name": "senyo-solutions",
+  "version": "1.0.0",
+  "description": "Professional web services and digital marketing solutions",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'Static site - no build required'",
+    "dev": "python -m http.server 8000 || php -S localhost:8000 || node server.js"
+  },
+  "keywords": [
+    "web-development",
+    "digital-marketing",
+    "seo",
+    "web-hosting",
+    "business-solutions"
+  ],
+  "author": "Senyo Solutions",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "compression": "^1.7.4"
+  }
+}
