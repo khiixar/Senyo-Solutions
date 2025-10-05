@@ -388,90 +388,10 @@ function animateCounter(element) {
     }, 16);
 }
 
-// Contact Form Handling with Formspree
+// Contact Form - Simple HTML submission, no JavaScript complexity
 function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    if (!contactForm) return;
-
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const submitButton = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        submitButton.textContent = 'Sending...';
-        submitButton.disabled = true;
-        
-        try {
-            const formData = new FormData(contactForm);
-            
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            if (response.ok) {
-                showFormSuccess();
-                contactForm.reset();
-            } else {
-                const result = await response.json();
-                throw new Error(result.error || 'Form submission failed');
-            }
-            
-        } catch (error) {
-            console.error('Form submission error:', error);
-            showFormError(error);
-        } finally {
-            submitButton.textContent = originalText;
-            submitButton.disabled = false;
-        }
-    });
-}
-
-// Show form error
-function showFormError(error) {
-    const errorMessage = document.createElement('div');
-    errorMessage.innerHTML = `
-        <div style="
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3);
-            z-index: 10000;
-            text-align: center;
-            max-width: 400px;
-            animation: slideIn 0.3s ease-out;
-        ">
-            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
-            <h3 style="margin-bottom: 10px;">Oops!</h3>
-            <p>There was an error sending your message. Please try again or contact us directly at (516) 707-7351</p>
-            <p style="font-size: 0.8em; margin-top: 10px; opacity: 0.8;">Error: ${error.message || 'Unknown error'}</p>
-            <button onclick="this.parentElement.parentElement.remove()" style="
-                background: rgba(255,255,255,0.2);
-                border: 1px solid rgba(255,255,255,0.3);
-                color: white;
-                padding: 10px 20px;
-                border-radius: 6px;
-                margin-top: 15px;
-                cursor: pointer;
-            ">Close</button>
-        </div>
-    `;
-
-    document.body.appendChild(errorMessage);
-
-    setTimeout(() => {
-        if (errorMessage.parentElement) {
-            errorMessage.remove();
-        }
-    }, 7000);
+    // No JavaScript interference - let the form submit naturally to FormSubmit
+    console.log('Contact form initialized - using direct HTML submission to FormSubmit');
 }
 
 function showFormSuccess() {
