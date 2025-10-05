@@ -161,11 +161,11 @@
                 <!-- Janooon Cafe Project -->
                 <div class="work-card" data-tilt>
                     <div class="work-image">
-                        <img src="Janoooncafe.png" alt="Janooon Cafe Website" class="project-screenshot">
-                        <div class="work-overlay" onclick="openModal('janoonModal')">
+                        <img src="Janoooncafe.png" alt="Janooon Cafe Website" class="project-screenshot" onclick="openImageLightbox('Janoooncafe.png', 'Janooon Cafe Website')">
+                        <div class="work-overlay" onclick="openImageLightbox('Janoooncafe.png', 'Janooon Cafe Website')">
                             <div class="work-overlay-content">
-                                <i class="fas fa-eye"></i>
-                                <span>View Project</span>
+                                <i class="fas fa-search-plus"></i>
+                                <span>View Screenshot</span>
                             </div>
                         </div>
                     </div>
@@ -198,11 +198,11 @@
                 <!-- RelianceRX Project -->
                 <div class="work-card" data-tilt>
                     <div class="work-image">
-                        <img src="reliancerx.png" alt="RelianceRX Website" class="project-screenshot">
-                        <div class="work-overlay">
+                        <img src="reliancerx.png" alt="RelianceRX Website" class="project-screenshot" onclick="openImageLightbox('reliancerx.png', 'RelianceRX Website')">
+                        <div class="work-overlay" onclick="openImageLightbox('reliancerx.png', 'RelianceRX Website')">
                             <div class="work-overlay-content">
-                                <i class="fas fa-eye"></i>
-                                <span>View Project</span>
+                                <i class="fas fa-search-plus"></i>
+                                <span>View Screenshot</span>
                             </div>
                         </div>
                     </div>
@@ -351,28 +351,28 @@
         </div>
     </footer>
 
-    <!-- Image Modal -->
-    <div id="janoonModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close" onclick="closeModal('janoonModal')">&times;</span>
-                <h3>Janooon Cafe - Full Project View</h3>
+    <!-- Image Lightbox Modal -->
+    <div id="imageLightbox" class="lightbox-modal">
+        <div class="lightbox-content">
+            <div class="lightbox-header">
+                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                <h3 id="lightboxTitle">Project Screenshot</h3>
+                <div class="lightbox-controls">
+                    <button class="zoom-btn" onclick="zoomIn()" title="Zoom In">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="zoom-btn" onclick="zoomOut()" title="Zoom Out">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="zoom-btn" onclick="resetZoom()" title="Reset Zoom">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                </div>
             </div>
-            <div class="modal-body">
-                <img src="janooncafe.png" alt="Janooon Cafe Website Full View" class="modal-image">
-                <div class="modal-project-info">
-                    <h4>Project Details</h4>
-                    <p>A modern, elegant website for Janooon Cafe featuring authentic South Asian flavors and contemporary design. The site includes a full menu system, location information, and responsive design that works beautifully on all devices.</p>
-                    <div class="modal-tech-stack">
-                        <span class="modal-tech-item">HTML5</span>
-                        <span class="modal-tech-item">Tailwind CSS</span>
-                        <span class="modal-tech-item">JavaScript</span>
-                        <span class="modal-tech-item">Responsive Design</span>
-                    </div>
-                    <a href="https://janoooncafe.com" target="_blank" class="btn btn-primary modal-visit-btn">
-                        <i class="fas fa-external-link-alt"></i>
-                        Visit Live Site
-                    </a>
+            <div class="lightbox-image-container">
+                <img id="lightboxImage" src="" alt="" class="lightbox-image">
+                <div class="zoom-info">
+                    <span id="zoomLevel">100%</span>
                 </div>
             </div>
         </div>

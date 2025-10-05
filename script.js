@@ -394,6 +394,181 @@ function initContactForm() {
     console.log('Contact form initialized - using direct HTML submission to FormSubmit');
 }
 
+// Image Lightbox Functionality
+let currentZoom = 1;
+let isDragging = false;
+let dragStartX, dragStartY, imageStartX, imageStartY;
+
+function openImageLightbox(imageSrc, imageTitle) {
+    const lightbox = document.getElementById('imageLightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    
+    // Set image and title
+    lightboxImage.src = imageSrc;
+    lightboxImage.alt = imageTitle;
+    lightboxTitle.textContent = imageTitle;
+    
+    // Reset zoom
+    currentZoom = 1;
+    lightboxImage.style.transform = 'scale(1)';
+    updateZoomLevel();
+    
+    // Show lightbox
+    lightbox.classList.add('show');
+    lightbox.style.display = 'flex';
+    
+    // Add event listeners for dragging
+    initImageDragging();
+    
+    // Add keyboard support
+    document.addEventListener('keydown', handleLightboxKeys);
+    
+    // Prevent body scrolling
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('imageLightbox');
+    lightbox.classList.remove('show');
+    
+    setTimeout(() => {
+        lightbox.style.display = 'none';
+    }, 300);
+    
+    // Remove event listeners
+    document.removeEventListener('keydown', handleLightboxKeys);
+    
+    // Restore body scrolling
+    document.body.style.overflow = 'auto';
+}
+
+function zoomIn() {
+    if (currentZoom < 3) {
+        currentZoom += 0.25;
+        applyZoom();
+    }
+}
+
+function zoomOut() {
+    if (currentZoom > 0.5) {
+        currentZoom -= 0.25;
+        applyZoom();
+    }
+}
+
+function resetZoom() {
+    currentZoom = 1;
+    const lightboxImage = document.getElementById('lightboxImage');
+    lightboxImage.style.transform = 'scale(1) translate(0px, 0px)';
+    updateZoomLevel();
+}
+
+function applyZoom() {
+    const lightboxImage = document.getElementById('lightboxImage');
+    const currentTransform = lightboxImage.style.transform || 'scale(1) translate(0px, 0px)';
+    const translateMatch = currentTransform.match(/translate\(([^,]+),\s*([^)]+)\)/);
+    const translateX = translateMatch ? translateMatch[1] : '0px';
+    const translateY = translateMatch ? translateMatch[2] : '0px';
+    
+    lightboxImage.style.transform = `scale(${currentZoom}) translate(${translateX}, ${translateY})`;
+    updateZoomLevel();
+}
+
+function updateZoomLevel() {
+    const zoomLevelElement = document.getElementById('zoomLevel');
+    zoomLevelElement.textContent = Math.round(currentZoom * 100) + '%';
+}
+
+// Image dragging functionality
+function initImageDragging() {
+    const lightboxImage = document.getElementById('lightboxImage');
+    
+    lightboxImage.addEventListener('mousedown', startDragging);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', stopDragging);
+    
+    // Touch events for mobile
+    lightboxImage.addEventListener('touchstart', startDragging);
+    document.addEventListener('touchmove', drag);
+    document.addEventListener('touchend', stopDragging);
+}
+
+function startDragging(e) {
+    if (currentZoom <= 1) return; // Only allow dragging when zoomed in
+    
+    isDragging = true;
+    const lightboxImage = document.getElementById('lightboxImage');
+    lightboxImage.style.cursor = 'grabbing';
+    
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    dragStartX = clientX;
+    dragStartY = clientY;
+    
+    // Get current translate values
+    const currentTransform = lightboxImage.style.transform || 'scale(1) translate(0px, 0px)';
+    const translateMatch = currentTransform.match(/translate\(([^,]+),\s*([^)]+)\)/);
+    imageStartX = translateMatch ? parseFloat(translateMatch[1]) : 0;
+    imageStartY = translateMatch ? parseFloat(translateMatch[2]) : 0;
+    
+    e.preventDefault();
+}
+
+function drag(e) {
+    if (!isDragging || currentZoom <= 1) return;
+    
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    const deltaX = (clientX - dragStartX) / currentZoom;
+    const deltaY = (clientY - dragStartY) / currentZoom;
+    
+    const newX = imageStartX + deltaX;
+    const newY = imageStartY + deltaY;
+    
+    const lightboxImage = document.getElementById('lightboxImage');
+    lightboxImage.style.transform = `scale(${currentZoom}) translate(${newX}px, ${newY}px)`;
+    
+    e.preventDefault();
+}
+
+function stopDragging() {
+    isDragging = false;
+    const lightboxImage = document.getElementById('lightboxImage');
+    lightboxImage.style.cursor = 'grab';
+}
+
+// Keyboard support
+function handleLightboxKeys(e) {
+    switch(e.key) {
+        case 'Escape':
+            closeLightbox();
+            break;
+        case '+':
+        case '=':
+            zoomIn();
+            break;
+        case '-':
+            zoomOut();
+            break;
+        case '0':
+            resetZoom();
+            break;
+    }
+}
+
+// Close lightbox when clicking outside the image
+document.addEventListener('click', function(e) {
+    const lightbox = document.getElementById('imageLightbox');
+    const lightboxContent = document.querySelector('.lightbox-content');
+    
+    if (e.target === lightbox && !lightboxContent.contains(e.target)) {
+        closeLightbox();
+    }
+});
+
 function showFormSuccess() {
     // Create success message
     const successMessage = document.createElement('div');
