@@ -388,21 +388,120 @@ function animateCounter(element) {
     }, 16);
 }
 
-// Contact Form Handling (FormSubmit automatically handles form submission)
+// Contact Form Handling
 function initContactForm() {
-    const contactForm = document.querySelector('.contact-form');
+    const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
 
-    // Add loading state on form submission
     contactForm.addEventListener('submit', function(e) {
-        const submitButton = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        submitButton.textContent = 'Sending...';
-        submitButton.disabled = true;
+        e.preventDefault();
         
-        // FormSubmit will handle the actual email sending
-        // The form will redirect to the thank you page automatically
+        // Get form data
+        const companyName = document.getElementById('companyName').value;
+        const contactName = document.getElementById('contactName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const service = document.getElementById('service').value;
+        const message = document.getElementById('message').value;
+        
+        // Create formatted email content
+        const subject = encodeURIComponent(`New Contact Form Submission from ${companyName}`);
+        const body = encodeURIComponent(
+            `Hello Khizar,\n\n` +
+            `You have received a new contact form submission from the Senyo Solutions website:\n\n` +
+            `🏢 COMPANY: ${companyName}\n` +
+            `👤 CONTACT PERSON: ${contactName}\n` +
+            `📧 EMAIL: ${email}\n` +
+            `📱 PHONE: ${phone}\n` +
+            `🔧 SERVICE REQUESTED: ${service}\n\n` +
+            `💬 PROJECT DETAILS:\n${message}\n\n` +
+            `---\n` +
+            `This inquiry was submitted from the Senyo Solutions website contact form.\n` +
+            `Please respond within 24 hours for the best customer experience.\n\n` +
+            `To reply to the customer, use: ${email}`
+        );
+        
+        // Create mailto URL
+        const mailtoURL = `mailto:khizar.naeem27@gmail.com?subject=${subject}&body=${body}`;
+        
+        // Try to open email client
+        try {
+            window.location.href = mailtoURL;
+            // Show success message after a short delay
+            setTimeout(() => {
+                showFormSuccess();
+                contactForm.reset();
+            }, 500);
+        } catch (error) {
+            // Fallback: copy email content to clipboard
+            copyToClipboard(`To: khizar.naeem27@gmail.com\nSubject: ${decodeURIComponent(subject)}\n\n${decodeURIComponent(body)}`);
+            showClipboardSuccess();
+        }
     });
+}
+
+// Copy to clipboard function
+function copyToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text);
+    } else {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            console.error('Unable to copy to clipboard', err);
+        }
+        document.body.removeChild(textArea);
+    }
+}
+
+// Show clipboard success message
+function showClipboardSuccess() {
+    const successMessage = document.createElement('div');
+    successMessage.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
+            z-index: 10000;
+            text-align: center;
+            max-width: 450px;
+            animation: slideIn 0.3s ease-out;
+        ">
+            <i class="fas fa-copy" style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
+            <h3 style="margin-bottom: 10px;">Email Content Copied!</h3>
+            <p>Your message has been copied to your clipboard. Please paste it into your email client and send to khizar.naeem27@gmail.com</p>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+                background: rgba(255,255,255,0.2);
+                border: 1px solid rgba(255,255,255,0.3);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 6px;
+                margin-top: 15px;
+                cursor: pointer;
+            ">Close</button>
+        </div>
+    `;
+
+    document.body.appendChild(successMessage);
+
+    // Auto-remove after 8 seconds
+    setTimeout(() => {
+        if (successMessage.parentElement) {
+            successMessage.remove();
+        }
+    }, 8000);
 }
 
 function showFormSuccess() {

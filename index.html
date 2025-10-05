@@ -277,29 +277,23 @@
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
-                <form class="contact-form" action="https://formsubmit.co/khizar.naeem27@gmail.com" method="POST">
+                <form class="contact-form" id="contactForm">
                     <h3>Send Us a Message</h3>
                     
-                    <!-- FormSubmit Configuration -->
-                    <input type="hidden" name="_subject" value="New Contact Form Submission from Senyo Solutions">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://senyosolutions.com/thank-you.html">
-                    
                     <div class="form-group">
-                        <input type="text" name="Company_Name" placeholder="Company Name" required>
+                        <input type="text" id="companyName" name="companyName" placeholder="Company Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="Contact_Person" placeholder="Your Name" required>
+                        <input type="text" id="contactName" name="contactName" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="email" id="email" name="email" placeholder="Email Address" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" name="Phone_Number" placeholder="Phone Number" required>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
                     </div>
                     <div class="form-group">
-                        <select name="Service_Requested" required>
+                        <select id="service" name="service" required>
                             <option value="">Select a Service</option>
                             <option value="Website Creation">Website Creation</option>
                             <option value="Web Hosting">Web Hosting</option>
@@ -309,7 +303,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea name="Project_Details" placeholder="Tell us about your project..." rows="5" required></textarea>
+                        <textarea id="message" name="message" placeholder="Tell us about your project..." rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
