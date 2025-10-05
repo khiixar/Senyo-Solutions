@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }));
     }
 
+    // Force smooth scroll initialization
+    initSmoothScrolling();
+
     // Initialize 3D elements
     init3DElements();
     
@@ -31,6 +34,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize dark mode
     initDarkMode();
 });
+
+// Force smooth scrolling initialization
+function initSmoothScrolling() {
+    // Add smooth scroll behavior to HTML element
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    // Force override any existing click handlers
+    setTimeout(() => {
+        document.querySelectorAll('a[href="#contact"]').forEach(link => {
+            // Remove any existing listeners
+            const newLink = link.cloneNode(true);
+            link.parentNode.replaceChild(newLink, link);
+            
+            // Add our custom smooth scroll
+            newLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                
+                const target = document.querySelector('#contact');
+                if (target) {
+                    const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 50;
+                    
+                    window.scrollTo({
+                        top: Math.max(0, targetPosition),
+                        behavior: 'smooth'
+                    });
+                    
+                    // Focus first input after scroll
+                    setTimeout(() => {
+                        const firstInput = target.querySelector('input[name="Company Name"]');
+                        if (firstInput) {
+                            firstInput.focus();
+                        }
+                    }, 1000);
+                }
+            });
+        });
+    }, 100);
+}
 
 // 3D Elements Initialization
 function init3DElements() {
@@ -297,19 +340,33 @@ function initAnimations() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
+            e.stopPropagation();
+            
             const targetId = this.getAttribute('href');
             const target = document.querySelector(targetId);
             
-            if (target) {
+            if (target && targetId !== '#') {
                 // Calculate offset to account for fixed navbar
-                const navbarHeight = document.querySelector('.navbar').offsetHeight || 80;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
+                const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 30;
                 
-                // Smooth scroll to target with offset
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
+                // Use requestAnimationFrame for better performance
+                requestAnimationFrame(() => {
+                    window.scrollTo({
+                        top: Math.max(0, targetPosition),
+                        behavior: 'smooth'
+                    });
                 });
+                
+                // Special handling for contact form
+                if (targetId === '#contact') {
+                    setTimeout(() => {
+                        const firstInput = target.querySelector('input[type="text"]');
+                        if (firstInput) {
+                            firstInput.focus();
+                        }
+                    }, 1000);
+                }
             }
         });
     });

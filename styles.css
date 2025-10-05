@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+/* Smooth scroll behavior for all elements */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
