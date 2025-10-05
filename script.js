@@ -388,100 +388,84 @@ function animateCounter(element) {
     }, 16);
 }
 
-// Contact Form Handling
+// Contact Form Handling with EmailJS
 function initContactForm() {
+    // Initialize EmailJS with public key
+    emailjs.init({
+        publicKey: 'wGi6P5cYKP9n6C9QJ',
+        blockHeadless: true,
+        blockList: {
+            watchVariable: 'userAgent',
+        },
+        limitRate: {
+            throttle: 10000, // 10 seconds
+        },
+    });
+
     const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
 
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+        
         // Get form data
-        const companyName = document.getElementById('companyName').value;
-        const contactName = document.getElementById('contactName').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const service = document.getElementById('service').value;
-        const message = document.getElementById('message').value;
+        const templateParams = {
+            to_email: 'khizar.naeem27@gmail.com',
+            company_name: document.getElementById('companyName').value,
+            contact_name: document.getElementById('contactName').value,
+            from_email: document.getElementById('email').value,
+            phone_number: document.getElementById('phone').value,
+            service_requested: document.getElementById('service').value,
+            project_details: document.getElementById('message').value,
+            reply_to: document.getElementById('email').value
+        };
         
-        // Create formatted email content
-        const subject = encodeURIComponent(`New Contact Form Submission from ${companyName}`);
-        const body = encodeURIComponent(
-            `Hello Khizar,\n\n` +
-            `You have received a new contact form submission from the Senyo Solutions website:\n\n` +
-            `🏢 COMPANY: ${companyName}\n` +
-            `👤 CONTACT PERSON: ${contactName}\n` +
-            `📧 EMAIL: ${email}\n` +
-            `📱 PHONE: ${phone}\n` +
-            `🔧 SERVICE REQUESTED: ${service}\n\n` +
-            `💬 PROJECT DETAILS:\n${message}\n\n` +
-            `---\n` +
-            `This inquiry was submitted from the Senyo Solutions website contact form.\n` +
-            `Please respond within 24 hours for the best customer experience.\n\n` +
-            `To reply to the customer, use: ${email}`
-        );
-        
-        // Create mailto URL
-        const mailtoURL = `mailto:khizar.naeem27@gmail.com?subject=${subject}&body=${body}`;
-        
-        // Try to open email client
-        try {
-            window.location.href = mailtoURL;
-            // Show success message after a short delay
-            setTimeout(() => {
+        // Send email using EmailJS
+        emailjs.send('service_b8lg7xq', 'template_xrw1a4h', templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
                 showFormSuccess();
                 contactForm.reset();
-            }, 500);
-        } catch (error) {
-            // Fallback: copy email content to clipboard
-            copyToClipboard(`To: khizar.naeem27@gmail.com\nSubject: ${decodeURIComponent(subject)}\n\n${decodeURIComponent(body)}`);
-            showClipboardSuccess();
-        }
+            })
+            .catch(function(error) {
+                console.log('FAILED...', error);
+                showFormError(error);
+            })
+            .finally(function() {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            });
     });
 }
 
-// Copy to clipboard function
-function copyToClipboard(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text);
-    } else {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        try {
-            document.execCommand('copy');
-        } catch (err) {
-            console.error('Unable to copy to clipboard', err);
-        }
-        document.body.removeChild(textArea);
-    }
-}
-
-// Show clipboard success message
-function showClipboardSuccess() {
-    const successMessage = document.createElement('div');
-    successMessage.innerHTML = `
+// Show form error
+function showFormError(error) {
+    const errorMessage = document.createElement('div');
+    errorMessage.innerHTML = `
         <div style="
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: white;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3);
             z-index: 10000;
             text-align: center;
-            max-width: 450px;
+            max-width: 400px;
             animation: slideIn 0.3s ease-out;
         ">
-            <i class="fas fa-copy" style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
-            <h3 style="margin-bottom: 10px;">Email Content Copied!</h3>
-            <p>Your message has been copied to your clipboard. Please paste it into your email client and send to khizar.naeem27@gmail.com</p>
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
+            <h3 style="margin-bottom: 10px;">Oops!</h3>
+            <p>There was an error sending your message. Please try again or contact us directly at khizar.naeem27@gmail.com</p>
+            <p style="font-size: 0.8em; margin-top: 10px;">Error: ${error.text || error.message || 'Unknown error'}</p>
             <button onclick="this.parentElement.parentElement.remove()" style="
                 background: rgba(255,255,255,0.2);
                 border: 1px solid rgba(255,255,255,0.3);
@@ -494,14 +478,13 @@ function showClipboardSuccess() {
         </div>
     `;
 
-    document.body.appendChild(successMessage);
+    document.body.appendChild(errorMessage);
 
-    // Auto-remove after 8 seconds
     setTimeout(() => {
-        if (successMessage.parentElement) {
-            successMessage.remove();
+        if (errorMessage.parentElement) {
+            errorMessage.remove();
         }
-    }, 8000);
+    }, 7000);
 }
 
 function showFormSuccess() {
