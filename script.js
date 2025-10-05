@@ -293,19 +293,29 @@ function createInteractiveCanvas() {
 
 // Animation Initialization
 function initAnimations() {
-    // Smooth scrolling for navigation links
+    // Enhanced smooth scrolling for all anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                // Calculate offset to account for fixed navbar
+                const navbarHeight = document.querySelector('.navbar').offsetHeight || 80;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
+                
+                // Smooth scroll to target with offset
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
     });
+    
+    // Also ensure buttons without href work properly
+    initCallToActionButtons();
 
     // Animated counters for statistics
     const observerOptions = {
@@ -367,6 +377,47 @@ function initAnimations() {
             el.style.opacity = '1';
             el.style.transform = 'translateY(0)';
         });
+    }
+}
+
+// Call-to-Action Button Smooth Scrolling
+function initCallToActionButtons() {
+    // Handle specific CTA buttons that should scroll to contact
+    const ctaSelectors = [
+        'a[href="#contact"]',
+        '.btn[href="#contact"]',
+        'button[data-scroll-to="contact"]'
+    ];
+    
+    ctaSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                scrollToContact();
+            });
+        });
+    });
+}
+
+// Smooth scroll to contact section with perfect positioning
+function scrollToContact() {
+    const contactSection = document.querySelector('#contact');
+    if (contactSection) {
+        const navbarHeight = document.querySelector('.navbar').offsetHeight || 80;
+        const targetPosition = contactSection.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 30;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+        
+        // Optional: Add focus to first form field after scrolling
+        setTimeout(() => {
+            const firstInput = contactSection.querySelector('input[type="text"]');
+            if (firstInput) {
+                firstInput.focus();
+            }
+        }, 800);
     }
 }
 
