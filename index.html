@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -278,23 +277,28 @@
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" action="https://formspree.io/f/mnnqnyry" method="POST" id="contactForm">
                     <h3>Send Us a Message</h3>
                     
+                    <!-- Formspree Configuration -->
+                    <input type="hidden" name="_subject" value="New Contact Form Submission from Senyo Solutions">
+                    <input type="hidden" name="_next" value="https://khiixar.github.io/Senyo-Solutions/thank-you.html">
+                    <input type="hidden" name="_replyto" value="email">
+                    
                     <div class="form-group">
-                        <input type="text" id="companyName" name="companyName" placeholder="Company Name" required>
+                        <input type="text" name="company_name" placeholder="Company Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="contactName" name="contactName" placeholder="Your Name" required>
+                        <input type="text" name="contact_person" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Email Address" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                     <div class="form-group">
-                        <select id="service" name="service" required>
+                        <select name="service_requested" required>
                             <option value="">Select a Service</option>
                             <option value="Website Creation">Website Creation</option>
                             <option value="Web Hosting">Web Hosting</option>
@@ -304,8 +308,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Tell us about your project..." rows="5" required></textarea>
+                        <textarea name="message" placeholder="Tell us about your project..." rows="5" required></textarea>
                     </div>
+                    
+                    <!-- Honeypot for spam protection -->
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                    
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
             </div>

@@ -388,24 +388,12 @@ function animateCounter(element) {
     }, 16);
 }
 
-// Contact Form Handling with EmailJS
+// Contact Form Handling with Formspree
 function initContactForm() {
-    // Initialize EmailJS with public key
-    emailjs.init({
-        publicKey: 'wGi6P5cYKP9n6C9QJ',
-        blockHeadless: true,
-        blockList: {
-            watchVariable: 'userAgent',
-        },
-        limitRate: {
-            throttle: 10000, // 10 seconds
-        },
-    });
-
     const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
 
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -413,33 +401,32 @@ function initContactForm() {
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
         
-        // Get form data
-        const templateParams = {
-            to_email: 'khizar.naeem27@gmail.com',
-            company_name: document.getElementById('companyName').value,
-            contact_name: document.getElementById('contactName').value,
-            from_email: document.getElementById('email').value,
-            phone_number: document.getElementById('phone').value,
-            service_requested: document.getElementById('service').value,
-            project_details: document.getElementById('message').value,
-            reply_to: document.getElementById('email').value
-        };
-        
-        // Send email using EmailJS
-        emailjs.send('service_b8lg7xq', 'template_xrw1a4h', templateParams)
-            .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
+        try {
+            const formData = new FormData(contactForm);
+            
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
                 showFormSuccess();
                 contactForm.reset();
-            })
-            .catch(function(error) {
-                console.log('FAILED...', error);
-                showFormError(error);
-            })
-            .finally(function() {
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            });
+            } else {
+                const result = await response.json();
+                throw new Error(result.error || 'Form submission failed');
+            }
+            
+        } catch (error) {
+            console.error('Form submission error:', error);
+            showFormError(error);
+        } finally {
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }
     });
 }
 
@@ -464,8 +451,8 @@ function showFormError(error) {
         ">
             <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 15px; display: block;"></i>
             <h3 style="margin-bottom: 10px;">Oops!</h3>
-            <p>There was an error sending your message. Please try again or contact us directly at khizar.naeem27@gmail.com</p>
-            <p style="font-size: 0.8em; margin-top: 10px;">Error: ${error.text || error.message || 'Unknown error'}</p>
+            <p>There was an error sending your message. Please try again or contact us directly at (516) 707-7351</p>
+            <p style="font-size: 0.8em; margin-top: 10px; opacity: 0.8;">Error: ${error.message || 'Unknown error'}</p>
             <button onclick="this.parentElement.parentElement.remove()" style="
                 background: rgba(255,255,255,0.2);
                 border: 1px solid rgba(255,255,255,0.3);
