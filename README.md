@@ -13,7 +13,6 @@ Visit us at: https://senyosolutions.com/
 - **Modern Design**: Beautiful purple/blue/pink gradient theme
 - **Responsive Layout**: Perfect on all devices
 - **Fast Performance**: Optimized for speed and user experience
-- **Secure**: Built with best security practices
 
 ## 🛠️ Tech Stack
 
@@ -35,7 +34,7 @@ Visit us at: https://senyosolutions.com/
 ## 📞 Contact
 
 - **Phone**: (516) 707-7351
-- **Email**: info@senyosolutions.com
+- **Email**: contact@senyosolutions.com
 
 ## 📄 License
 
