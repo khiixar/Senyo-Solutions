@@ -4,7 +4,7 @@ Company Site
 
 Professional web services and digital marketing solutions.
 
-## 🚀 Live Website
+## 🚀 Website
 
 Visit us at: https://senyosolutions.com/
 
