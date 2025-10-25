@@ -77,8 +77,8 @@ function initSmoothScrolling() {
 
 // 3D Elements Initialization
 function init3DElements() {
-    // Create 3D background particles
-    createHero3DBackground();
+    // 3D background disabled - removed in favor of clean grainy design
+    // createHero3DBackground();
 }
 
 // Interactive Sphere Creation
