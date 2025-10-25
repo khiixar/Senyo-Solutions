@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senyo Solutions</title>
-    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
-    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -49,11 +51,11 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="logo1.png" alt="Senyo Solutions" class="logo-svg">
+                <img src="assets/images/logo1.png" alt="Senyo Solutions" class="logo-svg">
             </div>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="pages/services.html" class="nav-link">Services</a></li>
                 <li class="nav-item"><a href="#work" class="nav-link">Our Work</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
@@ -196,8 +198,8 @@
                 <!-- Janooon Cafe Project -->
                 <div class="work-card" data-tilt>
                     <div class="work-image">
-                        <img src="Janoooncafe.png" alt="Janooon Cafe Website" class="project-screenshot" onclick="openImageLightbox('Janoooncafe.png', 'Janooon Cafe Website')">
-                        <div class="work-overlay" onclick="openImageLightbox('Janoooncafe.png', 'Janooon Cafe Website')">
+                        <img src="assets/images/Janoooncafe.png" alt="Janooon Cafe Website" class="project-screenshot" onclick="openImageLightbox('assets/images/Janoooncafe.png', 'Janooon Cafe Website')">
+                        <div class="work-overlay" onclick="openImageLightbox('assets/images/Janoooncafe.png', 'Janooon Cafe Website')">
                             <div class="work-overlay-content">
                                 <i class="fas fa-eye"></i>
                                 <span>View</span>
@@ -233,8 +235,8 @@
                 <!-- RelianceRX Project -->
                 <div class="work-card" data-tilt>
                     <div class="work-image">
-                        <img src="reliancerx.png" alt="RelianceRX Website" class="project-screenshot" onclick="openImageLightbox('reliancerx.png', 'RelianceRX Website')">
-                        <div class="work-overlay" onclick="openImageLightbox('reliancerx.png', 'RelianceRX Website')">
+                        <img src="assets/images/reliancerx.png" alt="RelianceRX Website" class="project-screenshot" onclick="openImageLightbox('assets/images/reliancerx.png', 'RelianceRX Website')">
+                        <div class="work-overlay" onclick="openImageLightbox('assets/images/reliancerx.png', 'RelianceRX Website')">
                             <div class="work-overlay-content">
                                 <i class="fas fa-eye"></i>
                                 <span>View</span>
@@ -266,8 +268,239 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Blank Saga Project -->
+                <div class="work-card" data-tilt>
+                    <div class="work-image">
+                        <img src="assets/images/Blank Saga.png" alt="Blank Saga Website" class="project-screenshot" onclick="openImageLightbox('assets/images/Blank Saga.png', 'Blank Saga Website')">
+                        <div class="work-overlay" onclick="openImageLightbox('assets/images/Blank Saga.png', 'Blank Saga Website')">
+                            <div class="work-overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span>View</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-content">
+                        <div class="work-header">
+                            <h3>Blank Saga</h3>
+                            <div class="work-tags">
+                                <span class="work-tag">Fashion</span>
+                                <span class="work-tag">E-commerce</span>
+                            </div>
+                        </div>
+                        <p class="work-description">A contemporary fashion e-commerce platform showcasing minimalist streetwear and modern clothing collections. Built with clean design aesthetics and seamless shopping experience.</p>
+                        <div class="work-tech">
+                            <div class="tech-stack">
+                                <span class="tech-item">HTML5</span>
+                                <span class="tech-item">CSS3</span>
+                                <span class="tech-item">JavaScript</span>
+                                <span class="tech-item">Shopping Cart</span>
+                            </div>
+                        </div>
+                        <div class="work-actions">
+                            <a href="https://blanksaga.com/" target="_blank" class="btn btn-outline work-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                                Visit Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JPRO Interiors Project -->
+                <div class="work-card" data-tilt>
+                    <div class="work-image">
+                        <img src="assets/images/JPRO.png" alt="JPRO Interiors Website" class="project-screenshot" onclick="openImageLightbox('assets/images/JPRO.png', 'JPRO Interiors Website')">
+                        <div class="work-overlay" onclick="openImageLightbox('assets/images/JPRO.png', 'JPRO Interiors Website')">
+                            <div class="work-overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span>View</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-content">
+                        <div class="work-header">
+                            <h3>JPRO Interiors</h3>
+                            <div class="work-tags">
+                                <span class="work-tag">Construction</span>
+                                <span class="work-tag">Interior Design</span>
+                            </div>
+                        </div>
+                        <p class="work-description">Professional construction and interior design company website featuring project galleries, service offerings, and client portfolio. Modern design reflecting quality craftsmanship.</p>
+                        <div class="work-tech">
+                            <div class="tech-stack">
+                                <span class="tech-item">HTML5</span>
+                                <span class="tech-item">CSS3</span>
+                                <span class="tech-item">JavaScript</span>
+                                <span class="tech-item">Portfolio Gallery</span>
+                            </div>
+                        </div>
+                        <div class="work-actions">
+                            <a href="https://jprocorp.com/" target="_blank" class="btn btn-outline work-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                                Visit Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Love Romani Project -->
+                <div class="work-card" data-tilt>
+                    <div class="work-image">
+                        <img src="assets/images/Love Romani.png" alt="Love Romani Website" class="project-screenshot" onclick="openImageLightbox('assets/images/Love Romani.png', 'Love Romani Website')">
+                        <div class="work-overlay" onclick="openImageLightbox('assets/images/Love Romani.png', 'Love Romani Website')">
+                            <div class="work-overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span>View</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-content">
+                        <div class="work-header">
+                            <h3>Love Romani</h3>
+                            <div class="work-tags">
+                                <span class="work-tag">Fashion</span>
+                                <span class="work-tag">Lifestyle</span>
+                            </div>
+                        </div>
+                        <p class="work-description">Elegant lifestyle and fashion brand website featuring curated collections, brand storytelling, and sophisticated user experience. Designed to reflect luxury and modern aesthetics.</p>
+                        <div class="work-tech">
+                            <div class="tech-stack">
+                                <span class="tech-item">HTML5</span>
+                                <span class="tech-item">CSS3</span>
+                                <span class="tech-item">JavaScript</span>
+                                <span class="tech-item">Brand Showcase</span>
+                            </div>
+                        </div>
+                        <div class="work-actions">
+                            <a href="https://loveromani.com/" target="_blank" class="btn btn-outline work-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                                Visit Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
+            <!-- Client Testimonials -->
+            <div class="testimonials-section">
+                <h3 class="testimonials-title">What Our Clients Say</h3>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="testimonial-content">
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Senyo Solutions created an absolutely stunning website for our restaurant. Their attention to detail and understanding of our brand was exceptional. The site is fast, beautiful, and has significantly increased our online orders."</p>
+                            <div class="testimonial-author">
+                                <div class="author-info">
+                                    <h4>Janooon Cafe</h4>
+                                    <span class="author-title">Restaurant & Catering</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="testimonial-content">
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"The team at Senyo Solutions delivered a comprehensive pharmaceutical platform that exceeded our expectations. Their technical expertise and reliable hosting services have been instrumental in our business growth."</p>
+                            <div class="testimonial-author">
+                                <div class="author-info">
+                                    <h4>RelianceRX</h4>
+                                    <span class="author-title">Pharmaceutical Solutions</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="testimonial-content">
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Outstanding marketing services and SEO optimization! Our online visibility increased by 300% within just 3 months. The team's strategic approach and continuous support have been game-changing for our business."</p>
+                            <div class="testimonial-author">
+                                <div class="author-info">
+                                    <h4>Hot Pilates Secrets</h4>
+                                    <span class="author-title">Fitness Studio</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="testimonial-content">
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Their web hosting service is incredibly reliable. We've had 99.9% uptime and the migration process was seamless and professional."</p>
+                            <div class="testimonial-author">
+                                <div class="author-info">
+                                    <h4>JPro Interiors</h4>
+                                    <span class="author-title">Construction Company</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="testimonial-content">
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Amazing web design work! They perfectly captured our brand aesthetic and created a stunning e-commerce site. Our sales have doubled since launching the new website. The design is modern, user-friendly, and mobile-optimized."</p>
+                            <div class="testimonial-author">
+                                <div class="author-info">
+                                    <h4>Blank Saga</h4>
+                                    <span class="author-title">Clothing Brand</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="600">
+                        <div class="testimonial-content">
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">"Professional web design and reliable hosting all in one package. They built our fashion website from scratch and handle all the technical aspects. The site loads fast and looks incredible on all devices."</p>
+                            <div class="testimonial-author">
+                                <div class="author-info">
+                                    <h4>Love Romani</h4>
+                                    <span class="author-title">Clothing Brand</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="work-cta">
                 <h3>Ready to Start Your Project?</h3>
                 <p>Let's discuss how we can bring your vision to life with modern web solutions.</p>
@@ -287,10 +520,6 @@
                         <div class="stat">
                             <span class="stat-number" data-count="50">0</span>
                             <span class="stat-label">Projects Completed</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number" data-count="3">0</span>
-                            <span class="stat-label">Happy Clients</span>
                         </div>
                         <div class="stat">
                             <span class="stat-number" data-count="4">0</span>
@@ -314,7 +543,7 @@
                     <input type="hidden" name="_subject" value="New Contact Form Submission from Senyo Solutions">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://senyosolutions.com/thank-you.html">
+                    <input type="hidden" name="_next" value="https://senyosolutions.com/pages/thank-you.html">
                     
                     <div class="form-group">
                         <input type="text" name="Company Name" placeholder="Company Name" required>
@@ -354,17 +583,17 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="logo1.png" alt="Senyo Solutions" class="footer-logo-img">
+                        <img src="assets/images/logo1.png" alt="Senyo Solutions" class="footer-logo-img">
                     </div>
                     <p>Professional web solutions for modern businesses</p>
                 </div>
                 <div class="footer-section">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="services.html">Website Creation</a></li>
-                        <li><a href="services.html">Web Hosting</a></li>
-                        <li><a href="services.html">Marketing</a></li>
-                        <li><a href="services.html">SEO Optimization</a></li>
+                        <li><a href="pages/services.html">Website Creation</a></li>
+                        <li><a href="pages/services.html">Web Hosting</a></li>
+                        <li><a href="pages/services.html">Marketing</a></li>
+                        <li><a href="pages/services.html">SEO Optimization</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -375,6 +604,22 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Follow Us Section -->
+            <div class="footer-follow-us">
+                <h4>Follow Us</h4>
+                <div class="footer-social-buttons">
+                    <a href="https://www.linkedin.com/company/senyo-solutions" target="_blank" class="footer-social-btn linkedin-btn">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://www.instagram.com/SenyoSolutions/#" target="_blank" class="footer-social-btn instagram-btn">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+            
             <div class="footer-bottom">
                 <p>&copy; 2025 Senyo Solutions. All rights reserved.</p>
             </div>
@@ -408,6 +653,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

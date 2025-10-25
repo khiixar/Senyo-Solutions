@@ -1,53 +1,56 @@
-// Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
+    initMobileNavigation();
+    initSmoothScrolling();
+    initAnimations();
+    initContactForm();
+    initTiltEffects();
+    initDarkMode();
+    
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    }
+});
+
+function initMobileNavigation() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+    if (!hamburger || !navMenu) return;
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', function() {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        
+        // Prevent body scrolling when menu is open
+        if (navMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
-        }));
-    }
+            document.body.style.overflow = 'auto';
+        });
+    });
+}
 
-    // Force smooth scroll initialization
-    initSmoothScrolling();
-
-    // Initialize 3D elements
-    init3DElements();
-    
-    // Initialize animations
-    initAnimations();
-    
-    // Initialize form handling
-    initContactForm();
-    
-    // Initialize tilt effects
-    initTiltEffects();
-    
-    // Initialize dark mode
-    initDarkMode();
-});
-
-// Force smooth scrolling initialization
 function initSmoothScrolling() {
-    // Add smooth scroll behavior to HTML element
     document.documentElement.style.scrollBehavior = 'smooth';
     
-    // Force override any existing click handlers
     setTimeout(() => {
         document.querySelectorAll('a[href="#contact"]').forEach(link => {
-            // Remove any existing listeners
             const newLink = link.cloneNode(true);
             link.parentNode.replaceChild(newLink, link);
             
-            // Add our custom smooth scroll
             newLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
@@ -62,12 +65,9 @@ function initSmoothScrolling() {
                         behavior: 'smooth'
                     });
                     
-                    // Focus first input after scroll
                     setTimeout(() => {
                         const firstInput = target.querySelector('input[name="Company Name"]');
-                        if (firstInput) {
-                            firstInput.focus();
-                        }
+                        if (firstInput) firstInput.focus();
                     }, 1000);
                 }
             });

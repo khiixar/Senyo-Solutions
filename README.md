@@ -1,45 +1,50 @@
-Company Site
+# Senyo Solutions Website
 
-# Senyo Solutions
+Professional business website for Senyo Solutions - digital marketing and web development services.
 
-Professional web services and digital marketing solutions.
+## Project Structure
 
-## 🚀 Website
+```
+Senyo/
+├── index.html              # Main homepage
+├── assets/                 # Static assets
+│   ├── css/
+│   │   └── styles.css      # Main stylesheet
+│   ├── js/
+│   │   └── script.js       # Main JavaScript file
+│   ├── images/             # Images and logos
+│   └── favicon/            # Favicon files
+├── pages/                  # Additional pages
+│   ├── services.html
+│   ├── thank-you.html
+│   └── test-contact.html
+├── server.js               # Node.js server
+└── package.json            # Dependencies
+```
 
-Visit us at: https://senyosolutions.com/
+## Features
 
-## 🎨 Features
+- Fully responsive design
+- Modern animations with AOS
+- Contact form with FormSubmit integration
+- Client testimonials
+- Portfolio showcase
+- Social media integration
 
-- **Modern Design**: Beautiful purple/blue/pink gradient theme
-- **Responsive Layout**: Perfect on all devices
-- **Fast Performance**: Optimized for speed and user experience
+## Technologies
 
-## 🛠️ Tech Stack
+- HTML5, CSS3, JavaScript
+- AOS (Animate On Scroll)
+- Font Awesome icons
+- Google Fonts (Inter)
+- Three.js for 3D effects
 
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: Node.js with Express
-- **Security**: Helmet.js for security headers
-- **Performance**: Compression and caching
+## Setup
 
+1. Clone or download the project
+2. Open `index.html` in a web browser
+3. For development: `npm start` (if using Node.js server)
 
+## Contact
 
-## 🎯 Services Offered
-
-- **Website Creation**: Custom responsive websites
-- **SEO Optimization**: Improve search rankings
-- **Web Hosting**: Reliable hosting solutions
-- **Digital Marketing**: Comprehensive marketing strategies
-- **Analytics & Reporting**: Track performance and ROI
-
-## 📞 Contact
-
-- **Phone**: (516) 707-7351
-- **Email**: contact@senyosolutions.com
-
-## 📄 License
-
-© 2025 Senyo Solutions. All rights reserved.
-
----
-
-Built with ❤️ by the Senyo team
+Senyo Solutions - Web Development & Digital Marketing
