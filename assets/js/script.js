@@ -387,6 +387,9 @@ function initAnimations() {
     }, observerOptions);
 
     document.querySelectorAll('.stat-number').forEach(counter => {
+        if (counter.getAttribute('data-plus') === 'true') {
+            counter.textContent = '0+';
+        }
         observer.observe(counter);
     });
 
@@ -474,22 +477,18 @@ function scrollToContact() {
     }
 }
 
-// Counter Animation
+// Counter Animation - disabled, just show final value
 function animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-count'));
-    const duration = 2000; // 2 seconds
-    const increment = target / (duration / 16); // 60fps
-    let current = 0;
+    const target = parseInt(element.getAttribute('data-count')) || 0;
+    const addPlus = element.getAttribute('data-plus') === 'true';
 
-    const timer = setInterval(() => {
-        current += increment;
-        element.textContent = Math.floor(current);
+    const formatValue = (n) => {
+        const val = Math.floor(n);
+        return addPlus ? (String(val) + '+') : String(val);
+    };
 
-        if (current >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-        }
-    }, 16);
+    // Just display the final value immediately (no animation)
+    element.textContent = formatValue(target);
 }
 
 // Contact Form - Simple HTML 

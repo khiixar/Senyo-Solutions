@@ -46,6 +46,7 @@ body > * {
 /* Navigation */
 .navbar {
     background: rgba(15, 23, 42, 0.98) !important;
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     position: fixed;
     top: 0;
@@ -59,6 +60,7 @@ body > * {
 
 .navbar.scrolled {
     background: rgba(10, 15, 28, 0.98) !important;
+    -webkit-backdrop-filter: blur(30px);
     backdrop-filter: blur(30px);
     border-bottom: 1px solid rgba(3, 105, 161, 0.3);
 }
@@ -348,6 +350,7 @@ body > * {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     z-index: 10000;
     animation: fadeIn 0.3s ease-out;
@@ -591,6 +594,7 @@ body > * {
 
 .service-tag {
     background: rgba(2, 132, 199, 0.15);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     color: #0284c7;
     padding: 12px 20px;
@@ -1062,6 +1066,7 @@ body > * {
 
 .testimonial-card {
     background: rgba(30, 41, 59, 0.8);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     padding: 30px;
@@ -1291,6 +1296,7 @@ body > * {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     animation: fadeIn 0.3s ease;
 }
@@ -1492,6 +1498,130 @@ body > * {
     letter-spacing: 1px;
 }
 
+/* statistics area */
+.statistics-section {
+    padding: 60px 0;
+    background: linear-gradient(180deg, rgba(2,132,199,0.04) 0%, transparent 100%);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 40px 40px;
+    overflow: hidden;
+}
+
+.statistics-section .stat {
+    background: transparent;
+    border: none;
+    padding: 32px 40px;
+    border-radius: 0;
+    min-width: auto;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* vertical separator on the right via border */
+    border-right: 3px solid #53a3ff;
+    overflow: visible;
+    z-index: 1;
+}
+
+/* hide vertical separator on right-edge items */
+.statistics-section .stat::after {
+    display: none;
+}
+
+.statistics-section .stat-number {
+    font-size: 4rem;
+    color: #60a5fa;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 12px;
+    line-height: 1;
+}
+
+.statistics-section .stat-label {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* Icon above each statistic */
+.statistics-section .stat-icon {
+    display: block;
+    color: #60a5fa;
+    font-size: 2.8rem;
+    margin: 0 0 18px 0;
+    text-align: center;
+    line-height: 1;
+}
+
+.statistics-section .stat-icon i {
+    display: inline-block;
+}
+
+
+@media (min-width: 993px) {
+    /* hide vertical separator on the right-most items in 4-column layout */
+    .statistics-section .stat:nth-child(4n) {
+        border-right: none;
+    }
+}
+
+/* 2-column layout adjustments */
+@media (max-width: 992px) and (min-width: 601px) {
+    /* hide vertical separator on the right-most items in 2-column layout */
+    .statistics-section .stat:nth-child(2n) {
+        border-right: none;
+    }
+}
+
+/* Single-column layout: no vertical separators */
+@media (max-width: 600px) {
+    .statistics-section .stat {
+        border-right: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .statistics-section .stat-icon {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .statistics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .statistics-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 30px 15px;
+    }
+    .statistics-section .stat-number {
+        font-size: 2.8rem;
+    }
+    .statistics-section .stat-icon {
+        font-size: 2.2rem;
+    }
+}
+
 .about-image {
     width: 100%;
     max-width: 500px;
@@ -1522,7 +1652,9 @@ body > * {
 .contact-content {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 40px;
+    width: 100%;
 }
 
 .contact-info h3 {
@@ -1558,6 +1690,7 @@ body > * {
     border: 1px solid rgba(2, 132, 199, 0.1);
     width: 100%;
     max-width: 700px;
+    margin: 0 auto;
 }
 
 .contact-form h3 {
@@ -1688,6 +1821,7 @@ body > * {
     background: #1e293b;
     color: white;
     padding: 60px 0 20px;
+    width: 100%;
 }
 
 .footer-content {
@@ -1696,6 +1830,7 @@ body > * {
     gap: 40px;
     margin-bottom: 40px;
     align-items: flex-start;
+    width: 100%;
 }
 
 .footer-logo {
@@ -1905,6 +2040,7 @@ body > * {
         top: 70px;
         flex-direction: column;
         background: rgba(10, 15, 28, 0.98);
+        -webkit-backdrop-filter: blur(30px);
         backdrop-filter: blur(30px);
         width: 100%;
         text-align: center;
@@ -2780,6 +2916,7 @@ body.dark-mode {
 
 .dark-mode .nav-menu {
     background: rgba(10, 15, 28, 0.98) !important;
+    -webkit-backdrop-filter: blur(30px) !important;
     backdrop-filter: blur(30px) !important;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
 }

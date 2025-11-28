@@ -57,7 +57,6 @@
                 <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="pages/services.html" class="nav-link">Services</a></li>
                 <li class="nav-item"><a href="#work" class="nav-link">Our Work</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
@@ -97,6 +96,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Our Digital Marketing Services -->
     <section class="digital-services">
@@ -224,7 +224,7 @@
                             </div>
                         </div>
                         <div class="work-actions">
-                            <a href="https://janoooncafe.com" target="_blank" class="btn btn-outline work-btn">
+                            <a href="https://janoooncafe.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline work-btn">
                                 <i class="fas fa-external-link-alt"></i>
                                 Visit Site
                             </a>
@@ -261,7 +261,7 @@
                             </div>
                         </div>
                         <div class="work-actions">
-                            <a href="https://reliancerx.us" target="_blank" class="btn btn-outline work-btn">
+                            <a href="https://reliancerx.us" target="_blank" rel="noopener noreferrer" class="btn btn-outline work-btn">
                                 <i class="fas fa-external-link-alt"></i>
                                 Visit Site
                             </a>
@@ -298,7 +298,7 @@
                             </div>
                         </div>
                         <div class="work-actions">
-                            <a href="https://blanksaga.com/" target="_blank" class="btn btn-outline work-btn">
+                            <a href="https://blanksaga.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline work-btn">
                                 <i class="fas fa-external-link-alt"></i>
                                 Visit Site
                             </a>
@@ -335,7 +335,7 @@
                             </div>
                         </div>
                         <div class="work-actions">
-                            <a href="https://jprocorp.com/" target="_blank" class="btn btn-outline work-btn">
+                            <a href="https://jprocorp.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline work-btn">
                                 <i class="fas fa-external-link-alt"></i>
                                 Visit Site
                             </a>
@@ -372,7 +372,7 @@
                             </div>
                         </div>
                         <div class="work-actions">
-                            <a href="https://loveromani.com/" target="_blank" class="btn btn-outline work-btn">
+                            <a href="https://loveromani.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline work-btn">
                                 <i class="fas fa-external-link-alt"></i>
                                 Visit Site
                             </a>
@@ -509,23 +509,29 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Statistics Section  -->
+    <section id="statistics" class="statistics-section">
         <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Senyo Solutions</h2>
-                    <p>We are a forward-thinking technology company dedicated to helping businesses succeed in the digital world. Our team of experts combines creativity with technical excellence to deliver solutions that drive real results.</p>
-                    <div class="stats">
-                        <div class="stat">
-                            <span class="stat-number" data-count="50">0</span>
-                            <span class="stat-label">Projects Completed</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number" data-count="4">0</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                    </div>
+            <div class="statistics-grid" data-aos="fade-up">
+                <div class="stat">
+                    <div class="stat-icon"><i class="fas fa-face-grin-beam" aria-hidden="true"></i></div>
+                    <span class="stat-number" data-count="10">0</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon"><i class="fas fa-desktop" aria-hidden="true"></i></div>
+                    <span class="stat-number" data-count="45" data-plus="true">0</span>
+                    <span class="stat-label">Websites Designed</span>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon"><i class="fas fa-server" aria-hidden="true"></i></div>
+                    <span class="stat-number" data-count="10" data-plus="true">0</span>
+                    <span class="stat-label">Websites Hosted</span>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon"><i class="fas fa-download" aria-hidden="true"></i></div>
+                    <span class="stat-number" data-count="10" data-plus="true">0</span>
+                    <span class="stat-label">Migrations Completed</span>
                 </div>
             </div>
         </div>
@@ -558,7 +564,7 @@
                         <input type="tel" name="Phone Number" placeholder="Phone Number" required>
                     </div>
                     <div class="form-group">
-                        <select name="Service Requested" required>
+                        <select id="serviceRequested" name="Service Requested" aria-label="Service Requested" required>
                             <option value="">Select a Service</option>
                             <option value="Website Creation">Website Creation</option>
                             <option value="Web Hosting">Web Hosting</option>
@@ -609,11 +615,11 @@
             <div class="footer-follow-us">
                 <h4>Follow Us</h4>
                 <div class="footer-social-buttons">
-                    <a href="https://www.linkedin.com/company/senyo-solutions" target="_blank" class="footer-social-btn linkedin-btn">
+                    <a href="https://www.linkedin.com/company/senyo-solutions" target="_blank" rel="noopener noreferrer" class="footer-social-btn linkedin-btn">
                         <i class="fab fa-linkedin-in"></i>
                         <span>LinkedIn</span>
                     </a>
-                    <a href="https://www.instagram.com/SenyoSolutions/#" target="_blank" class="footer-social-btn instagram-btn">
+                    <a href="https://www.instagram.com/SenyoSolutions/#" target="_blank" rel="noopener noreferrer" class="footer-social-btn instagram-btn">
                         <i class="fab fa-instagram"></i>
                         <span>Instagram</span>
                     </a>
