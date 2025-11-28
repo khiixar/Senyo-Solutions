@@ -77,11 +77,10 @@ function initSmoothScrolling() {
 
 // 3D Elements Initialization
 function init3DElements() {
-    // 3D background disabled - removed in favor of clean grainy design
-    // createHero3DBackground();
+
 }
 
-// Interactive Sphere Creation
+// Interactive Sphere 
 function createInteractiveSphere() {
     const sphereContainer = document.getElementById('interactiveSphere');
     if (!sphereContainer) return;
@@ -94,7 +93,7 @@ function createInteractiveSphere() {
     renderer.setClearColor(0x000000, 0);
     sphereContainer.appendChild(renderer.domElement);
 
-    // Create sphere geometry with interactive material
+    // Create sphere geometry 
     const geometry = new THREE.SphereGeometry(1.5, 64, 64);
     const material = new THREE.MeshBasicMaterial({ 
         color: 0x2563eb, 
@@ -336,7 +335,7 @@ function createInteractiveCanvas() {
 
 // Animation Initialization
 function initAnimations() {
-    // Enhanced smooth scrolling for all anchor links
+    // smooth scrolling 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -346,11 +345,10 @@ function initAnimations() {
             const target = document.querySelector(targetId);
             
             if (target && targetId !== '#') {
-                // Calculate offset to account for fixed navbar
                 const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 30;
                 
-                // Use requestAnimationFrame for better performance
+                // Use requestAnimationFrame 
                 requestAnimationFrame(() => {
                     window.scrollTo({
                         top: Math.max(0, targetPosition),
@@ -358,7 +356,7 @@ function initAnimations() {
                     });
                 });
                 
-                // Special handling for contact form
+                // handling for contact form
                 if (targetId === '#contact') {
                     setTimeout(() => {
                         const firstInput = target.querySelector('input[type="text"]');
@@ -371,7 +369,7 @@ function initAnimations() {
         });
     });
     
-    // Also ensure buttons without href work properly
+    // ensure buttons without href work properly
     initCallToActionButtons();
 
     // Animated counters for statistics
@@ -413,7 +411,7 @@ function initAnimations() {
         element.style.transition = 'all 0.6s ease-in-out';
     };
 
-    // Only hide elements if we're on the homepage
+    // Only hide elements if  on the homepage
     if (document.querySelector('.hero')) {
         scrollElements.forEach((el) => {
             hideScrollElement(el);
@@ -429,7 +427,6 @@ function initAnimations() {
 
         window.addEventListener('scroll', handleScrollAnimation);
     } else {
-        // On services page, show all cards immediately
         document.querySelectorAll('.service-detail-card').forEach((el) => {
             el.style.opacity = '1';
             el.style.transform = 'translateY(0)';
@@ -439,7 +436,7 @@ function initAnimations() {
 
 // Call-to-Action Button Smooth Scrolling
 function initCallToActionButtons() {
-    // Handle specific CTA buttons that should scroll to contact
+
     const ctaSelectors = [
         'a[href="#contact"]',
         '.btn[href="#contact"]',
@@ -456,7 +453,7 @@ function initCallToActionButtons() {
     });
 }
 
-// Smooth scroll to contact section with perfect positioning
+// Smooth scroll to contact 
 function scrollToContact() {
     const contactSection = document.querySelector('#contact');
     if (contactSection) {
@@ -468,7 +465,6 @@ function scrollToContact() {
             behavior: 'smooth'
         });
         
-        // Optional: Add focus to first form field after scrolling
         setTimeout(() => {
             const firstInput = contactSection.querySelector('input[type="text"]');
             if (firstInput) {
@@ -496,9 +492,8 @@ function animateCounter(element) {
     }, 16);
 }
 
-// Contact Form - Simple HTML submission, no JavaScript complexity
+// Contact Form - Simple HTML 
 function initContactForm() {
-    // No JavaScript interference - let the form submit naturally to FormSubmit
     console.log('Contact form initialized - using direct HTML submission to FormSubmit');
 }
 
