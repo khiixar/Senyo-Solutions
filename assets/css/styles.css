@@ -5,7 +5,7 @@
 }
 
 :root {
-    /* Modern color palette */
+    /* color palette */
     --primary: #6366f1;
     --primary-light: #818cf8;
     --primary-dark: #4f46e5;
@@ -298,7 +298,7 @@ body > * {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* Thank You Page Styles */
+/* Thank You Page */
 .thank-you-section {
     min-height: 80vh;
     display: flex;
@@ -730,7 +730,7 @@ body > * {
     }
 }
 
-/* Value Proposition Section */
+/* Value Prop Section */
 .value-prop {
     padding: 100px 0;
     background: var(--bg-secondary);
@@ -774,7 +774,7 @@ body > * {
     margin-bottom: 40px;
 }
 
-/* Process Section */
+/* Our Process Section */
 .process-section {
     padding: 120px 0;
     background: var(--bg-secondary);
@@ -963,7 +963,7 @@ body > * {
     box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
 }
 
-/* Digital Services Section */
+/* Services Section */
 .digital-services {
     padding: 120px 0;
     background: var(--bg-secondary);
@@ -1841,165 +1841,6 @@ body > * {
     margin-top: 4px;
 }
 
-/* statistics area */
-.statistics-section {
-    padding: 80px 0;
-    background: var(--bg-secondary);
-    margin-bottom: 0;
-    position: relative;
-}
-
-.statistics-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(ellipse 100% 50% at 50% 0%, rgba(99, 102, 241, 0.08), transparent);
-    pointer-events: none;
-}
-
-.statistics-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    align-items: center;
-    justify-items: center;
-    width: 100%;
-    margin: 0;
-    padding: 40px 40px;
-    overflow: hidden;
-    position: relative;
-    z-index: 2;
-}
-
-.statistics-section .stat {
-    background: transparent;
-    border: none;
-    padding: 32px 40px;
-    border-radius: 0;
-    min-width: auto;
-    position: relative;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-right: 1px solid var(--border-light);
-    overflow: visible;
-    z-index: 1;
-}
-
-/* hide vertical separator on right-edge items */
-.statistics-section .stat::after {
-    display: none;
-}
-
-.statistics-section .stat-number {
-    font-size: 3.5rem;
-    background: linear-gradient(135deg, var(--primary-light), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 12px;
-    line-height: 1;
-}
-
-.statistics-section .stat-label {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    font-weight: 500;
-}
-
-/* Icon above each statistic */
-.statistics-section .stat-icon {
-    display: block;
-    color: var(--primary-light);
-    font-size: 2.5rem;
-    margin: 0 0 18px 0;
-    text-align: center;
-    line-height: 1;
-}
-
-.statistics-section .stat-icon i {
-    display: inline-block;
-}
-
-
-@media (min-width: 993px) {
-    /* hide vertical separator on the right-most items in 4-column layout */
-    .statistics-section .stat:nth-child(4n) {
-        border-right: none;
-    }
-}
-
-/* 2-column layout adjustments */
-@media (max-width: 992px) and (min-width: 601px) {
-    /* hide vertical separator on the right-most items in 2-column layout */
-    .statistics-section .stat:nth-child(2n) {
-        border-right: none;
-    }
-}
-
-/* Single-column layout: no vertical separators */
-@media (max-width: 600px) {
-    .statistics-section .stat {
-        border-right: none;
-    }
-}
-
-@media (max-width: 600px) {
-    .statistics-section .stat-icon {
-        font-size: 1.6rem;
-        margin-bottom: 10px;
-    }
-}
-
-@media (max-width: 992px) {
-    .statistics-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
-    }
-}
-
-@media (max-width: 600px) {
-    .statistics-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        padding: 30px 15px;
-    }
-    .statistics-section .stat-number {
-        font-size: 2.8rem;
-    }
-    .statistics-section .stat-icon {
-        font-size: 2.2rem;
-    }
-}
-
-.about-image {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.about-main-image {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.about-main-image:hover {
-    transform: translateY(-5px) scale(1.01);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-}
-
 /* Contact Section */
 .contact {
     padding: 120px 0;
@@ -2441,7 +2282,7 @@ body > * {
     z-index: 2;
 }
 
-/* Responsive Design */
+/* Optimizations */
 @media (max-width: 768px) {
     .nav-container {
         padding: 0 20px;
@@ -2737,7 +2578,7 @@ body > * {
         height: 36px;
     }
     
-    /* Footer Follow Us responsive */
+    /* Footer Follow Us optimizations */
     .footer-follow-us {
         padding: 25px 0;
     }
@@ -2756,7 +2597,7 @@ body > * {
         font-size: 0.85rem;
     }
 
-    /* Modal responsive styles for tablet */
+    /* Modal responsiveness for tablets */
     .modal-content {
         max-width: 95%;
         margin: 5% auto;
@@ -2776,7 +2617,7 @@ body > * {
         font-size: 1.3rem;
     }
     
-    /* Testimonials responsive */
+    /* Testimonials responsiveness */
     .testimonials-section {
         margin-top: 60px;
         margin-bottom: 60px;
@@ -2798,7 +2639,7 @@ body > * {
         padding: 25px;
     }
     
-    /* Follow Us responsive */
+    /* Follow Us Section responsiveness */
     .follow-us {
         padding: 50px 0;
     }
@@ -3033,7 +2874,7 @@ body > * {
         height: 32px;
     }
     
-    /* Footer Follow Us mobile responsive */
+    /* Footer Follow Us mobile responsiveness */
     .footer-follow-us {
         padding: 20px 0;
     }
@@ -3055,7 +2896,7 @@ body > * {
         min-width: 140px;
     }
 
-    /* Modal responsive styles for mobile */
+    /* Modal styles for mobile */
     .modal-content {
         max-width: 95%;
         margin: 5% auto;
@@ -3100,7 +2941,7 @@ body > * {
         font-size: 1.5rem;
     }
     
-    /* Testimonials mobile responsive */
+    /* Testimonials mobile  */
     .testimonials-section {
         margin-top: 50px;
         margin-bottom: 50px;
@@ -3120,7 +2961,7 @@ body > * {
         font-size: 0.9rem;
     }
     
-    /* Follow Us mobile responsive */
+    /* Follow Us mobile */
     .follow-us {
         padding: 40px 0;
     }
@@ -3170,7 +3011,7 @@ body > * {
     background: linear-gradient(180deg, var(--primary-light), var(--primary));
 }
 
-/* Dark Mode Styles - Already dark by default, these are for compatibility */
+/* Dark Mode Styles compatibility */
 body.dark-mode {
     background: var(--bg-primary);
     color: var(--text-secondary);

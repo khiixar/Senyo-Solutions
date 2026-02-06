@@ -26,7 +26,7 @@ function initMobileNavigation() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
         
-        // Prevent body scrolling when menu is open
+        // Prevents body scrolling when menu is open
         if (navMenu.classList.contains('active')) {
             document.body.style.overflow = 'hidden';
         } else {
@@ -93,7 +93,7 @@ function createInteractiveSphere() {
     renderer.setClearColor(0x000000, 0);
     sphereContainer.appendChild(renderer.domElement);
 
-    // Create sphere geometry 
+    // sphere geometry 
     const geometry = new THREE.SphereGeometry(1.5, 64, 64);
     const material = new THREE.MeshBasicMaterial({ 
         color: 0x2563eb, 
@@ -105,7 +105,7 @@ function createInteractiveSphere() {
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
-    // Add inner sphere
+    // inner sphere
     const innerGeometry = new THREE.SphereGeometry(1.2, 32, 32);
     const innerMaterial = new THREE.MeshBasicMaterial({ 
         color: 0x7c3aed, 
@@ -117,13 +117,13 @@ function createInteractiveSphere() {
 
     camera.position.z = 5;
 
-    // Mouse interaction variables
+    // Mouse interaction 
     let mouseX = 0;
     let mouseY = 0;
     let targetRotationX = 0;
     let targetRotationY = 0;
 
-    // Mouse move event listener
+    // Mouse  event listener
     sphereContainer.addEventListener('mousemove', function(event) {
         const rect = sphereContainer.getBoundingClientRect();
         mouseX = (event.clientX - rect.left - rect.width / 2) / (rect.width / 2);
@@ -137,14 +137,14 @@ function createInteractiveSphere() {
     function animate() {
         requestAnimationFrame(animate);
         
-        // Smooth rotation towards target
+        // Smooth rotation 
         sphere.rotation.x += (targetRotationX - sphere.rotation.x) * 0.05;
         sphere.rotation.y += (targetRotationY - sphere.rotation.y) * 0.05;
         
         innerSphere.rotation.x -= 0.005;
         innerSphere.rotation.y += 0.01;
         
-        // Subtle floating motion
+        // floating motion
         sphere.position.y = Math.sin(Date.now() * 0.001) * 0.1;
         innerSphere.position.y = Math.cos(Date.now() * 0.0015) * 0.05;
         
@@ -167,7 +167,7 @@ function createHero3DBackground() {
     renderer.setClearColor(0x000000, 0);
     heroBackground.appendChild(renderer.domElement);
 
-    // Create floating particles
+    // floating particles
     const particleCount = 100;
     const particles = new THREE.BufferGeometry();
     const positions = [];
@@ -221,7 +221,7 @@ function createHero3DBackground() {
     });
 }
 
-// Interactive Canvas Creation
+// Canvas Creation
 function createInteractiveCanvas() {
     const canvasContainer = document.getElementById('interactiveCanvas');
     if (!canvasContainer) return;
@@ -234,7 +234,7 @@ function createInteractiveCanvas() {
     renderer.setClearColor(0x000000, 0);
     canvasContainer.appendChild(renderer.domElement);
 
-    // Create interactive nodes that respond to mouse
+    // nodes that respond to mouse
     const nodes = [];
     const nodeCount = 5;
     
@@ -297,14 +297,14 @@ function createInteractiveCanvas() {
         requestAnimationFrame(animate);
         
         nodes.forEach((node, index) => {
-            // Smooth movement towards target
+            // Smooth movement 
             node.position.lerp(node.userData.targetPosition, 0.1);
             
-            // Gentle rotation
+            // rotation
             node.rotation.x += 0.01;
             node.rotation.y += 0.015;
             
-            // Connect nearby nodes with lines
+            // Connects nearby nodes with lines
             nodes.forEach((otherNode, otherIndex) => {
                 if (index < otherIndex) {
                     const distance = node.position.distanceTo(otherNode.position);
@@ -320,7 +320,7 @@ function createInteractiveCanvas() {
                         const line = new THREE.Line(geometry, material);
                         scene.add(line);
                         
-                        // Remove line after one frame to avoid memory leak
+                        // Removes line after one frame to avoid memory leak
                         setTimeout(() => scene.remove(line), 16);
                     }
                 }
@@ -348,7 +348,7 @@ function initAnimations() {
                 const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 30;
                 
-                // Use requestAnimationFrame 
+                //  requestAnimationFrame 
                 requestAnimationFrame(() => {
                     window.scrollTo({
                         top: Math.max(0, targetPosition),
@@ -369,29 +369,8 @@ function initAnimations() {
         });
     });
     
-    // ensure buttons without href work properly
+    
     initCallToActionButtons();
-
-    // Animated counters for statistics
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounter(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.stat-number').forEach(counter => {
-        if (counter.getAttribute('data-plus') === 'true') {
-            counter.textContent = '0+';
-        }
-        observer.observe(counter);
-    });
 
     // Scroll-triggered animations for homepage only
     const scrollElements = document.querySelectorAll('.service-card');
@@ -414,7 +393,7 @@ function initAnimations() {
         element.style.transition = 'all 0.6s ease-in-out';
     };
 
-    // Only hide elements if  on the homepage
+    // hides elements if  on the homepage
     if (document.querySelector('.hero')) {
         scrollElements.forEach((el) => {
             hideScrollElement(el);
@@ -437,7 +416,7 @@ function initAnimations() {
     }
 }
 
-// Call-to-Action Button Smooth Scrolling
+// Call-to-Action Button & Smooth Scrolling
 function initCallToActionButtons() {
 
     const ctaSelectors = [
@@ -456,7 +435,7 @@ function initCallToActionButtons() {
     });
 }
 
-// Smooth scroll to contact 
+// Smooth scroll to contact section 
 function scrollToContact() {
     const contactSection = document.querySelector('#contact');
     if (contactSection) {
@@ -477,21 +456,7 @@ function scrollToContact() {
     }
 }
 
-// Counter Animation - disabled, just show final value
-function animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-count')) || 0;
-    const addPlus = element.getAttribute('data-plus') === 'true';
-
-    const formatValue = (n) => {
-        const val = Math.floor(n);
-        return addPlus ? (String(val) + '+') : String(val);
-    };
-
-    // Just display the final value immediately (no animation)
-    element.textContent = formatValue(target);
-}
-
-// Contact Form - Simple HTML 
+// Contact Form  HTML 
 function initContactForm() {
     console.log('Contact form initialized - using direct HTML submission to FormSubmit');
 }
@@ -506,27 +471,27 @@ function openImageLightbox(imageSrc, imageTitle) {
     const lightboxImage = document.getElementById('lightboxImage');
     const lightboxTitle = document.getElementById('lightboxTitle');
     
-    // Set image and title
+    // image and title
     lightboxImage.src = imageSrc;
     lightboxImage.alt = imageTitle;
     lightboxTitle.textContent = imageTitle;
     
-    // Reset zoom
+    // Resets zoom
     currentZoom = 1;
     lightboxImage.style.transform = 'scale(1)';
     updateZoomLevel();
     
-    // Show lightbox
+    // Shows lightbox
     lightbox.classList.add('show');
     lightbox.style.display = 'flex';
     
-    // Add event listeners for dragging
+    // Adds event listeners 
     initImageDragging();
     
-    // Add keyboard support
+    // Adds keyboard support
     document.addEventListener('keydown', handleLightboxKeys);
     
-    // Prevent body scrolling
+    // Prevents body scrolling
     document.body.style.overflow = 'hidden';
 }
 
@@ -538,10 +503,10 @@ function closeLightbox() {
         lightbox.style.display = 'none';
     }, 300);
     
-    // Remove event listeners
+    // Removes event listeners
     document.removeEventListener('keydown', handleLightboxKeys);
     
-    // Restore body scrolling
+    // Restores body scrolling
     document.body.style.overflow = 'auto';
 }
 
@@ -597,7 +562,7 @@ function initImageDragging() {
 }
 
 function startDragging(e) {
-    if (currentZoom <= 1) return; // Only allow dragging when zoomed in
+    if (currentZoom <= 1) return; // allows dragging when zoomed in
     
     isDragging = true;
     const lightboxImage = document.getElementById('lightboxImage');
@@ -609,7 +574,7 @@ function startDragging(e) {
     dragStartX = clientX;
     dragStartY = clientY;
     
-    // Get current translate values
+    // Gets current translate values
     const currentTransform = lightboxImage.style.transform || 'scale(1) translate(0px, 0px)';
     const translateMatch = currentTransform.match(/translate\(([^,]+),\s*([^)]+)\)/);
     imageStartX = translateMatch ? parseFloat(translateMatch[1]) : 0;
@@ -661,7 +626,7 @@ function handleLightboxKeys(e) {
     }
 }
 
-// Close lightbox when clicking outside the image
+// Closes lightbox when clicking outside the image
 document.addEventListener('click', function(e) {
     const lightbox = document.getElementById('imageLightbox');
     const lightboxContent = document.querySelector('.lightbox-content');
@@ -672,7 +637,7 @@ document.addEventListener('click', function(e) {
 });
 
 function showFormSuccess() {
-    // Create success message
+    // Creates success message
     const successMessage = document.createElement('div');
     successMessage.innerHTML = `
         <div style="
@@ -705,7 +670,7 @@ function showFormSuccess() {
         </div>
     `;
 
-    // Add animation keyframes if not already present
+    // Adds animation keyframes 
     if (!document.querySelector('#success-animation-styles')) {
         const style = document.createElement('style');
         style.id = 'success-animation-styles';
@@ -726,7 +691,7 @@ function showFormSuccess() {
 
     document.body.appendChild(successMessage);
 
-    // Auto-remove after 5 seconds
+    // Auto-removes after 5 seconds
     setTimeout(() => {
         if (successMessage.parentElement) {
             successMessage.remove();
@@ -735,7 +700,7 @@ function showFormSuccess() {
 }
 
 function showFormError() {
-    // Create error message
+    // Creates error message
     const errorMessage = document.createElement('div');
     errorMessage.innerHTML = `
         <div style="
@@ -770,7 +735,7 @@ function showFormError() {
 
     document.body.appendChild(errorMessage);
 
-    // Auto-remove after 7 seconds (longer for error)
+    // Auto-removes after 7 seconds (longer for error)
     setTimeout(() => {
         if (errorMessage.parentElement) {
             errorMessage.remove();
@@ -821,7 +786,7 @@ window.addEventListener('scroll', function() {
 window.addEventListener('load', function() {
     document.body.classList.add('loaded');
     
-    // Animate elements on page load
+    // Animates elements on page load
     const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
         heroContent.style.opacity = '0';
@@ -840,7 +805,7 @@ function initDarkMode() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     
-    // Check for saved dark mode preference or default to light mode
+    // Checks for saved dark mode preference or defaults to light mode
     const currentMode = localStorage.getItem('darkMode');
     if (currentMode === 'enabled') {
         body.classList.add('dark-mode');
@@ -853,7 +818,7 @@ function initDarkMode() {
             
             const isDarkMode = body.classList.contains('dark-mode');
             
-            // Save preference to localStorage
+            // Saves preference to localStorage
             if (isDarkMode) {
                 localStorage.setItem('darkMode', 'enabled');
             } else {
@@ -862,7 +827,7 @@ function initDarkMode() {
             
             updateToggleIcon(isDarkMode);
             
-            // Add smooth transition effect
+            // Adds smooth transitions
             body.style.transition = 'all 0.3s ease';
             setTimeout(() => {
                 body.style.transition = '';
