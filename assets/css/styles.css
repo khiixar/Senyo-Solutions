@@ -611,7 +611,8 @@ body > * {
 }
 
 /* Hero Section */
-.    min-height: 80vh;
+.hero {
+    min-height: 80vh;
     position: relative;
     display: flex;
     align-items: center;
