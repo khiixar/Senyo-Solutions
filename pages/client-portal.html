@@ -20,9 +20,9 @@
             max-width: 450px;
             margin: 0 auto;
             padding: 40px;
-            background: var(--surface);
+            background: rgba(30, 41, 59, 0.6);
             border-radius: 16px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(148, 163, 184, 0.2);
         }
         .login-container h2 {
             text-align: center;
@@ -35,15 +35,19 @@
         .login-container input {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(148, 163, 184, 0.3);
             border-radius: 8px;
-            background: var(--background);
-            color: var(--text-primary);
+            background: rgba(241, 245, 249, 0.95);
+            color: #1e293b;
             font-size: 1rem;
+        }
+        .login-container input::placeholder {
+            color: #64748b;
         }
         .login-container input:focus {
             outline: none;
             border-color: var(--primary);
+            background: #ffffff;
         }
         .login-container .btn {
             width: 100%;
@@ -54,8 +58,18 @@
             margin-top: 20px;
         }
         .forgot-password a {
-            color: var(--primary);
+            color: var(--primary-light);
             text-decoration: none;
+        }
+        .login-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            color: #fca5a5;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
         }
         .dashboard-container {
             display: none;
@@ -75,15 +89,36 @@
         .welcome-text p {
             color: var(--text-secondary);
         }
+        .projects-section {
+            margin-bottom: 50px;
+        }
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 24px;
-            margin-bottom: 50px;
+        }
+        .empty-projects {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 16px;
+            border: 1px dashed rgba(148, 163, 184, 0.3);
+        }
+        .empty-projects i {
+            font-size: 3rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .empty-projects h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        .empty-projects p {
+            color: var(--text-muted);
         }
         .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
             border-radius: 16px;
             padding: 24px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -144,13 +179,13 @@
         }
         .progress-bar {
             height: 8px;
-            background: var(--border);
+            background: rgba(148, 163, 184, 0.2);
             border-radius: 4px;
             overflow: hidden;
         }
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--primary), var(--accent));
             border-radius: 4px;
             transition: width 0.5s ease;
         }
@@ -164,8 +199,8 @@
             font-size: 0.85rem;
         }
         .update-request-section {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
             border-radius: 16px;
             padding: 32px;
             margin-top: 40px;
@@ -194,37 +229,50 @@
         .request-form textarea {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(148, 163, 184, 0.3);
             border-radius: 8px;
-            background: var(--background);
-            color: var(--text-primary);
+            background: rgba(241, 245, 249, 0.95);
+            color: #1e293b;
             font-size: 1rem;
             font-family: inherit;
+        }
+        .request-form input::placeholder,
+        .request-form textarea::placeholder {
+            color: #64748b;
+        }
+        .request-form select {
+            color: #1e293b;
+        }
+        .request-form select option {
+            background: #f1f5f9;
+            color: #1e293b;
         }
         .request-form input:focus,
         .request-form select:focus,
         .request-form textarea:focus {
             outline: none;
             border-color: var(--primary);
+            background: #ffffff;
         }
         .request-form textarea {
             resize: vertical;
             min-height: 120px;
         }
         .file-upload {
-            border: 2px dashed var(--border);
+            border: 2px dashed rgba(148, 163, 184, 0.4);
             border-radius: 8px;
             padding: 30px;
             text-align: center;
             cursor: pointer;
             transition: border-color 0.3s ease;
+            background: rgba(241, 245, 249, 0.1);
         }
         .file-upload:hover {
             border-color: var(--primary);
         }
         .file-upload i {
             font-size: 2rem;
-            color: var(--primary);
+            color: var(--primary-light);
             margin-bottom: 10px;
         }
         .file-upload p {
@@ -274,9 +322,10 @@
         <div class="container">
             <div class="login-container" id="loginForm">
                 <h2><i class="fas fa-user-circle" style="margin-right: 10px;"></i>Client Login</h2>
+                <div class="login-error" id="loginError">Invalid username or password</div>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group">
-                        <input type="email" id="loginEmail" placeholder="Email Address" required>
+                        <input type="text" id="loginUsername" placeholder="Username" required>
                     </div>
                     <div class="form-group">
                         <input type="password" id="loginPassword" placeholder="Password" required>
@@ -299,106 +348,31 @@
                     </button>
                 </div>
 
-                <h3 style="color: var(--text-primary); margin-bottom: 24px;">Your Projects</h3>
-                <div class="projects-grid" id="projectsGrid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>Company Website Redesign</h3>
-                            <span class="project-status status-active">In Progress</span>
-                        </div>
-                        <div class="project-details">
-                            <p><strong>Service:</strong> Website Creation</p>
-                            <p><strong>Started:</strong> January 15, 2026</p>
-                            <p><strong>Est. Completion:</strong> February 28, 2026</p>
-                        </div>
-                        <div class="project-progress">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span>65%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 65%;"></div>
-                            </div>
-                        </div>
-                        <div class="project-actions">
-                            <button class="btn btn-outline" onclick="viewProjectDetails(1)">View Details</button>
-                            <button class="btn btn-primary" onclick="scrollToRequest()">Request Update</button>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>SEO Optimization Campaign</h3>
-                            <span class="project-status status-active">In Progress</span>
-                        </div>
-                        <div class="project-details">
-                            <p><strong>Service:</strong> SEO Optimization</p>
-                            <p><strong>Started:</strong> December 1, 2025</p>
-                            <p><strong>Est. Completion:</strong> Ongoing</p>
-                        </div>
-                        <div class="project-progress">
-                            <div class="progress-label">
-                                <span>Monthly Goals</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 80%;"></div>
-                            </div>
-                        </div>
-                        <div class="project-actions">
-                            <button class="btn btn-outline" onclick="viewProjectDetails(2)">View Details</button>
-                            <button class="btn btn-primary" onclick="scrollToRequest()">Request Update</button>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>E-commerce Integration</h3>
-                            <span class="project-status status-completed">Completed</span>
-                        </div>
-                        <div class="project-details">
-                            <p><strong>Service:</strong> Website Creation</p>
-                            <p><strong>Started:</strong> October 10, 2025</p>
-                            <p><strong>Completed:</strong> November 30, 2025</p>
-                        </div>
-                        <div class="project-progress">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 100%;"></div>
-                            </div>
-                        </div>
-                        <div class="project-actions">
-                            <button class="btn btn-outline" onclick="viewProjectDetails(3)">View Details</button>
-                            <button class="btn btn-primary" onclick="scrollToRequest()">Request Update</button>
+                <div class="projects-section">
+                    <h3 style="color: var(--text-primary); margin-bottom: 24px;">Your Projects</h3>
+                    <div class="projects-grid" id="projectsGrid">
+                        <div class="empty-projects">
+                            <i class="fas fa-folder-open"></i>
+                            <h3>No Active Projects</h3>
+                            <p>You don't have any active projects at the moment.<br>Submit a request below to get started.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="update-request-section" id="updateRequest">
-                    <h3><i class="fas fa-edit" style="margin-right: 10px;"></i>Submit Update Request</h3>
+                    <h3><i class="fas fa-edit" style="margin-right: 10px;"></i>Submit a Request</h3>
                     <form class="request-form" action="https://formsubmit.co/khixarn@gmail.com" method="POST">
-                        <input type="hidden" name="_subject" value="Client Portal - Project Update Request">
+                        <input type="hidden" name="_subject" value="Client Portal - Project Request">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_next" value="https://senyosolutions.com/pages/thank-you.html">
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="requestProject">Select Project</label>
-                                <select id="requestProject" name="Project" required>
-                                    <option value="">Choose a project...</option>
-                                    <option value="Company Website Redesign">Company Website Redesign</option>
-                                    <option value="SEO Optimization Campaign">SEO Optimization Campaign</option>
-                                    <option value="E-commerce Integration">E-commerce Integration</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label for="requestType">Request Type</label>
                                 <select id="requestType" name="Request Type" required>
                                     <option value="">Select type...</option>
+                                    <option value="New Project">New Project</option>
                                     <option value="Content Update">Content Update</option>
                                     <option value="Design Change">Design Change</option>
                                     <option value="New Feature">New Feature</option>
@@ -407,8 +381,6 @@
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="form-row">
                             <div class="form-group">
                                 <label for="requestPriority">Priority Level</label>
                                 <select id="requestPriority" name="Priority" required>
@@ -418,6 +390,12 @@
                                     <option value="High">High - Within 48 hours</option>
                                     <option value="Urgent">Urgent - ASAP</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="requestName">Your Name</label>
+                                <input type="text" id="requestName" name="Name" placeholder="Your name" required>
                             </div>
                             <div class="form-group">
                                 <label for="requestEmail">Contact Email</label>
@@ -430,7 +408,7 @@
                         </div>
                         <div class="form-group">
                             <label for="requestDescription">Description</label>
-                            <textarea id="requestDescription" name="Description" placeholder="Please describe in detail what changes or updates you need..." required></textarea>
+                            <textarea id="requestDescription" name="Description" placeholder="Please describe in detail what you need..." required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Attachments (Optional)</label>
@@ -484,26 +462,37 @@
 
     <script src="../assets/js/script.js"></script>
     <script>
+        const validCredentials = {
+            username: 'admin',
+            password: '5274'
+        };
+
         function handleLogin(e) {
             e.preventDefault();
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'block';
-            document.getElementById('clientName').textContent = 'Client';
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorEl = document.getElementById('loginError');
+
+            if (username === validCredentials.username && password === validCredentials.password) {
+                errorEl.style.display = 'none';
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                document.getElementById('clientName').textContent = username;
+            } else {
+                errorEl.style.display = 'block';
+            }
         }
 
         function handleLogout() {
             document.getElementById('dashboard').style.display = 'none';
             document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginUsername').value = '';
             document.getElementById('loginPassword').value = '';
+            document.getElementById('loginError').style.display = 'none';
         }
 
         function scrollToRequest() {
             document.getElementById('updateRequest').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function viewProjectDetails(projectId) {
-            alert('Project details view coming soon. Contact support for detailed project information.');
         }
 
         document.getElementById('fileInput').addEventListener('change', function(e) {
