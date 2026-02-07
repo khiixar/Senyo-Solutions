@@ -68,6 +68,19 @@
             text-decoration: none;
             font-size: 0.9rem;
         }
+            text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.admin-link a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+.admin-link a:hover {
+    color: var(--primary-light);
+}
         .dashboard-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -201,13 +214,14 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-        .request-form input:focus,
-        .request-form select:focus,
-        .request-form textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: #ffffff;
-        }
+.request-form select:focus,
+.request-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+}
+        
         .request-form textarea {
             resize: vertical;
             min-height: 120px;
@@ -342,9 +356,11 @@
                     <button type="submit" class="btn btn-primary" id="loginBtn">Sign In</button>
                 </form>
                 <div class="forgot-password">
-                    <a href="#" onclick="resetPassword()">Forgot Password?</a>
-                </div>
-            </div>
+    <a href="#" onclick="resetPassword()">Forgot Password?</a>
+</div>
+<div class="admin-link">
+    <a href="admin-portal.html"><i class="fas fa-shield-alt"></i> Admin Access</a>
+</div>
 
             <div class="dashboard-container" id="dashboard">
                 <div class="dashboard-header">
@@ -491,35 +507,55 @@
             }
         }
 
-        function loadRequests(userId) {
+                function loadRequests(userId) {
             const grid = document.getElementById('projectsGrid');
             grid.innerHTML = '<div class="loading-spinner"></div>';
 
-            const q = query(
-                collection(db, 'requests'),
-                where('userId', '==', userId),
-                orderBy('createdAt', 'desc')
-            );
+            try {
+                const q = query(
+                    collection(db, 'requests'),
+                    where('userId', '==', userId),
+                    orderBy('createdAt', 'desc')
+                );
 
-            unsubscribeRequests = onSnapshot(q, (snapshot) => {
-                if (snapshot.empty) {
+                unsubscribeRequests = onSnapshot(q, (snapshot) => {
+                    if (snapshot.empty) {
+                        grid.innerHTML = `
+                            <div class="empty-projects">
+                                <i class="fas fa-folder-open"></i>
+                                <h3>No Requests Yet</h3>
+                                <p>You haven't submitted any requests.<br>Submit one below to get started.</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    grid.innerHTML = '';
+                    snapshot.forEach((doc) => {
+                        const request = doc.data();
+                        const card = createRequestCard(request);
+                        grid.appendChild(card);
+                    });
+                }, (error) => {
+                    console.error('Error loading requests:', error);
                     grid.innerHTML = `
                         <div class="empty-projects">
                             <i class="fas fa-folder-open"></i>
                             <h3>No Requests Yet</h3>
-                            <p>You haven't submitted any requests.<br>Submit one below to get started.</p>
+                            <p>Submit your first request below to get started.</p>
                         </div>
                     `;
-                    return;
-                }
-
-                grid.innerHTML = '';
-                snapshot.forEach((doc) => {
-                    const request = doc.data();
-                    const card = createRequestCard(request);
-                    grid.appendChild(card);
                 });
-            });
+            } catch (error) {
+                console.error('Error setting up listener:', error);
+                grid.innerHTML = `
+                    <div class="empty-projects">
+                        <i class="fas fa-folder-open"></i>
+                        <h3>No Requests Yet</h3>
+                        <p>Submit your first request below to get started.</p>
+                    </div>
+                `;
+            }
         }
 
         function createRequestCard(request) {
