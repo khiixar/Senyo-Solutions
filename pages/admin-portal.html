@@ -42,8 +42,9 @@
         .priority-high { color: #f97316; }
         .priority-medium { color: #fbbf24; }
         .priority-low { color: #22c55e; }
-        .action-btn { padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; margin-right: 5px; transition: all 0.3s ease; }
+        .action-btn { padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; margin-right: 5px; margin-bottom: 5px; transition: all 0.3s ease; }
         .action-btn.edit { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+        .action-btn.delete { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
         .action-btn:hover { transform: scale(1.05); }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; align-items: center; justify-content: center; }
         .modal.active { display: flex; }
@@ -61,13 +62,17 @@
         .stat-card { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.1); }
         .stat-card h3 { color: var(--primary); font-size: 2rem; margin: 0 0 5px 0; }
         .stat-card p { color: var(--text-secondary); margin: 0; }
+        .filter-bar { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
         .filter-bar select { padding: 10px 15px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: var(--text-primary); }
         select { background-color: #1a1a2e !important; color: #ffffff !important; }
         select option { background-color: #1a1a2e !important; color: #ffffff !important; }
         .success-toast { position: fixed; bottom: 20px; right: 20px; background: rgba(34, 197, 94, 0.9); color: white; padding: 16px 24px; border-radius: 8px; display: none; z-index: 1001; }
         .empty-state { text-align: center; padding: 40px; color: var(--text-secondary); }
+        .confirm-modal { text-align: center; }
+        .confirm-modal p { color: var(--text-primary); margin-bottom: 20px; }
+        .confirm-modal .btn-group { display: flex; gap: 10px; justify-content: center; }
         @media (max-width: 768px) { .requests-table { display: block; overflow-x: auto; } }
-    </style>     
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -88,7 +93,7 @@
         <div class="login-container" id="adminLogin">
             <h2><i class="fas fa-lock" style="margin-right: 10px;"></i>Admin Login</h2>
             <div class="login-error" id="loginError"></div>
-            <form onsubmit="handleAdminLogin(event)">
+            <form id="adminLoginForm">
                 <input type="email" id="adminEmail" placeholder="Admin Email" required>
                 <input type="password" id="adminPassword" placeholder="Password" required>
                 <button type="submit" class="btn btn-primary" style="width: 100%;" id="loginBtn">Sign In</button>
@@ -98,7 +103,7 @@
         <div class="admin-container" id="adminDashboard" style="display: none;">
             <div class="admin-header">
                 <h1><i class="fas fa-cog" style="margin-right: 10px;"></i>Admin Dashboard</h1>
-                <button class="btn btn-outline" onclick="handleLogout()">
+                <button class="btn btn-outline" id="logoutBtn">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </div>
@@ -106,17 +111,17 @@
             <div class="stats-grid" id="statsGrid"></div>
 
             <div class="admin-tabs">
-                <button class="admin-tab active" onclick="switchTab('requests')">
+                <button class="admin-tab active" data-tab="requests">
                     <i class="fas fa-clipboard-list"></i> Requests
                 </button>
-                <button class="admin-tab" onclick="switchTab('clients')">
+                <button class="admin-tab" data-tab="clients">
                     <i class="fas fa-users"></i> Manage Clients
                 </button>
             </div>
 
             <div class="tab-content active" id="requests-tab">
                 <div class="filter-bar">
-                    <select id="statusFilter" onchange="applyFilters()">
+                    <select id="statusFilter">
                         <option value="">All Statuses</option>
                         <option value="Pending">Pending</option>
                         <option value="Accepted">Accepted</option>
@@ -124,7 +129,7 @@
                         <option value="Completed">Completed</option>
                         <option value="Rejected">Rejected</option>
                     </select>
-                    <select id="priorityFilter" onchange="applyFilters()">
+                    <select id="priorityFilter">
                         <option value="">All Priorities</option>
                         <option value="Urgent">Urgent</option>
                         <option value="High">High</option>
@@ -150,7 +155,7 @@
 
             <div class="tab-content" id="clients-tab">
                 <div style="margin-bottom: 20px;">
-                    <button class="btn btn-primary" onclick="openCreateClientModal()">
+                    <button class="btn btn-primary" id="addClientBtn">
                         <i class="fas fa-plus"></i> Add New Client
                     </button>
                 </div>
@@ -163,9 +168,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Request Details</h3>
-                <button class="modal-close" onclick="closeModal('requestModal')">&times;</button>
+                <button class="modal-close" data-close="requestModal">&times;</button>
             </div>
-            <form class="modal-form" id="updateRequestForm" onsubmit="updateRequest(event)">
+            <form class="modal-form" id="updateRequestForm">
                 <input type="hidden" id="requestId">
                 <div id="requestDetails"></div>
                 <label>Status</label>
@@ -187,9 +192,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Create New Client</h3>
-                <button class="modal-close" onclick="closeModal('clientModal')">&times;</button>
+                <button class="modal-close" data-close="clientModal">&times;</button>
             </div>
-            <form class="modal-form" id="clientForm" onsubmit="createClient(event)">
+            <form class="modal-form" id="clientForm">
                 <label>Client Name</label>
                 <input type="text" id="clientName" placeholder="Full name" required>
                 <label>Email</label>
@@ -201,13 +206,27 @@
         </div>
     </div>
 
+    <div class="modal" id="confirmModal">
+        <div class="modal-content confirm-modal">
+            <div class="modal-header">
+                <h3 id="confirmTitle">Confirm Action</h3>
+                <button class="modal-close" data-close="confirmModal">&times;</button>
+            </div>
+            <p id="confirmMessage">Are you sure?</p>
+            <div class="btn-group">
+                <button class="btn btn-outline" data-close="confirmModal">Cancel</button>
+                <button class="btn btn-primary" id="confirmActionBtn" style="background: #ef4444;">Confirm</button>
+            </div>
+        </div>
+    </div>
+
     <div class="success-toast" id="successToast"></div>
 
     <script src="../assets/js/script.js"></script>
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-        import { getFirestore, collection, doc, getDocs, setDoc, updateDoc, query, orderBy, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, browserSessionPersistence, setPersistence } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getFirestore, collection, doc, getDocs, getDoc, setDoc, updateDoc, deleteDoc, query, orderBy, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
         const firebaseConfig = {
             apiKey: "AIzaSyBBnOrgy82HaCPpJaxeHU4csK6YhjhAeOI",
@@ -219,52 +238,56 @@
             measurementId: "G-50TB2Q2L1G"
         };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+        const adminApp = initializeApp(firebaseConfig, 'adminPortal');
+        const adminAuth = getAuth(adminApp);
+        const db = getFirestore(adminApp);
 
-        const secondaryApp = initializeApp(firebaseConfig, 'secondary');
-        const secondaryAuth = getAuth(secondaryApp);
+        const clientCreatorApp = initializeApp(firebaseConfig, 'clientCreator');
+        const clientCreatorAuth = getAuth(clientCreatorApp);
 
         let allRequests = [];
+        let allClients = [];
         let unsubscribeRequests = null;
-        let adminCredentials = null;
+        let pendingAction = null;
 
         const ADMIN_EMAILS = ['khizar.naeem27@gmail.com'];
 
-        onAuthStateChanged(auth, async (user) => {
-            if (user && ADMIN_EMAILS.includes(user.email)) {
-                document.getElementById('adminLogin').style.display = 'none';
-                document.getElementById('adminDashboard').style.display = 'block';
-                loadRequests();
-                loadClients();
-            } else {
-                document.getElementById('adminDashboard').style.display = 'none';
-                document.getElementById('adminLogin').style.display = 'block';
-                if (user && !ADMIN_EMAILS.includes(user.email)) {
-                    await signOut(auth);
-                    showError('Access denied. Admin only.');
+        async function init() {
+            await setPersistence(adminAuth, browserSessionPersistence);
+            
+            onAuthStateChanged(adminAuth, (user) => {
+                if (user && ADMIN_EMAILS.includes(user.email)) {
+                    document.getElementById('adminLogin').style.display = 'none';
+                    document.getElementById('adminDashboard').style.display = 'block';
+                    loadRequests();
+                    loadClients();
+                } else {
+                    document.getElementById('adminDashboard').style.display = 'none';
+                    document.getElementById('adminLogin').style.display = 'block';
+                    if (unsubscribeRequests) unsubscribeRequests();
+                    if (user && !ADMIN_EMAILS.includes(user.email)) {
+                        signOut(adminAuth);
+                        showError('Access denied. Admin only.');
+                    }
                 }
-            }
-        });
+            });
+        }
+
+        init();
 
         function loadRequests() {
-            try {
-                const q = query(collection(db, 'requests'), orderBy('createdAt', 'desc'));
-                unsubscribeRequests = onSnapshot(q, (snapshot) => {
-                    allRequests = [];
-                    snapshot.forEach((doc) => {
-                        allRequests.push({ id: doc.id, ...doc.data() });
-                    });
-                    updateStats();
-                    renderRequests();
-                }, (error) => {
-                    console.error('Error loading requests:', error);
-                    document.getElementById('requestsBody').innerHTML = '<tr><td colspan="7" class="empty-state">No requests found or error loading.</td></tr>';
+            const q = query(collection(db, 'requests'), orderBy('createdAt', 'desc'));
+            unsubscribeRequests = onSnapshot(q, (snapshot) => {
+                allRequests = [];
+                snapshot.forEach((doc) => {
+                    allRequests.push({ id: doc.id, ...doc.data() });
                 });
-            } catch (error) {
-                console.error('Error:', error);
-            }
+                updateStats();
+                renderRequests();
+            }, (error) => {
+                console.error('Error loading requests:', error);
+                document.getElementById('requestsBody').innerHTML = '<tr><td colspan="7" class="empty-state">Error loading requests.</td></tr>';
+            });
         }
 
         function updateStats() {
@@ -297,7 +320,9 @@
                 return;
             }
 
-            tbody.innerHTML = filtered.map(r => `
+            tbody.innerHTML = filtered.map(r => {
+                const canDelete = r.status === 'Completed' || r.status === 'Rejected';
+                return `
                 <tr>
                     <td>${escapeHtml(r.userName || r.userEmail || 'Unknown')}</td>
                     <td>${escapeHtml(r.title || 'No title')}</td>
@@ -306,39 +331,46 @@
                     <td><span class="status-badge status-${(r.status || 'pending').toLowerCase().replace(' ', '-')}">${r.status || 'Pending'}</span></td>
                     <td>${r.createdAt ? new Date(r.createdAt.toDate()).toLocaleDateString() : '-'}</td>
                     <td>
-                        <button class="action-btn edit" onclick="openRequestModal('${r.id}')">
+                        <button class="action-btn edit" data-request-id="${r.id}">
                             <i class="fas fa-edit"></i> Manage
                         </button>
+                        ${canDelete ? `<button class="action-btn delete" data-delete-request="${r.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>` : ''}
                     </td>
                 </tr>
-            `).join('');
+            `}).join('');
         }
 
         async function loadClients() {
             try {
                 const snapshot = await getDocs(collection(db, 'clients'));
                 const container = document.getElementById('clientsList');
+                allClients = [];
                 
-                if (snapshot.empty) {
+                snapshot.forEach((doc) => {
+                    allClients.push({ id: doc.id, ...doc.data() });
+                });
+
+                if (allClients.length === 0) {
                     container.innerHTML = '<p style="color: var(--text-secondary);">No clients yet. Add one above.</p>';
                     return;
                 }
 
-                container.innerHTML = '';
-                snapshot.forEach((doc) => {
-                    const client = doc.data();
-                    container.innerHTML += `
-                        <div class="client-card">
-                            <div class="client-info">
-                                <h4>${escapeHtml(client.name || 'No name')}</h4>
-                                <p>${escapeHtml(client.email || 'No email')}</p>
-                                <p style="font-size: 0.8rem; color: var(--text-secondary);">
-                                    Created: ${client.createdAt ? new Date(client.createdAt.toDate()).toLocaleDateString() : 'N/A'}
-                                </p>
-                            </div>
+                container.innerHTML = allClients.map(client => `
+                    <div class="client-card">
+                        <div class="client-info">
+                            <h4>${escapeHtml(client.name || 'No name')}</h4>
+                            <p>${escapeHtml(client.email || 'No email')}</p>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                                Created: ${client.createdAt ? new Date(client.createdAt.toDate()).toLocaleDateString() : 'N/A'}
+                            </p>
                         </div>
-                    `;
-                });
+                        <button class="action-btn delete" data-delete-client="${client.id}" data-client-email="${client.email}">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                `).join('');
             } catch (error) {
                 console.error('Error loading clients:', error);
                 document.getElementById('clientsList').innerHTML = '<p style="color: var(--text-secondary);">Error loading clients.</p>';
@@ -365,66 +397,97 @@
             setTimeout(() => toast.style.display = 'none', 3000);
         }
 
-        window.handleAdminLogin = async function(e) {
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function showConfirm(title, message, action) {
+            document.getElementById('confirmTitle').textContent = title;
+            document.getElementById('confirmMessage').textContent = message;
+            pendingAction = action;
+            openModal('confirmModal');
+        }
+
+        document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('adminEmail').value;
             const password = document.getElementById('adminPassword').value;
             const btn = document.getElementById('loginBtn');
-
-            adminCredentials = { email, password };
 
             btn.disabled = true;
             btn.textContent = 'Signing in...';
             document.getElementById('loginError').style.display = 'none';
 
             try {
-                await signInWithEmailAndPassword(auth, email, password);
+                await signInWithEmailAndPassword(adminAuth, email, password);
             } catch (error) {
                 showError('Invalid credentials');
-                adminCredentials = null;
             } finally {
                 btn.disabled = false;
                 btn.textContent = 'Sign In';
             }
-        };
+        });
 
-        window.handleLogout = async function() {
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
             if (unsubscribeRequests) unsubscribeRequests();
-            adminCredentials = null;
-            await signOut(auth);
-        };
+            await signOut(adminAuth);
+        });
 
-        window.switchTab = function(tab) {
-            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelector(`.admin-tab[onclick="switchTab('${tab}')"]`).classList.add('active');
-            document.getElementById(`${tab}-tab`).classList.add('active');
-            if (tab === 'clients') loadClients();
-        };
+        document.querySelectorAll('.admin-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(`${tab.dataset.tab}-tab`).classList.add('active');
+                if (tab.dataset.tab === 'clients') loadClients();
+            });
+        });
 
-        window.applyFilters = renderRequests;
+        document.getElementById('statusFilter').addEventListener('change', renderRequests);
+        document.getElementById('priorityFilter').addEventListener('change', renderRequests);
 
-        window.openRequestModal = function(id) {
-            const request = allRequests.find(r => r.id === id);
-            if (!request) return;
+        document.getElementById('requestsBody').addEventListener('click', (e) => {
+            const editBtn = e.target.closest('[data-request-id]');
+            const deleteBtn = e.target.closest('[data-delete-request]');
+            
+            if (editBtn) {
+                const request = allRequests.find(r => r.id === editBtn.dataset.requestId);
+                if (!request) return;
 
-            document.getElementById('requestId').value = id;
-            document.getElementById('updateStatus').value = request.status || 'Pending';
-            document.getElementById('adminNotes').value = request.adminNotes || '';
-            document.getElementById('requestDetails').innerHTML = `
-                <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
-                    <p><strong>Client:</strong> ${escapeHtml(request.userName || 'Unknown')} (${escapeHtml(request.userEmail || 'No email')})</p>
-                    <p><strong>Title:</strong> ${escapeHtml(request.title || 'No title')}</p>
-                    <p><strong>Type:</strong> ${escapeHtml(request.requestType || 'N/A')}</p>
-                    <p><strong>Priority:</strong> ${escapeHtml(request.priority || 'N/A')}</p>
-                    <p><strong>Description:</strong></p>
-                    <p style="color: var(--text-secondary);">${escapeHtml(request.description || 'No description')}</p>
-                </div>
-            `;
-            document.getElementById('requestModal').classList.add('active');
-        };
+                document.getElementById('requestId').value = request.id;
+                document.getElementById('updateStatus').value = request.status || 'Pending';
+                document.getElementById('adminNotes').value = request.adminNotes || '';
+                document.getElementById('requestDetails').innerHTML = `
+                    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                        <p><strong>Client:</strong> ${escapeHtml(request.userName || 'Unknown')} (${escapeHtml(request.userEmail || 'No email')})</p>
+                        <p><strong>Title:</strong> ${escapeHtml(request.title || 'No title')}</p>
+                        <p><strong>Type:</strong> ${escapeHtml(request.requestType || 'N/A')}</p>
+                        <p><strong>Priority:</strong> ${escapeHtml(request.priority || 'N/A')}</p>
+                        <p><strong>Description:</strong></p>
+                        <p style="color: var(--text-secondary);">${escapeHtml(request.description || 'No description')}</p>
+                    </div>
+                `;
+                openModal('requestModal');
+            }
+            
+            if (deleteBtn) {
+                const requestId = deleteBtn.dataset.deleteRequest;
+                showConfirm('Delete Request', 'Are you sure you want to delete this request? This cannot be undone.', async () => {
+                    try {
+                        await deleteDoc(doc(db, 'requests', requestId));
+                        showToast('Request deleted successfully!');
+                    } catch (error) {
+                        alert('Error deleting request: ' + error.message);
+                    }
+                });
+            }
+        });
 
-        window.updateRequest = async function(e) {
+        document.getElementById('updateRequestForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const id = document.getElementById('requestId').value;
             
@@ -439,14 +502,14 @@
             } catch (error) {
                 alert('Error updating request: ' + error.message);
             }
-        };
+        });
 
-        window.openCreateClientModal = function() {
+        document.getElementById('addClientBtn').addEventListener('click', () => {
             document.getElementById('clientForm').reset();
-            document.getElementById('clientModal').classList.add('active');
-        };
+            openModal('clientModal');
+        });
 
-        window.createClient = async function(e) {
+        document.getElementById('clientForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('createClientBtn');
             btn.disabled = true;
@@ -457,16 +520,17 @@
             const password = document.getElementById('clientPassword').value;
 
             try {
-                const userCredential = await createUserWithEmailAndPassword(secondaryAuth, email, password);
+                const userCredential = await createUserWithEmailAndPassword(clientCreatorAuth, email, password);
                 await updateProfile(userCredential.user, { displayName: name });
                 
-                                await setDoc(doc(db, 'clients', userCredential.user.uid), {
+                await setDoc(doc(db, 'clients', userCredential.user.uid), {
                     name: name,
                     email: email,
                     createdAt: serverTimestamp()
                 });
 
-                await secondaryAuth.signOut();
+                await signOut(clientCreatorAuth);
+
                 closeModal('clientModal');
                 showToast(`Client created! Email: ${email}`);
                 loadClients();
@@ -476,11 +540,36 @@
                 btn.disabled = false;
                 btn.textContent = 'Create Client';
             }
-        };
+        });
 
-        window.closeModal = function(id) {
-            document.getElementById(id).classList.remove('active');
-        };
+        document.getElementById('clientsList').addEventListener('click', (e) => {
+            const deleteBtn = e.target.closest('[data-delete-client]');
+            if (deleteBtn) {
+                const clientId = deleteBtn.dataset.deleteClient;
+                const clientEmail = deleteBtn.dataset.clientEmail;
+                showConfirm('Remove Client', `Are you sure you want to remove ${clientEmail}? Their requests will remain but they won't be able to log in.`, async () => {
+                    try {
+                        await deleteDoc(doc(db, 'clients', clientId));
+                        showToast('Client removed successfully!');
+                        loadClients();
+                    } catch (error) {
+                        alert('Error removing client: ' + error.message);
+                    }
+                });
+            }
+        });
+
+        document.getElementById('confirmActionBtn').addEventListener('click', async () => {
+            if (pendingAction) {
+                await pendingAction();
+                pendingAction = null;
+            }
+            closeModal('confirmModal');
+        });
+
+        document.querySelectorAll('[data-close]').forEach(btn => {
+            btn.addEventListener('click', () => closeModal(btn.dataset.close));
+        });
     </script>
 </body>
 </html>

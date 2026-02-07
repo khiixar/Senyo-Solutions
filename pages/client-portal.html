@@ -28,9 +28,7 @@
             margin-bottom: 30px;
             text-align: center;
         }
-        .login-container .form-group {
-            margin-bottom: 20px;
-        }
+        .login-container .form-group { margin-bottom: 20px; }
         .login-container input {
             width: 100%;
             padding: 14px 16px;
@@ -46,10 +44,7 @@
             border-color: var(--primary);
             background: rgba(255, 255, 255, 0.12);
         }
-        .login-container .btn {
-            width: 100%;
-            margin-top: 10px;
-        }
+        .login-container .btn { width: 100%; margin-top: 10px; }
         .login-error {
             background: rgba(239, 68, 68, 0.2);
             color: #f87171;
@@ -59,34 +54,17 @@
             display: none;
             text-align: center;
         }
-        .forgot-password {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .forgot-password a {
-            color: var(--primary-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
+        .forgot-password { text-align: center; margin-top: 20px; }
+        .forgot-password a { color: var(--primary-light); text-decoration: none; font-size: 0.9rem; }
         .admin-link {
             text-align: center;
             margin-top: 30px;
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .admin-link a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-        }
-        .admin-link a:hover {
-            color: var(--primary-light);
-        }
-        .dashboard-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: none;
-        }
+        .admin-link a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
+        .admin-link a:hover { color: var(--primary-light); }
+        .dashboard-container { max-width: 1200px; margin: 0 auto; display: none; }
         .dashboard-header {
             display: flex;
             justify-content: space-between;
@@ -95,16 +73,10 @@
             flex-wrap: wrap;
             gap: 20px;
         }
-        .welcome-text h2 {
-            color: var(--text-primary);
-            margin-bottom: 5px;
-        }
-        .welcome-text p {
-            color: var(--text-secondary);
-        }
-        .projects-section {
-            margin-bottom: 40px;
-        }
+        .welcome-text h2 { color: var(--text-primary); margin-bottom: 5px; }
+        .welcome-text p { color: var(--text-secondary); }
+        .projects-section { margin-bottom: 40px; }
+        .section-title { color: var(--text-primary); margin-bottom: 20px; font-size: 1.3rem; }
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -118,18 +90,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: transform 0.3s ease;
         }
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        .project-card h4 {
-            color: var(--text-primary);
-            margin-bottom: 10px;
-        }
-        .project-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
+        .project-card:hover { transform: translateY(-5px); }
+        .project-card h4 { color: var(--text-primary); margin-bottom: 10px; }
+        .project-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px; }
         .project-status {
             display: inline-flex;
             align-items: center;
@@ -138,26 +101,11 @@
             font-size: 0.85rem;
             font-weight: 500;
         }
-        .status-pending {
-            background: rgba(251, 191, 36, 0.2);
-            color: #fbbf24;
-        }
-        .status-in-progress {
-            background: rgba(59, 130, 246, 0.2);
-            color: #3b82f6;
-        }
-        .status-completed {
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
-        }
-        .status-rejected {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-        }
-        .status-accepted {
-            background: rgba(168, 85, 247, 0.2);
-            color: #a855f7;
-        }
+        .status-pending { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+        .status-in-progress { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        .status-completed { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .status-rejected { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .status-accepted { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
         .empty-projects {
             text-align: center;
             padding: 60px 20px;
@@ -166,18 +114,27 @@
             border: 1px dashed rgba(255, 255, 255, 0.1);
             grid-column: 1 / -1;
         }
-        .empty-projects i {
-            font-size: 3rem;
-            color: var(--primary-light);
-            margin-bottom: 20px;
-        }
-        .empty-projects h3 {
-            color: var(--text-primary);
-            margin-bottom: 10px;
-        }
-        .empty-projects p {
+        .empty-projects i { font-size: 3rem; color: var(--primary-light); margin-bottom: 20px; }
+        .empty-projects h3 { color: var(--text-primary); margin-bottom: 10px; }
+        .empty-projects p { color: var(--text-secondary); }
+        .request-meta {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
             color: var(--text-secondary);
         }
+        .request-meta span { display: flex; align-items: center; gap: 5px; }
+        .admin-notes {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(168, 85, 247, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #a855f7;
+        }
+        .admin-notes h5 { color: #a855f7; margin: 0 0 8px 0; font-size: 0.85rem; }
+        .admin-notes p { color: var(--text-secondary); margin: 0; font-size: 0.9rem; }
         .update-request-section {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -185,24 +142,10 @@
             padding: 32px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .update-request-section h3 {
-            color: var(--text-primary);
-            margin-bottom: 24px;
-        }
-        .request-form .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .request-form .form-group {
-            margin-bottom: 20px;
-        }
-        .request-form label {
-            display: block;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
+        .update-request-section h3 { color: var(--text-primary); margin-bottom: 24px; }
+        .request-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .request-form .form-group { margin-bottom: 20px; }
+        .request-form label { display: block; color: var(--text-secondary); margin-bottom: 8px; font-size: 0.9rem; }
         .request-form input,
         .request-form select,
         .request-form textarea {
@@ -221,74 +164,27 @@
             outline: none;
             border-color: var(--primary);
             background: rgba(255, 255, 255, 0.15);
-            color: var(--text-primary);
         }
-        .request-form textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-                select { background-color: #1a1a2e !important; color: #ffffff !important; }
+        .request-form textarea { resize: vertical; min-height: 120px; }
+        select { background-color: #1a1a2e !important; color: #ffffff !important; }
         select option { background-color: #1a1a2e !important; color: #ffffff !important; }
-        .file-upload {
-            border: 2px dashed rgba(148, 163, 184, 0.4);
+        .success-message {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            padding: 16px;
             border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: border-color 0.3s ease;
-            background: rgba(241, 245, 249, 0.1);
-        }
-        .file-upload:hover {
-            border-color: var(--primary);
-        }
-        .file-upload i {
-            font-size: 2rem;
-            color: var(--primary-light);
-            margin-bottom: 10px;
-        }
-        .file-upload p {
-            color: var(--text-secondary);
-            margin: 0;
-        }
-        .file-upload input {
+            margin-top: 20px;
             display: none;
-        }
-        .request-meta {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-        .request-meta span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .admin-notes {
-            margin-top: 15px;
-            padding: 12px;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 8px;
-            border-left: 3px solid #3b82f6;
-        }
-        .admin-notes h5 {
-            color: #3b82f6;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-        }
-        .admin-notes p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin: 0;
+            text-align: center;
         }
         .loading-spinner {
             display: flex;
             justify-content: center;
             padding: 40px;
+            grid-column: 1 / -1;
         }
         .loading-spinner::after {
-            content: "";
+            content: '';
             width: 40px;
             height: 40px;
             border: 3px solid rgba(255, 255, 255, 0.1);
@@ -296,29 +192,10 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        .success-message {
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
-            text-align: center;
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
         @media (max-width: 768px) {
-            .request-form .form-row {
-                grid-template-columns: 1fr;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .dashboard-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .request-form .form-row { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -333,120 +210,103 @@
             <ul class="nav-menu">
                 <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                <li class="nav-item"><a href="../index.html#work" class="nav-link">Our Work</a></li>
-                <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
         </div>
     </nav>
 
     <section class="portal-section">
-        <div class="container">
-            <div class="login-container" id="loginForm">
-                <h2><i class="fas fa-user-circle" style="margin-right: 10px;"></i>Client Login</h2>
-                <div class="login-error" id="loginError"></div>
-                <form onsubmit="handleLogin(event)">
-                    <div class="form-group">
-                        <input type="email" id="loginEmail" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="loginPassword" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="loginBtn">Sign In</button>
-                </form>
-                <div class="forgot-password">
-                    <a href="#" onclick="resetPassword()">Forgot Password?</a>
+        <div class="login-container" id="loginForm">
+            <h2><i class="fas fa-user-circle" style="margin-right: 10px;"></i>Client Login</h2>
+            <div class="login-error" id="loginError"></div>
+            <form id="clientLoginForm">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" placeholder="Email Address" required>
                 </div>
-                <div class="admin-link">
-                    <a href="admin-portal.html"><i class="fas fa-shield-alt"></i> Admin Access</a>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="loginBtn">Sign In</button>
+            </form>
+            <div class="forgot-password">
+                <a href="#" id="forgotPasswordLink">Forgot your password?</a>
+            </div>
+            <div class="admin-link">
+                <a href="admin-portal.html"><i class="fas fa-lock" style="margin-right: 5px;"></i>Admin Access</a>
+            </div>
+        </div>
+
+        <div class="dashboard-container" id="dashboard">
+            <div class="dashboard-header">
+                <div class="welcome-text">
+                    <h2>Welcome, <span id="clientName">Client</span></h2>
+                    <p>Manage your requests and track progress</p>
+                </div>
+                <button class="btn btn-outline" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <div class="projects-section">
+                <h3 class="section-title"><i class="fas fa-clipboard-list" style="margin-right: 10px;"></i>Your Requests</h3>
+                <div class="projects-grid" id="projectsGrid">
+                    <div class="loading-spinner"></div>
                 </div>
             </div>
 
-            <div class="dashboard-container" id="dashboard">
-                <div class="dashboard-header">
-                    <div class="welcome-text">
-                        <h2>Welcome back, <span id="clientName">Client</span></h2>
-                        <p>Manage your projects and submit update requests</p>
+            <div class="update-request-section">
+                <h3><i class="fas fa-plus-circle" style="margin-right: 10px;"></i>Submit New Request</h3>
+                <form class="request-form" id="requestForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="requestType">Request Type</label>
+                            <select id="requestType" required>
+                                <option value="">Select type...</option>
+                                <option value="Website Development">Website Development</option>
+                                <option value="Website Update">Website Update</option>
+                                <option value="Bug Fix">Bug Fix</option>
+                                <option value="New Feature">New Feature</option>
+                                <option value="Consultation">Consultation</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="requestPriority">Priority</label>
+                            <select id="requestPriority" required>
+                                <option value="">Select priority...</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                                <option value="Urgent">Urgent</option>
+                            </select>
+                        </div>
                     </div>
-                    <button class="btn btn-outline" onclick="handleLogout()">
-                        <i class="fas fa-sign-out-alt"></i> Logout
+                    <div class="form-group">
+                        <label for="requestTitle">Title</label>
+                        <input type="text" id="requestTitle" placeholder="Brief title for your request" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestDescription">Description</label>
+                        <textarea id="requestDescription" placeholder="Describe your request in detail..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Submit Request
                     </button>
-                </div>
-
-                <div class="projects-section">
-                    <h3 style="color: var(--text-primary); margin-bottom: 24px;">Your Requests</h3>
-                    <div class="projects-grid" id="projectsGrid">
-                        <div class="loading-spinner"></div>
-                    </div>
-                </div>
-
-                <div class="update-request-section" id="updateRequest">
-                    <h3><i class="fas fa-edit" style="margin-right: 10px;"></i>Submit a Request</h3>
-                    <div class="success-message" id="successMessage">Request submitted successfully!</div>
-                    <form class="request-form" id="requestForm" onsubmit="submitRequest(event)">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="requestType">Request Type</label>
-                                <select id="requestType" name="requestType" required>
-                                    <option value="">Select type...</option>
-                                    <option value="New Project">New Project</option>
-                                    <option value="Content Update">Content Update</option>
-                                    <option value="Design Change">Design Change</option>
-                                    <option value="New Feature">New Feature</option>
-                                    <option value="Bug Fix">Bug Fix</option>
-                                    <option value="Performance Issue">Performance Issue</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="requestPriority">Priority Level</label>
-                                <select id="requestPriority" name="priority" required>
-                                    <option value="">Select priority...</option>
-                                    <option value="Low">Low - No rush</option>
-                                    <option value="Medium">Medium - Within a week</option>
-                                    <option value="High">High - Within 48 hours</option>
-                                    <option value="Urgent">Urgent - ASAP</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="requestTitle">Request Title</label>
-                            <input type="text" id="requestTitle" name="title" placeholder="Brief title for your request" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="requestDescription">Description</label>
-                            <textarea id="requestDescription" name="description" placeholder="Please describe in detail what you need..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-large" id="submitBtn">
-                            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Submit Request
-                        </button>
-                    </form>
+                </form>
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+                    Your request has been submitted successfully!
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
+        <div class="footer-container">
+            <div class="footer-grid">
                 <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="../assets/images/logo1.png" alt="Senyo Solutions" class="footer-logo-img">
-                    </div>
-                    <p>Professional web solutions for modern businesses</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services.html">Website Creation</a></li>
-                        <li><a href="services.html">Web Hosting</a></li>
-                        <li><a href="services.html">Marketing</a></li>
-                        <li><a href="services.html">SEO Optimization</a></li>
-                    </ul>
+                    <h4>Senyo Solutions</h4>
+                    <p>Professional web development and digital solutions for businesses.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
@@ -478,14 +338,14 @@
             measurementId: "G-50TB2Q2L1G"
         };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+        const clientApp = initializeApp(firebaseConfig, 'clientPortal');
+        const clientAuth = getAuth(clientApp);
+        const db = getFirestore(clientApp);
 
         let currentUser = null;
         let unsubscribeRequests = null;
 
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(clientAuth, (user) => {
             if (user) {
                 currentUser = user;
                 showDashboard(user);
@@ -507,6 +367,7 @@
             document.getElementById('loginForm').style.display = 'block';
             if (unsubscribeRequests) {
                 unsubscribeRequests();
+                unsubscribeRequests = null;
             }
         }
 
@@ -527,7 +388,7 @@
                             <div class="empty-projects">
                                 <i class="fas fa-folder-open"></i>
                                 <h3>No Requests Yet</h3>
-                                <p>You haven't submitted any requests.<br>Submit one below to get started.</p>
+                                <p>Submit your first request below to get started.</p>
                             </div>
                         `;
                         return;
@@ -550,7 +411,7 @@
                     `;
                 });
             } catch (error) {
-                console.error('Error setting up listener:', error);
+                console.error('Error:', error);
                 grid.innerHTML = `
                     <div class="empty-projects">
                         <i class="fas fa-folder-open"></i>
@@ -599,12 +460,30 @@
         }
 
         function escapeHtml(text) {
+            if (!text) return '';
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
 
-        window.handleLogin = async function(e) {
+        function showError(msg) {
+            const el = document.getElementById('loginError');
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+
+        function getErrorMessage(code) {
+            const messages = {
+                'auth/invalid-email': 'Invalid email address',
+                'auth/user-disabled': 'This account has been disabled',
+                'auth/user-not-found': 'No account found with this email',
+                'auth/wrong-password': 'Incorrect password',
+                'auth/invalid-credential': 'Invalid email or password'
+            };
+            return messages[code] || 'An error occurred. Please try again.';
+        }
+
+        document.getElementById('clientLoginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
@@ -616,35 +495,36 @@
             errorEl.style.display = 'none';
 
             try {
-                await signInWithEmailAndPassword(auth, email, password);
+                await signInWithEmailAndPassword(clientAuth, email, password);
             } catch (error) {
-                errorEl.textContent = getErrorMessage(error.code);
-                errorEl.style.display = 'block';
+                showError(getErrorMessage(error.code));
             } finally {
                 loginBtn.disabled = false;
                 loginBtn.textContent = 'Sign In';
             }
-        };
+        });
 
-        window.handleLogout = async function() {
-            await signOut(auth);
-        };
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            if (unsubscribeRequests) unsubscribeRequests();
+            await signOut(clientAuth);
+        });
 
-        window.resetPassword = async function() {
+        document.getElementById('forgotPasswordLink').addEventListener('click', async (e) => {
+            e.preventDefault();
             const email = document.getElementById('loginEmail').value;
             if (!email) {
                 alert('Please enter your email address first');
                 return;
             }
             try {
-                await sendPasswordResetEmail(auth, email);
+                await sendPasswordResetEmail(clientAuth, email);
                 alert('Password reset email sent! Check your inbox.');
             } catch (error) {
                 alert(getErrorMessage(error.code));
             }
-        };
+        });
 
-        window.submitRequest = async function(e) {
+        document.getElementById('requestForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = document.getElementById('submitBtn');
             const successMsg = document.getElementById('successMessage');
@@ -676,18 +556,7 @@
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Submit Request';
             }
-        };
-
-        function getErrorMessage(code) {
-            const messages = {
-                'auth/invalid-email': 'Invalid email address',
-                'auth/user-disabled': 'This account has been disabled',
-                'auth/user-not-found': 'No account found with this email',
-                'auth/wrong-password': 'Incorrect password',
-                'auth/invalid-credential': 'Invalid email or password'
-            };
-            return messages[code] || 'An error occurred. Please try again.';
-        }
+        });
     </script>
 </body>
 </html>
