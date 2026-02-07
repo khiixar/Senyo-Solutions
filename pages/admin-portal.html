@@ -460,14 +460,13 @@
                 const userCredential = await createUserWithEmailAndPassword(secondaryAuth, email, password);
                 await updateProfile(userCredential.user, { displayName: name });
                 
-                await setDoc(doc(db, 'clients', userCredential.user.uid), {
+                                await setDoc(doc(db, 'clients', userCredential.user.uid), {
                     name: name,
                     email: email,
                     createdAt: serverTimestamp()
-                                await secondaryAuth.signOut();
+                });
 
-                await signOut(secondaryAuth);
-
+                await secondaryAuth.signOut();
                 closeModal('clientModal');
                 showToast(`Client created! Email: ${email}`);
                 loadClients();
