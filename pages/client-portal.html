@@ -1,4 +1,562 @@
-    <script src="../assets/js/dist/client-portal.js"></script>
-    <script type="module" src="../assets/js/dist/client-portal.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal | Senyo Solutions</title>
+    <link rel="icon" type="image/png" href="../assets/images/logo1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        .portal-section {
+            min-height: 100vh;
+            padding: 120px 20px 60px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .login-container h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .login-container .form-group { margin-bottom: 20px; }
+        .login-container input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .login-container input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .login-container .btn { width: 100%; margin-top: 10px; }
+        .login-error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+        .forgot-password { text-align: center; margin-top: 20px; }
+        .forgot-password a { color: var(--primary-light); text-decoration: none; font-size: 0.9rem; }
+        .admin-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .admin-link a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
+        .admin-link a:hover { color: var(--primary-light); }
+        .dashboard-container { max-width: 1200px; margin: 0 auto; display: none; }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .welcome-text h2 { color: var(--text-primary); margin-bottom: 5px; }
+        .welcome-text p { color: var(--text-secondary); }
+        .projects-section { margin-bottom: 40px; }
+        .section-title { color: var(--text-primary); margin-bottom: 20px; font-size: 1.3rem; }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover { transform: translateY(-5px); }
+        .project-card h4 { color: var(--text-primary); margin-bottom: 10px; }
+        .project-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px; }
+        .project-status {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .status-pending { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+        .status-in-progress { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        .status-completed { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .status-rejected { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .status-accepted { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+        .empty-projects {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            grid-column: 1 / -1;
+        }
+        .empty-projects i { font-size: 3rem; color: var(--primary-light); margin-bottom: 20px; }
+        .empty-projects h3 { color: var(--text-primary); margin-bottom: 10px; }
+        .empty-projects p { color: var(--text-secondary); }
+        .request-meta {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .request-meta span { display: flex; align-items: center; gap: 5px; }
+        .admin-notes {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(168, 85, 247, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #a855f7;
+        }
+        .admin-notes h5 { color: #a855f7; margin: 0 0 8px 0; font-size: 0.85rem; }
+        .admin-notes p { color: var(--text-secondary); margin: 0; font-size: 0.9rem; }
+        .update-request-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .update-request-section h3 { color: var(--text-primary); margin-bottom: 24px; }
+        .request-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .request-form .form-group { margin-bottom: 20px; }
+        .request-form label { display: block; color: var(--text-secondary); margin-bottom: 8px; font-size: 0.9rem; }
+        .request-form input,
+        .request-form select,
+        .request-form textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .request-form input:focus,
+        .request-form select:focus,
+        .request-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .request-form textarea { resize: vertical; min-height: 120px; }
+        select { background-color: #1a1a2e !important; color: #ffffff !important; }
+        select option { background-color: #1a1a2e !important; color: #ffffff !important; }
+        .success-message {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+        }
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+            grid-column: 1 / -1;
+        }
+        .loading-spinner::after {
+            content: '';
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 768px) {
+            .request-form .form-row { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" class="logo-link">
+                    <img src="../assets/images/logo1.png" alt="Senyo Solutions" class="logo-svg">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="portal-section">
+        <div class="login-container" id="loginForm">
+            <h2><i class="fas fa-user-circle" style="margin-right: 10px;"></i>Client Login</h2>
+            <div class="login-error" id="loginError"></div>
+            <form id="clientLoginForm">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="loginBtn">Sign In</button>
+            </form>
+            <div class="forgot-password">
+                <a href="#" id="forgotPasswordLink">Forgot your password?</a>
+            </div>
+            <div class="admin-link">
+                <a href="admin-portal.html"><i class="fas fa-lock" style="margin-right: 5px;"></i>Admin Access</a>
+            </div>
+        </div>
+
+        <div class="dashboard-container" id="dashboard">
+            <div class="dashboard-header">
+                <div class="welcome-text">
+                    <h2>Welcome, <span id="clientName">Client</span></h2>
+                    <p>Manage your requests and track progress</p>
+                </div>
+                <button class="btn btn-outline" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <div class="projects-section">
+                <h3 class="section-title"><i class="fas fa-clipboard-list" style="margin-right: 10px;"></i>Your Requests</h3>
+                <div class="projects-grid" id="projectsGrid">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+
+            <div class="update-request-section">
+                <h3><i class="fas fa-plus-circle" style="margin-right: 10px;"></i>Submit New Request</h3>
+                <form class="request-form" id="requestForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="requestType">Request Type</label>
+                            <select id="requestType" required>
+                                <option value="">Select type...</option>
+                                <option value="Website Development">Website Development</option>
+                                <option value="Website Update">Website Update</option>
+                                <option value="Bug Fix">Bug Fix</option>
+                                <option value="New Feature">New Feature</option>
+                                <option value="Consultation">Consultation</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="requestPriority">Priority</label>
+                            <select id="requestPriority" required>
+                                <option value="">Select priority...</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                                <option value="Urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestTitle">Title</label>
+                        <input type="text" id="requestTitle" placeholder="Brief title for your request" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestDescription">Description</label>
+                        <textarea id="requestDescription" placeholder="Describe your request in detail..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Submit Request
+                    </button>
+                </form>
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle" style="margin-right: 8px;"></i>
+                    Your request has been submitted successfully!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Senyo Solutions</h4>
+                    <p>Professional web development and digital solutions for businesses.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> (516) 707-7351</p>
+                        <p><i class="fas fa-envelope"></i> contact@senyosolutions.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Senyo Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBBnOrgy82HaCPpJaxeHU4csK6YhjhAeOI",
+            authDomain: "senyo-solutions.firebaseapp.com",
+            projectId: "senyo-solutions",
+            storageBucket: "senyo-solutions.firebasestorage.app",
+            messagingSenderId: "632156878304",
+            appId: "1:632156878304:web:635968afa1eb25c928e785",
+            measurementId: "G-50TB2Q2L1G"
+        };
+
+        const clientApp = initializeApp(firebaseConfig, 'clientPortal');
+        const clientAuth = getAuth(clientApp);
+        const db = getFirestore(clientApp);
+
+        let currentUser = null;
+        let unsubscribeRequests = null;
+
+        onAuthStateChanged(clientAuth, (user) => {
+            if (user) {
+                currentUser = user;
+                showDashboard(user);
+                loadRequests(user.uid);
+            } else {
+                currentUser = null;
+                showLogin();
+            }
+        });
+
+        function showDashboard(user) {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('clientName').textContent = user.displayName || user.email.split('@')[0];
+        }
+
+        function showLogin() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            if (unsubscribeRequests) {
+                unsubscribeRequests();
+                unsubscribeRequests = null;
+            }
+        }
+
+        function loadRequests(userId) {
+            const grid = document.getElementById('projectsGrid');
+            grid.innerHTML = '<div class="loading-spinner"></div>';
+
+            try {
+                const q = query(
+                    collection(db, 'requests'),
+                    where('userId', '==', userId),
+                    orderBy('createdAt', 'desc')
+                );
+
+                unsubscribeRequests = onSnapshot(q, (snapshot) => {
+                    if (snapshot.empty) {
+                        grid.innerHTML = `
+                            <div class="empty-projects">
+                                <i class="fas fa-folder-open"></i>
+                                <h3>No Requests Yet</h3>
+                                <p>Submit your first request below to get started.</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    grid.innerHTML = '';
+                    snapshot.forEach((doc) => {
+                        const request = doc.data();
+                        const card = createRequestCard(request);
+                        grid.appendChild(card);
+                    });
+                }, (error) => {
+                    console.error('Error loading requests:', error);
+                    grid.innerHTML = `
+                        <div class="empty-projects">
+                            <i class="fas fa-folder-open"></i>
+                            <h3>No Requests Yet</h3>
+                            <p>Submit your first request below to get started.</p>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                console.error('Error:', error);
+                grid.innerHTML = `
+                    <div class="empty-projects">
+                        <i class="fas fa-folder-open"></i>
+                        <h3>No Requests Yet</h3>
+                        <p>Submit your first request below to get started.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function createRequestCard(request) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            
+            const statusClass = getStatusClass(request.status);
+            const date = request.createdAt ? new Date(request.createdAt.toDate()).toLocaleDateString() : 'Just now';
+            
+            card.innerHTML = `
+                <h4>${escapeHtml(request.title)}</h4>
+                <p>${escapeHtml(request.description.substring(0, 150))}${request.description.length > 150 ? '...' : ''}</p>
+                <span class="project-status ${statusClass}">${request.status}</span>
+                <div class="request-meta">
+                    <span><i class="fas fa-tag"></i> ${escapeHtml(request.requestType)}</span>
+                    <span><i class="fas fa-flag"></i> ${escapeHtml(request.priority)}</span>
+                    <span><i class="fas fa-calendar"></i> ${date}</span>
+                </div>
+                ${request.adminNotes ? `
+                    <div class="admin-notes">
+                        <h5><i class="fas fa-comment"></i> Admin Notes</h5>
+                        <p>${escapeHtml(request.adminNotes)}</p>
+                    </div>
+                ` : ''}
+            `;
+            return card;
+        }
+
+        function getStatusClass(status) {
+            const classes = {
+                'Pending': 'status-pending',
+                'Accepted': 'status-accepted',
+                'In Progress': 'status-in-progress',
+                'Completed': 'status-completed',
+                'Rejected': 'status-rejected'
+            };
+            return classes[status] || 'status-pending';
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('loginError');
+            el.textContent = msg;
+            el.style.display = 'block';
+        }
+
+        function getErrorMessage(code) {
+            const messages = {
+                'auth/invalid-email': 'Invalid email address',
+                'auth/user-disabled': 'This account has been disabled',
+                'auth/user-not-found': 'No account found with this email',
+                'auth/wrong-password': 'Incorrect password',
+                'auth/invalid-credential': 'Invalid email or password'
+            };
+            return messages[code] || 'An error occurred. Please try again.';
+        }
+
+        document.getElementById('clientLoginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorEl = document.getElementById('loginError');
+            const loginBtn = document.getElementById('loginBtn');
+
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Signing in...';
+            errorEl.style.display = 'none';
+
+            try {
+                await signInWithEmailAndPassword(clientAuth, email, password);
+            } catch (error) {
+                showError(getErrorMessage(error.code));
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Sign In';
+            }
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            if (unsubscribeRequests) unsubscribeRequests();
+            await signOut(clientAuth);
+        });
+
+        document.getElementById('forgotPasswordLink').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            if (!email) {
+                alert('Please enter your email address first');
+                return;
+            }
+            try {
+                await sendPasswordResetEmail(clientAuth, email);
+                alert('Password reset email sent! Check your inbox.');
+            } catch (error) {
+                alert(getErrorMessage(error.code));
+            }
+        });
+
+        document.getElementById('requestForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const successMsg = document.getElementById('successMessage');
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+            try {
+                await addDoc(collection(db, 'requests'), {
+                    userId: currentUser.uid,
+                    userEmail: currentUser.email,
+                    userName: currentUser.displayName || currentUser.email.split('@')[0],
+                    requestType: document.getElementById('requestType').value,
+                    priority: document.getElementById('requestPriority').value,
+                    title: document.getElementById('requestTitle').value,
+                    description: document.getElementById('requestDescription').value,
+                    status: 'Pending',
+                    adminNotes: '',
+                    createdAt: serverTimestamp(),
+                    updatedAt: serverTimestamp()
+                });
+
+                document.getElementById('requestForm').reset();
+                successMsg.style.display = 'block';
+                setTimeout(() => successMsg.style.display = 'none', 5000);
+            } catch (error) {
+                alert('Error submitting request: ' + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right: 8px;"></i>Submit Request';
+            }
+        });
+    </script>
 </body>
 </html>
