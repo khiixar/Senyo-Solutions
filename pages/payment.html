@@ -233,7 +233,7 @@
         <div>
             <p class="section-eyebrow"><i class="fas fa-lock" style="margin-right:6px;"></i>Secure Checkout</p>
             <h1>Make a <span class="gradient-text">Payment</span></h1>
-            <p>Pay your invoice or purchase a service package securely. All transactions are encrypted and processed by Stripe.</p>
+            <p>Pay your invoice or Purchase a service package securely. All transactions are encrypted and processed by Stripe.</p>
         </div>
     </div>
 
@@ -278,7 +278,7 @@
             <!-- ── Service Packages ── -->
             <p class="section-eyebrow">Service Packages</p>
             <h2 class="section-title-sm">Purchase a Package</h2>
-            <p class="section-sub">Choose a standard service package and pay instantly. Not sure what you need? <a href="../index.html#contact" style="color:var(--primary-light);">Contact us first.</a></p>
+            <p class="section-sub">Choose a standard service package and pay instantly. Not sure what you need? <a href="../index.html#contact" style="color:var(--primary-light);">Contact us first</a></p>
 
             <div class="packages-grid">
 
@@ -297,14 +297,7 @@
                         <li><i class="fas fa-check"></i> Scalable Resources</li>
                     </ul>
                     <div class="stripe-btn-wrap">
-                        <!--
-                            HOW TO SET UP:
-                            1. Go to dashboard.stripe.com
-                            2. Products → Add Product → set price to $49/month (recurring)
-                            3. Payment Links → Create Link → select the product
-                            4. Copy the "Buy Button" embed code and paste it here
-                            Replace buy-button-id and publishable-key below:
-                        -->
+                 
                         <stripe-buy-button
                             buy-button-id="buy_btn_REPLACE_WITH_YOUR_ID"
                             publishable-key="pk_live_REPLACE_WITH_YOUR_PUBLISHABLE_KEY">
