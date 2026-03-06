@@ -155,40 +155,46 @@
         </div>
     </div>
 
-    <script src="../assets/js/script.js"></script>
     <script>
-        const EMAILJS_PUBLIC_KEY  = '1eGs7DHUF7ADU99Vv';
-        const EMAILJS_SERVICE_ID  = 'service_2ipwzwa';
-        const EMAILJS_TEMPLATE_ID = 'template_1o3zjf9';
+    const EMAILJS_PUBLIC_KEY  = '1eGs7DHUF7ADU99Vv';
+    const EMAILJS_SERVICE_ID  = 'service_2ipwzwa';
+    const EMAILJS_TEMPLATE_ID = 'template_1o3zjf9';
 
-        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
-        const amount = localStorage.getItem('invoice_amount');
-        const ref    = localStorage.getItem('invoice_ref');
+    const amount = localStorage.getItem('invoice_amount');
+    const ref    = localStorage.getItem('invoice_ref');
+    const date   = localStorage.getItem('invoice_date');
 
-        document.getElementById('summaryRef').textContent    = ref    || '—';
-        document.getElementById('summaryAmount').textContent = amount ? '$' + amount : '—';
+    document.getElementById('summaryRef').textContent    = ref    || '—';
+    document.getElementById('summaryAmount').textContent = amount ? '$' + amount : '—';
 
-        if (amount) {
-            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                invoice_ref    : ref    || 'N/A',
-                invoice_amount : amount,
-            })
-            .then(() => {
-                document.getElementById('emailStatus').innerHTML =
-                    '<i class="fas fa-check-circle"></i> Notification sent to contact@senyosolutions.com';
-                localStorage.removeItem('invoice_amount');
-                localStorage.removeItem('invoice_ref');
-                localStorage.removeItem('invoice_date');
-            })
-            .catch(() => {
-                document.getElementById('emailStatus').innerHTML =
-                    '<i class="fas fa-exclamation-circle" style="color:#f87171;"></i> Could not send notification — check EmailJS config';
-            });
-        } else {
+    if (amount) {
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            invoice_ref    : ref    || 'N/A',
+            invoice_amount : amount,
+            invoice_date   : date   || new Date().toLocaleString(),
+            to_email       : 'contact@senyosolutions.com',
+            from_name      : 'Senyo Solutions Payment System',
+            message        : 'Invoice ' + (ref || 'N/A') + ' paid — $' + amount,
+        })
+        .then(() => {
             document.getElementById('emailStatus').innerHTML =
-                '<i class="fas fa-info-circle"></i> No invoice data found';
-        }
-    </script>
+                '<i class="fas fa-check-circle"></i> Notification sent to contact@senyosolutions.com';
+            localStorage.removeItem('invoice_amount');
+            localStorage.removeItem('invoice_ref');
+            localStorage.removeItem('invoice_date');
+        })
+        .catch((err) => {
+            const detail = err?.text || err?.message || JSON.stringify(err) || 'Unknown error';
+            document.getElementById('emailStatus').innerHTML =
+                '<i class="fas fa-exclamation-circle" style="color:#f87171;"></i> EmailJS error: ' + detail;
+            console.error('EmailJS error:', err);
+        });
+    } else {
+        document.getElementById('emailStatus').innerHTML =
+            '<i class="fas fa-info-circle"></i> No invoice data found';
+    }
+</script>
 </body>
 </html>
