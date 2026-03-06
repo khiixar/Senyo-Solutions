@@ -273,113 +273,7 @@
                 </div>
             </div>
 
-            <hr class="section-divider">
 
-            <!-- ── Service Packages ── -->
-            <p class="section-eyebrow">Service Packages</p>
-            <h2 class="section-title-sm">Purchase a Package</h2>
-            <p class="section-sub">Choose a standard service package and pay instantly. Not sure what you need? <a href="../index.html#contact" style="color:var(--primary-light);">Contact us first</a></p>
-
-            <div class="packages-grid">
-
-                <!-- Web Hosting -->
-                <div class="pkg-card">
-                    <div class="pkg-icon"><i class="fas fa-server"></i></div>
-                    <p class="pkg-name">Web Hosting</p>
-                    <p class="pkg-desc">Fast, secure, managed web hosting with 99.9% uptime guarantee, SSL, and daily backups.</p>
-                    <div class="pkg-price">
-                        <span class="amount">$49</span><span class="period">/mo</span>
-                    </div>
-                    <ul class="pkg-features">
-                        <li><i class="fas fa-check"></i> 99.9% Uptime Guarantee</li>
-                        <li><i class="fas fa-check"></i> Daily Backups & Free SSL</li>
-                        <li><i class="fas fa-check"></i> 24/7 Technical Support</li>
-                        <li><i class="fas fa-check"></i> Scalable Resources</li>
-                    </ul>
-                    <div class="stripe-btn-wrap">
-                 
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_REPLACE_WITH_YOUR_ID"
-                            publishable-key="pk_live_REPLACE_WITH_YOUR_PUBLISHABLE_KEY">
-                        </stripe-buy-button>
-                    </div>
-                </div>
-
-                <!-- SEO -->
-                <div class="pkg-card featured">
-                    <div class="pkg-icon"><i class="fas fa-search"></i></div>
-                    <p class="pkg-name">SEO Optimization</p>
-                    <p class="pkg-desc">Monthly SEO management with keyword research, on-page optimization, and transparent reporting.</p>
-                    <div class="pkg-price">
-                        <span class="amount">$299</span><span class="period">/mo</span>
-                    </div>
-                    <ul class="pkg-features">
-                        <li><i class="fas fa-check"></i> Keyword Research & Analysis</li>
-                        <li><i class="fas fa-check"></i> On-Page Optimization</li>
-                        <li><i class="fas fa-check"></i> Monthly Performance Reports</li>
-                        <li><i class="fas fa-check"></i> Competitor Analysis</li>
-                    </ul>
-                    <div class="stripe-btn-wrap">
-                        <!-- Replace with your Stripe Buy Button embed values -->
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_REPLACE_WITH_YOUR_ID"
-                            publishable-key="pk_live_REPLACE_WITH_YOUR_PUBLISHABLE_KEY">
-                        </stripe-buy-button>
-                    </div>
-                </div>
-
-                <!-- Digital Advertising -->
-                <div class="pkg-card">
-                    <div class="pkg-icon"><i class="fas fa-bullhorn"></i></div>
-                    <p class="pkg-name">Digital Advertising</p>
-                    <p class="pkg-desc">Managed Google & Facebook/Instagram ad campaigns with full optimization and A/B testing.</p>
-                    <div class="pkg-price">
-                        <span class="amount">$499</span><span class="period">/mo</span>
-                    </div>
-                    <ul class="pkg-features">
-                        <li><i class="fas fa-check"></i> Google Ads Management</li>
-                        <li><i class="fas fa-check"></i> Facebook & Instagram Ads</li>
-                        <li><i class="fas fa-check"></i> A/B Testing</li>
-                        <li><i class="fas fa-check"></i> ROI Tracking & Analytics</li>
-                    </ul>
-                    <div class="stripe-btn-wrap">
-                        <!-- Replace with your Stripe Buy Button embed values -->
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_REPLACE_WITH_YOUR_ID"
-                            publishable-key="pk_live_REPLACE_WITH_YOUR_PUBLISHABLE_KEY">
-                        </stripe-buy-button>
-                    </div>
-                </div>
-
-                <!-- Full Suite -->
-                <div class="pkg-card">
-                    <span class="popular-badge">Most Popular</span>
-                    <div class="pkg-icon"><i class="fas fa-chart-line"></i></div>
-                    <p class="pkg-name">Website Creation Package</p>
-                    <p class="pkg-desc">Complete Website Creation — hosting, 24/7 support, and monthly reporting all in one.</p>
-                    <div class="pkg-price">
-                        <span class="amount">$97</span><span class="period">/mo</span>
-                    </div>
-                    <ul class="pkg-features">
-                        <li><i class="fas fa-check"></i> Everything in SEO & Ads</li>
-                        <li><i class="fas fa-check"></i> Hosting</li>
-                        <li><i class="fas fa-check"></i> 27/7 Support</li>
-                        <li><i class="fas fa-check"></i> Ananlytics Reporting</li>
-                    </ul>
-                    <div class="stripe-btn-wrap">
-                        <!-- Replace with your Stripe Buy Button embed values -->
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_1T649OFiNzXfgM2ZHtdrJCZ6"
-                            publishable-key="pk_live_51T63tvFiNzXfgM2ZZssIdyEa4NID7xNgQnr3WDc6ptvUjbYhScum4NDkjBk4bMDkAwlM9FcekecHbra1lPX04RcC00wfI9kREJ">
-                        </stripe-buy-button>
-                    </div>
-                </div>
-
-            </div>
-
-            <p style="text-align:center; color:var(--text-muted); font-size:0.9rem; padding-bottom:20px;">
-                Need a custom quote? <a href="../index.html#contact" style="color:var(--primary-light);">Get in touch</a> and we'll tailor a package for your business.
-            </p>
 
         </div>
     </section>
@@ -435,10 +329,15 @@
                 return;
             }
 
+            sessionStorage.setItem('invoice_amount', amount.toFixed(2));
+            sessionStorage.setItem('invoice_ref', ref || 'N/A');
+            sessionStorage.setItem('invoice_date', new Date().toLocaleString('en-US', {
+                dateStyle: 'long', timeStyle: 'short'
+            }));
+
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting to secure checkout...';
 
-            
             const stripeInvoiceLink = 'https://buy.stripe.com/3cI4gz1uXe6w7Xfa5kdnW01';
 
             setTimeout(() => {
