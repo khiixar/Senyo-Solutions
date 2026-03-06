@@ -329,9 +329,9 @@
                 return;
             }
 
-            sessionStorage.setItem('invoice_amount', amount.toFixed(2));
-            sessionStorage.setItem('invoice_ref', ref || 'N/A');
-            sessionStorage.setItem('invoice_date', new Date().toLocaleString('en-US', {
+            localStorage.setItem('invoice_amount', amount.toFixed(2));
+            localStorage.setItem('invoice_ref', ref || 'N/A');
+            localStorage.setItem('invoice_date', new Date().toLocaleString('en-US', {
                 dateStyle: 'long', timeStyle: 'short'
             }));
 

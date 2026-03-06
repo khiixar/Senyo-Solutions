@@ -85,6 +85,16 @@
         .pkg-features li { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-secondary); padding: 4px 0; }
         .pkg-features li i { color: var(--success); font-size: 0.75rem; flex-shrink: 0; }
         .stripe-btn-wrap { display: flex; justify-content: center; }
+        .pkg-btn {
+            display: block; width: 100%; padding: 13px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff; border: none; border-radius: 10px;
+            font-size: 0.95rem; font-weight: 600; cursor: pointer;
+            text-align: center; text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .pkg-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(99,102,241,0.4); }
         @media (max-width: 768px) {
             .packages-grid { grid-template-columns: 1fr; }
         }
@@ -113,12 +123,9 @@
         </div>
     </nav>
 
-
-
     <!-- Service Packages -->
     <section class="packages-section">
         <div class="packages-container">
-            <p class="section-eyebrow">Service Packages</p>
             <h2 class="section-title-sm">Purchase a Package</h2>
             <p class="section-sub">Choose a standard service package and pay instantly. Not sure what you need? <a href="../index.html#contact" style="color:var(--primary-light);">Contact us first</a></p>
 
@@ -138,16 +145,11 @@
                         <li><i class="fas fa-check"></i> 24/7 Technical Support</li>
                         <li><i class="fas fa-check"></i> Scalable Resources</li>
                     </ul>
-                    <div class="stripe-btn-wrap">
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_REPLACE_WITH_YOUR_ID"
-                            publishable-key="pk_live_REPLACE_WITH_YOUR_PUBLISHABLE_KEY">
-                        </stripe-buy-button>
-                    </div>
+                    <a href="../index.html#contact" class="pkg-btn">Get Started</a>
                 </div>
 
                 <!-- SEO -->
-                <div class="pkg-card featured">
+                <div class="pkg-card">
                     <div class="pkg-icon"><i class="fas fa-search"></i></div>
                     <p class="pkg-name">SEO Optimization</p>
                     <p class="pkg-desc">Monthly SEO management with keyword research, on-page optimization, and transparent reporting.</p>
@@ -160,12 +162,7 @@
                         <li><i class="fas fa-check"></i> Monthly Performance Reports</li>
                         <li><i class="fas fa-check"></i> Competitor Analysis</li>
                     </ul>
-                    <div class="stripe-btn-wrap">
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_REPLACE_WITH_YOUR_ID"
-                            publishable-key="pk_live_REPLACE_WITH_YOUR_PUBLISHABLE_KEY">
-                        </stripe-buy-button>
-                    </div>
+                    <a href="../index.html#contact" class="pkg-btn">Get Started</a>
                 </div>
 
                 <!-- Digital Advertising -->
@@ -182,16 +179,11 @@
                         <li><i class="fas fa-check"></i> A/B Testing</li>
                         <li><i class="fas fa-check"></i> ROI Tracking & Analytics</li>
                     </ul>
-                    <div class="stripe-btn-wrap">
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_REPLACE_WITH_YOUR_ID"
-                            publishable-key="pk_live_REPLACE_WITH_YOUR_PUBLISHABLE_KEY">
-                        </stripe-buy-button>
-                    </div>
+                    <a href="../index.html#contact" class="pkg-btn">Get Started</a>
                 </div>
 
-                <!-- Full Suite -->
-                <div class="pkg-card">
+                <!-- Website Creation Package -->
+                <div class="pkg-card featured">
                     <span class="popular-badge">Most Popular</span>
                     <div class="pkg-icon"><i class="fas fa-chart-line"></i></div>
                     <p class="pkg-name">Website Creation Package</p>
@@ -202,8 +194,8 @@
                     <ul class="pkg-features">
                         <li><i class="fas fa-check"></i> Everything in SEO & Ads</li>
                         <li><i class="fas fa-check"></i> Hosting</li>
-                        <li><i class="fas fa-check"></i> 27/7 Support</li>
-                        <li><i class="fas fa-check"></i> Ananlytics Reporting</li>
+                        <li><i class="fas fa-check"></i> 24/7 Support</li>
+                        <li><i class="fas fa-check"></i> Analytics Reporting</li>
                     </ul>
                     <div class="stripe-btn-wrap">
                         <stripe-buy-button
@@ -249,7 +241,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Follow Us Section -->
             <div class="footer-follow-us">
                 <h4>Follow Us</h4>
@@ -264,7 +256,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2025 Senyo Solutions. All rights reserved.</p>
             </div>
