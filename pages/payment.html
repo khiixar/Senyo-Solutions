@@ -267,6 +267,8 @@
                 </div>
 
                 <div class="invoice-form">
+                    <label class="field-label" for="clientName">Full Name</label>
+                    <input class="ref-input" type="text" id="clientName" placeholder="Your full name">
                     <label class="field-label" for="invoiceAmount">Invoice Amount (USD)</label>
                     <div class="amount-wrapper">
                         <span class="currency">$</span>
@@ -324,6 +326,7 @@
     <script src="../assets/js/script.js"></script>
     <script>
         function handleInvoicePayment() {
+            const name = document.getElementById('clientName').value.trim();
             const amount = parseFloat(document.getElementById('invoiceAmount').value);
             const ref = document.getElementById('invoiceRef').value.trim();
             const errorEl = document.getElementById('amountError');
@@ -342,6 +345,7 @@
             localStorage.setItem('invoice_date', new Date().toLocaleString('en-US', {
                 dateStyle: 'long', timeStyle: 'short'
             }));
+            localStorage.setItem('client_name', name || 'N/A');
 
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting to secure checkout...';
@@ -353,6 +357,9 @@
             }, 900);
         }
 
+        document.getElementById('clientName').addEventListener('keydown', e => {
+            if (e.key === 'Enter') handleInvoicePayment();
+        });
         document.getElementById('invoiceAmount').addEventListener('keydown', e => {
             if (e.key === 'Enter') handleInvoicePayment();
         });
