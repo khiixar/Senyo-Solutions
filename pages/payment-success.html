@@ -12,8 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
     <style>
         .success-page {
             min-height: 100vh;
@@ -156,11 +154,7 @@
     </div>
 
     <script>
-    const EMAILJS_PUBLIC_KEY  = '1eGs7DHUF7ADU99Vv';
-    const EMAILJS_SERVICE_ID  = 'service_2ipwzwa';
-    const EMAILJS_TEMPLATE_ID = 'template_1o3zjf9';
-
-    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    const WEB3FORMS_KEY = 'd4650dec-ad63-437f-ae45-23409b84a86c'; 
 
     const amount = localStorage.getItem('invoice_amount');
     const ref    = localStorage.getItem('invoice_ref');
@@ -170,31 +164,38 @@
     document.getElementById('summaryAmount').textContent = amount ? '$' + amount : '—';
 
     if (amount) {
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-            invoice_ref    : ref    || 'N/A',
-            invoice_amount : amount,
-            invoice_date   : date   || new Date().toLocaleString(),
-            to_email       : 'contact@senyosolutions.com',
-            from_name      : 'Senyo Solutions Payment System',
-            message        : 'Invoice ' + (ref || 'N/A') + ' paid — $' + amount,
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                access_key  : WEB3FORMS_KEY,
+                subject     : 'Payment Received — Invoice ' + (ref || 'N/A'),
+                from_name   : 'Senyo Solutions Payment System',
+                to          : 'contact@senyosolutions.com',
+                message     : 'Invoice: ' + (ref || 'N/A') + '\nAmount Paid: $' + amount + '\nDate: ' + (date || new Date().toLocaleString()) + '\nStatus: Paid via Stripe'
+            })
         })
-        .then(() => {
-            document.getElementById('emailStatus').innerHTML =
-                '<i class="fas fa-check-circle"></i> Notification sent to contact@senyosolutions.com';
-            localStorage.removeItem('invoice_amount');
-            localStorage.removeItem('invoice_ref');
-            localStorage.removeItem('invoice_date');
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('emailStatus').innerHTML =
+                    '<i class="fas fa-check-circle"></i> Notification sent to contact@senyosolutions.com';
+                localStorage.removeItem('invoice_amount');
+                localStorage.removeItem('invoice_ref');
+                localStorage.removeItem('invoice_date');
+            } else {
+                document.getElementById('emailStatus').innerHTML =
+                    '<i class="fas fa-exclamation-circle" style="color:#f87171;"></i> Notification failed: ' + (data.message || 'Unknown error');
+            }
         })
-        .catch((err) => {
-            const detail = err?.text || err?.message || JSON.stringify(err) || 'Unknown error';
+        .catch(err => {
             document.getElementById('emailStatus').innerHTML =
-                '<i class="fas fa-exclamation-circle" style="color:#f87171;"></i> EmailJS error: ' + detail;
-            console.error('EmailJS error:', err);
+                '<i class="fas fa-exclamation-circle" style="color:#f87171;"></i> Notification failed: ' + err.message;
         });
     } else {
         document.getElementById('emailStatus').innerHTML =
             '<i class="fas fa-info-circle"></i> No invoice data found';
     }
-</script>
+    </script>
 </body>
 </html>
