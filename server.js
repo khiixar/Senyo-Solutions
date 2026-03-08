@@ -14,9 +14,14 @@ app.use(helmet({
 
 app.use(express.static(path.join(__dirname)));
 
-app.use(express.static(path.join(__dirname, 'pages'), { extensions: ['html'] }));
+app.get('/:page', (req, res, next) => {
+  const filePath = path.join(__dirname, 'pages', req.params.page + '.html');
+  res.sendFile(filePath, (err) => {
+    if (err) next();
+  });
+});
 
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.status(404).send('Page not found');
 });
 
