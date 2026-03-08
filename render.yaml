@@ -24,10 +24,4 @@ services:
       - path: /static/*
         name: Cache-Control
         value: public, max-age=31536000
-    routes:
-      - type: rewrite
-        source: /services
-        destination: /services.html
-      - type: rewrite
-        source: /*
-        destination: /index.html
+
