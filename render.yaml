@@ -16,32 +16,5 @@ services:
       - path: /static/*
         name: Cache-Control
         value: public, max-age=31536000
-    routes:
-      - type: rewrite
-        source: /services
-        destination: /pages/services.html
-      - type: rewrite
-        source: /privacy-policy
-        destination: /pages/privacy-policy.html
-      - type: rewrite
-        source: /terms-of-service
-        destination: /pages/terms-of-service.html
-      - type: rewrite
-        source: /admin-portal
-        destination: /pages/admin-portal.html
-      - type: rewrite
-        source: /client-portal
-        destination: /pages/client-portal.html
-      - type: rewrite
-        source: /client-thank-you
-        destination: /pages/client-thank-you.html
-      - type: rewrite
-        source: /payment-success
-        destination: /pages/payment-success.html
-      - type: rewrite
-        source: /payment
-        destination: /pages/payment.html
-      - type: rewrite
-        source: /thank-you
-        destination: /pages/thank-you.html
+
 
