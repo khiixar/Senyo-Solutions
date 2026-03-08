@@ -19,7 +19,7 @@ Visit us at: https://senyosolutions.com/
 
 ## 📄 License
 
-© 2025 Senyo Solutions. All rights reserved.
+© 2026 Senyo Solutions. All rights reserved.
 
 ---
 
