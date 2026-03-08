@@ -196,6 +196,16 @@
             animation: spin 1s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
+        .ticket-number {
+            font-size: 0.75rem;
+            color: var(--primary-light);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .status-wrapper { margin: 12px 0; }
+        .history-section { margin-bottom: 40px; }
         @media (max-width: 768px) {
             .request-form .form-row { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
@@ -251,12 +261,18 @@
         <i class="fas fa-sign-out-alt"></i> Logout
     </button>
 </div>
+            </div>
 
             <div class="projects-section">
-                <h3 class="section-title"><i class="fas fa-clipboard-list" style="margin-right: 10px;"></i>Your Requests</h3>
+                <h3 class="section-title"><i class="fas fa-clipboard-list" style="margin-right: 10px;"></i>Active Requests</h3>
                 <div class="projects-grid" id="projectsGrid">
                     <div class="loading-spinner"></div>
                 </div>
+            </div>
+
+            <div class="history-section" id="historySection" style="display: none;">
+                <h3 class="section-title"><i class="fas fa-history" style="margin-right: 10px;"></i>Ticket History</h3>
+                <div class="projects-grid" id="historyGrid"></div>
             </div>
 
             <div class="update-request-section">
@@ -336,7 +352,7 @@
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-        import { getFirestore, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getFirestore, collection, addDoc, doc, query, where, orderBy, onSnapshot, serverTimestamp, runTransaction } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
         const firebaseConfig = {
             apiKey: "AIzaSyBBnOrgy82HaCPpJaxeHU4csK6YhjhAeOI",
@@ -427,6 +443,8 @@
 
         function loadRequests(userId) {
             const grid = document.getElementById('projectsGrid');
+            const historyGrid = document.getElementById('historyGrid');
+            const historySection = document.getElementById('historySection');
             grid.innerHTML = '<div class="loading-spinner"></div>';
 
             try {
@@ -437,29 +455,50 @@
                 );
 
                 unsubscribeRequests = onSnapshot(q, (snapshot) => {
-                    if (snapshot.empty) {
+                    const activeStatuses = ['Pending', 'Accepted', 'In Progress'];
+                    const historyStatuses = ['Completed', 'Rejected'];
+                    const activeRequests = [];
+                    const historyRequests = [];
+
+                    snapshot.forEach((docSnap) => {
+                        const request = docSnap.data();
+                        if (historyStatuses.includes(request.status)) {
+                            historyRequests.push(request);
+                        } else {
+                            activeRequests.push(request);
+                        }
+                    });
+
+                    if (activeRequests.length === 0) {
                         grid.innerHTML = `
                             <div class="empty-projects">
                                 <i class="fas fa-folder-open"></i>
-                                <h3>No Requests Yet</h3>
+                                <h3>No Active Requests</h3>
                                 <p>Submit your first request below to get started.</p>
                             </div>
                         `;
-                        return;
+                    } else {
+                        grid.innerHTML = '';
+                        activeRequests.forEach((request) => {
+                            grid.appendChild(createRequestCard(request));
+                        });
                     }
 
-                    grid.innerHTML = '';
-                    snapshot.forEach((doc) => {
-                        const request = doc.data();
-                        const card = createRequestCard(request);
-                        grid.appendChild(card);
-                    });
+                    if (historyRequests.length > 0) {
+                        historySection.style.display = 'block';
+                        historyGrid.innerHTML = '';
+                        historyRequests.forEach((request) => {
+                            historyGrid.appendChild(createRequestCard(request));
+                        });
+                    } else {
+                        historySection.style.display = 'none';
+                    }
                 }, (error) => {
                     console.error('Error loading requests:', error);
                     grid.innerHTML = `
                         <div class="empty-projects">
                             <i class="fas fa-folder-open"></i>
-                            <h3>No Requests Yet</h3>
+                            <h3>No Active Requests</h3>
                             <p>Submit your first request below to get started.</p>
                         </div>
                     `;
@@ -469,7 +508,7 @@
                 grid.innerHTML = `
                     <div class="empty-projects">
                         <i class="fas fa-folder-open"></i>
-                        <h3>No Requests Yet</h3>
+                        <h3>No Active Requests</h3>
                         <p>Submit your first request below to get started.</p>
                     </div>
                 `;
@@ -479,14 +518,17 @@
         function createRequestCard(request) {
             const card = document.createElement('div');
             card.className = 'project-card';
-            
+
             const statusClass = getStatusClass(request.status);
             const date = request.createdAt ? new Date(request.createdAt.toDate()).toLocaleDateString() : 'Just now';
-            
+
             card.innerHTML = `
+                ${request.ticketNumber ? `<span class="ticket-number"><i class="fas fa-ticket-alt" style="margin-right: 5px;"></i>${escapeHtml(request.ticketNumber)}</span>` : ''}
                 <h4>${escapeHtml(request.title)}</h4>
                 <p>${escapeHtml(request.description.substring(0, 150))}${request.description.length > 150 ? '...' : ''}</p>
-                <span class="project-status ${statusClass}">${request.status}</span>
+                <div class="status-wrapper">
+                    <span class="project-status ${statusClass}">${request.status}</span>
+                </div>
                 <div class="request-meta">
                     <span><i class="fas fa-tag"></i> ${escapeHtml(request.requestType)}</span>
                     <span><i class="fas fa-flag"></i> ${escapeHtml(request.priority)}</span>
@@ -587,7 +629,16 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
 
             try {
+                const ticketNumber = await runTransaction(db, async (transaction) => {
+                    const counterRef = doc(db, 'counters', 'tickets');
+                    const counterDoc = await transaction.get(counterRef);
+                    const newCount = counterDoc.exists() ? counterDoc.data().count + 1 : 1;
+                    transaction.set(counterRef, { count: newCount });
+                    return `SS-${String(newCount).padStart(6, '0')}`;
+                });
+
                 await addDoc(collection(db, 'requests'), {
+                    ticketNumber: ticketNumber,
                     userId: currentUser.uid,
                     userEmail: currentUser.email,
                     userName: currentUser.displayName || currentUser.email.split('@')[0],
@@ -602,8 +653,9 @@
                 });
 
                 document.getElementById('requestForm').reset();
+                successMsg.innerHTML = `<i class="fas fa-check-circle" style="margin-right: 8px;"></i>Request submitted! Your ticket number is <strong>${ticketNumber}</strong>.`;
                 successMsg.style.display = 'block';
-                setTimeout(() => successMsg.style.display = 'none', 5000);
+                setTimeout(() => successMsg.style.display = 'none', 8000);
             } catch (error) {
                 alert('Error submitting request: ' + error.message);
             } finally {

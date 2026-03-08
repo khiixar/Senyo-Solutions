@@ -145,6 +145,7 @@
                 <table class="requests-table">
                     <thead>
                         <tr>
+                            <th>Ticket #</th>
                             <th>Client</th>
                             <th>Title</th>
                             <th>Type</th>
@@ -321,7 +322,7 @@
             const tbody = document.getElementById('requestsBody');
 
             if (filtered.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No requests found.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No requests found.</td></tr>';
                 return;
             }
 
@@ -329,6 +330,7 @@
                 const canDelete = r.status === 'Completed' || r.status === 'Rejected';
                 return `
                 <tr>
+                    <td style="color: var(--primary-light); font-weight: 600; font-size: 0.85rem;">${escapeHtml(r.ticketNumber || '—')}</td>
                     <td>${escapeHtml(r.userName || r.userEmail || 'Unknown')}</td>
                     <td>${escapeHtml(r.title || 'No title')}</td>
                     <td>${escapeHtml(r.requestType || 'N/A')}</td>
@@ -468,6 +470,7 @@
                 document.getElementById('adminNotes').value = request.adminNotes || '';
                 document.getElementById('requestDetails').innerHTML = `
                     <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                        ${request.ticketNumber ? `<p style="color: var(--primary-light); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;"><i class="fas fa-ticket-alt" style="margin-right: 6px;"></i>${escapeHtml(request.ticketNumber)}</p>` : ''}
                         <p><strong>Client:</strong> ${escapeHtml(request.userName || 'Unknown')} (${escapeHtml(request.userEmail || 'No email')})</p>
                         <p><strong>Title:</strong> ${escapeHtml(request.title || 'No title')}</p>
                         <p><strong>Type:</strong> ${escapeHtml(request.requestType || 'N/A')}</p>
