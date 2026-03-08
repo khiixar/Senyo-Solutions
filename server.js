@@ -14,26 +14,10 @@ app.use(helmet({
 
 app.use(express.static(path.join(__dirname)));
 
-const pages = [
-  'services',
-  'privacy-policy',
-  'terms-of-service',
-  'admin-portal',
-  'client-portal',
-  'client-thank-you',
-  'payment-success',
-  'payment',
-  'thank-you'
-];
+app.use(express.static(path.join(__dirname, 'pages'), { extensions: ['html'] }));
 
-pages.forEach(page => {
-  app.get(`/${page}`, (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', `${page}.html`));
-  });
-});
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+app.get('*', (req, res) => {
+  res.status(404).send('Page not found');
 });
 
 app.listen(PORT, () => {
