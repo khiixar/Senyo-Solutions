@@ -284,14 +284,14 @@
             const q = query(collection(db, 'requests'), orderBy('createdAt', 'desc'));
             unsubscribeRequests = onSnapshot(q, (snapshot) => {
                 allRequests = [];
-                snapshot.forEach((doc) => {
-                    allRequests.push({ id: doc.id, ...doc.data() });
+                snapshot.forEach((docSnap) => {
+                    allRequests.push({ id: docSnap.id, ...docSnap.data() });
                 });
                 updateStats();
                 renderRequests();
             }, (error) => {
-                console.error('Error loading requests:', error);
-                document.getElementById('requestsBody').innerHTML = '<tr><td colspan="7" class="empty-state">Error loading requests.</td></tr>';
+                console.error('Error loading requests:', error.code, error.message);
+                document.getElementById('requestsBody').innerHTML = `<tr><td colspan="7" class="empty-state">Error loading requests: ${error.code} — ${error.message}</td></tr>`;
             });
         }
 
@@ -313,13 +313,13 @@
         function renderRequests() {
             const statusFilter = document.getElementById('statusFilter').value;
             const priorityFilter = document.getElementById('priorityFilter').value;
-            
+
             let filtered = allRequests;
             if (statusFilter) filtered = filtered.filter(r => r.status === statusFilter);
             if (priorityFilter) filtered = filtered.filter(r => r.priority === priorityFilter);
 
             const tbody = document.getElementById('requestsBody');
-            
+
             if (filtered.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No requests found.</td></tr>';
                 return;
@@ -352,9 +352,9 @@
                 const snapshot = await getDocs(collection(db, 'clients'));
                 const container = document.getElementById('clientsList');
                 allClients = [];
-                
-                snapshot.forEach((doc) => {
-                    allClients.push({ id: doc.id, ...doc.data() });
+
+                snapshot.forEach((docSnap) => {
+                    allClients.push({ id: docSnap.id, ...docSnap.data() });
                 });
 
                 if (allClients.length === 0) {
@@ -377,8 +377,8 @@
                     </div>
                 `).join('');
             } catch (error) {
-                console.error('Error loading clients:', error);
-                document.getElementById('clientsList').innerHTML = '<p style="color: var(--text-secondary);">Error loading clients.</p>';
+                console.error('Error loading clients:', error.code, error.message);
+                document.getElementById('clientsList').innerHTML = `<p style="color: #f87171;">Error loading clients: ${error.code} — ${error.message}</p>`;
             }
         }
 
