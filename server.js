@@ -12,14 +12,14 @@ app.use(helmet({
   crossOriginEmbedderPolicy: false
 }));
 
-app.use(express.static(path.join(__dirname)));
-
-app.get('/:page', (req, res, next) => {
-  const filePath = path.join(__dirname, 'pages', req.params.page + '.html');
-  res.sendFile(filePath, (err) => {
-    if (err) next();
-  });
+app.use((req, res, next) => {
+  if (req.path !== '/' && !path.extname(req.path)) {
+    req.url = '/pages' + req.url + '.html';
+  }
+  next();
 });
+
+app.use(express.static(path.join(__dirname)));
 
 app.use((req, res) => {
   res.status(404).send('Page not found');
