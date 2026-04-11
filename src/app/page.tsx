@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import CollaborativeCursors from '@/components/CollaborativeCursors';
 import {
   FadeIn,
   StaggerContainer,
@@ -401,6 +402,7 @@ export default function HomePage() {
       </div>
 
       <Footer />
+      <CollaborativeCursors />
     </>
   );
 }

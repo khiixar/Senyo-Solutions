@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { FadeIn, StaggerContainer, StaggerItem, HoverScale } from '@/components/MotionWrapper';
+import CollaborativeCursors from '@/components/CollaborativeCursors';
 
 export default function ServicesPage() {
   return (
@@ -278,6 +279,7 @@ export default function ServicesPage() {
       </section>
 
       <Footer />
+      <CollaborativeCursors />
     </>
   );
 }
