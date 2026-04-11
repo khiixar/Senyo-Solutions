@@ -1,16 +1,33 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import {
   FadeIn,
+  ScaleIn,
   StaggerContainer,
   StaggerItem,
   HoverScale,
+  HoverGlow,
   ParallaxText,
+  ParallaxScroll,
+  FloatingElement,
+  RotatingElement,
+  TextReveal,
+  AnimatedCounter,
+  ImageReveal,
+  MagneticHover,
+  AnimatedGradientBg,
+  ScrollProgressBar,
+  ParticleField,
+  MorphingBlob,
+  AnimatedLine,
+  PulseEffect,
+  AnimatedDivider,
+  AnimatedIcon,
 } from '@/components/MotionWrapper';
 
 /* ─── DATA ────────────────────────────────────────── */
@@ -39,6 +56,13 @@ const testimonials = [
   { stars: 5, text: '"Professional web design and reliable hosting all in one package. They built our fashion website from scratch and handle all the technical aspects. The site loads fast and looks incredible on all devices."', name: 'Love Romani', title: 'Clothing Brand' },
 ];
 
+const stats = [
+  { value: 50, suffix: '+', label: 'Projects Delivered' },
+  { value: 99, suffix: '%', label: 'Client Satisfaction' },
+  { value: 24, suffix: '/7', label: 'Support Available' },
+  { value: 5, suffix: '+', label: 'Years Experience' },
+];
+
 /* ─── COMPONENT ───────────────────────────────────── */
 export default function HomePage() {
   /* Smooth scrolling for anchor links */
@@ -62,17 +86,52 @@ export default function HomePage() {
 
   return (
     <>
+      <ScrollProgressBar />
       <Navbar />
 
       {/* ═══ HERO ═══ */}
-      <section id="home" className="hero">
-        <div className="container">
+      <section id="home" className="hero" style={{ position: 'relative' }}>
+        {/* Animated background elements */}
+        <ParticleField count={25} />
+        <AnimatedGradientBg />
+
+        {/* Floating decorative blobs */}
+        <MorphingBlob
+          className="hero-blob-1"
+          color="rgba(37,99,235,0.07)"
+          size={350}
+        />
+        <MorphingBlob
+          className="hero-blob-2"
+          color="rgba(6,182,212,0.05)"
+          size={280}
+        />
+
+        {/* Floating geometric decorations */}
+        <FloatingElement className="hero-deco hero-deco-1" duration={7} distance={15}>
+          <RotatingElement duration={25}>
+            <div className="deco-shape deco-diamond" />
+          </RotatingElement>
+        </FloatingElement>
+        <FloatingElement className="hero-deco hero-deco-2" duration={5} distance={10} delay={1}>
+          <div className="deco-shape deco-circle" />
+        </FloatingElement>
+        <FloatingElement className="hero-deco hero-deco-3" duration={8} distance={12} delay={2}>
+          <RotatingElement duration={30}>
+            <div className="deco-shape deco-cross" />
+          </RotatingElement>
+        </FloatingElement>
+        <FloatingElement className="hero-deco hero-deco-4" duration={6} distance={8} delay={0.5}>
+          <div className="deco-shape deco-ring" />
+        </FloatingElement>
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <ParallaxText>
             <div className="hero-content">
               <motion.p
                 className="hero-eyebrow"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 Web Design &amp; Digital Marketing
@@ -85,7 +144,22 @@ export default function HomePage() {
                 transition={{ delay: 0.35, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 We build websites that{' '}
-                <span className="gradient-text">grow your business</span>
+                <motion.span
+                  className="gradient-text"
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  }}
+                  transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                  style={{
+                    backgroundSize: '200% 200%',
+                    background: 'linear-gradient(135deg, var(--primary-light), var(--accent), var(--primary-light))',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                >
+                  grow your business
+                </motion.span>
               </motion.h1>
 
               <motion.p
@@ -103,8 +177,15 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.65, duration: 0.5 }}
               >
-                <a className="btn btn-primary btn-large" href="#contact">Get Started</a>
-                <Link className="btn btn-outline btn-large" href="/services">Our Services</Link>
+                <MagneticHover strength={0.15}>
+                  <a className="btn btn-primary btn-large btn-shimmer" href="#contact">
+                    Get Started
+                    <span className="btn-shine" />
+                  </a>
+                </MagneticHover>
+                <MagneticHover strength={0.15}>
+                  <Link className="btn btn-outline btn-large" href="/services">Our Services</Link>
+                </MagneticHover>
               </motion.div>
 
               <motion.p
@@ -122,37 +203,93 @@ export default function HomePage() {
           </ParallaxText>
         </div>
 
-        {/* Decorative blurred orbs */}
-        <div style={{ position: 'absolute', top: '15%', left: '8%', width: 260, height: 260, background: 'radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%)', borderRadius: '50%', pointerEvents: 'none', filter: 'blur(60px)' }} />
-        <div style={{ position: 'absolute', bottom: '10%', right: '5%', width: 200, height: 200, background: 'radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%)', borderRadius: '50%', pointerEvents: 'none', filter: 'blur(50px)' }} />
+        {/* Scroll indicator */}
+        <motion.div
+          className="scroll-indicator"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.5 }}
+        >
+          <motion.div
+            className="scroll-arrow"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <i className="fas fa-chevron-down" />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* ═══ STATS BAR ═══ */}
+      <section className="stats-bar">
+        <div className="container">
+          <StaggerContainer className="stats-grid" staggerDelay={0.15}>
+            {stats.map((stat, i) => (
+              <StaggerItem key={i}>
+                <div className="stat-item">
+                  <AnimatedCounter
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    className="stat-number"
+                    duration={2}
+                  />
+                  <span className="stat-label">{stat.label}</span>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
       </section>
 
       {/* ═══ PROCESS ═══ */}
-      <section className="process-section">
+      <section className="process-section" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Subtle background deco */}
+        <MorphingBlob className="section-blob section-blob-right" color="rgba(6,182,212,0.04)" size={300} />
+
         <div className="container">
           <FadeIn direction="up">
             <div className="process-header">
-              <p className="section-eyebrow">Our Process</p>
+              <motion.p
+                className="section-eyebrow"
+                whileInView={{ letterSpacing: ['0.12em', '0.18em', '0.12em'] }}
+                viewport={{ once: true }}
+                transition={{ duration: 2, ease: 'easeInOut' }}
+              >
+                Our Process
+              </motion.p>
               <h2 className="section-title">From idea to launch in 3 simple steps</h2>
+              <AnimatedLine />
             </div>
           </FadeIn>
 
-          <StaggerContainer className="process-timeline" staggerDelay={0.15}>
+          <StaggerContainer className="process-timeline" staggerDelay={0.2}>
             {[
-              { num: '01', title: 'Discovery', desc: 'We learn your goals, audit competitors, and map out a strategy tailored to your business.' },
-              { num: '02', title: 'Design & Build', desc: 'High-converting layouts, fast hosting, and all tracking pixels ready from day one.' },
-              { num: '03', title: 'Launch & Grow', desc: 'SEO, ads, and ongoing optimization with transparent monthly reports.' },
-            ].map((step) => (
+              { num: '01', title: 'Discovery', desc: 'We learn your goals, audit competitors, and map out a strategy tailored to your business.', icon: 'fa-compass' },
+              { num: '02', title: 'Design & Build', desc: 'High-converting layouts, fast hosting, and all tracking pixels ready from day one.', icon: 'fa-code' },
+              { num: '03', title: 'Launch & Grow', desc: 'SEO, ads, and ongoing optimization with transparent monthly reports.', icon: 'fa-rocket' },
+            ].map((step, i) => (
               <StaggerItem key={step.num}>
-                <HoverScale>
+                <HoverGlow>
                   <div className="process-step">
+                    <AnimatedIcon delay={i * 0.15}>
+                      <div className="step-icon-circle">
+                        <i className={`fas ${step.icon}`} />
+                      </div>
+                    </AnimatedIcon>
                     <div className="step-number">{step.num}</div>
                     <div className="step-content">
                       <h3>{step.title}</h3>
                       <p>{step.desc}</p>
                     </div>
+                    {/* Card shimmer line */}
+                    <motion.div
+                      className="card-shimmer"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '200%' }}
+                      transition={{ duration: 0.6 }}
+                    />
                   </div>
-                </HoverScale>
+                </HoverGlow>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -168,27 +305,16 @@ export default function HomePage() {
                   viewport={{ once: true, amount: 0.5 }}
                   transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.4 }}
                 />
-                <motion.div
-                  className="process-connector-dot dot-start"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.3, delay: 0.3 }}
-                />
-                <motion.div
-                  className="process-connector-dot dot-mid"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.3, delay: 0.9 }}
-                />
-                <motion.div
-                  className="process-connector-dot dot-end"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.3, delay: 1.5 }}
-                />
+                {[0.3, 0.9, 1.5].map((d, i) => (
+                  <motion.div
+                    key={i}
+                    className={`process-connector-dot dot-${['start', 'mid', 'end'][i]}`}
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.3, delay: d }}
+                  />
+                ))}
               </div>
             </div>
           </FadeIn>
@@ -196,32 +322,53 @@ export default function HomePage() {
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section className="digital-services">
+      <section className="digital-services" style={{ position: 'relative', overflow: 'hidden' }}>
+        <MorphingBlob className="section-blob section-blob-left" color="rgba(37,99,235,0.04)" size={350} />
+
         <div className="container">
           <FadeIn direction="up">
             <h2 className="section-title">Our Digital Marketing Services</h2>
             <p className="section-subtitle">
               We are committed to providing our customers with exceptional service.
             </p>
+            <AnimatedDivider />
           </FadeIn>
 
           <StaggerContainer className="services-detailed-grid" staggerDelay={0.1}>
             {services.map((service, i) => (
               <StaggerItem key={i}>
-                <HoverScale>
+                <HoverGlow>
                   <div className="service-detailed-card">
-                    <div className="service-detailed-icon">
-                      <i className={`fas ${service.icon}`}></i>
-                    </div>
+                    <AnimatedIcon delay={i * 0.08}>
+                      <div className="service-detailed-icon">
+                        <i className={`fas ${service.icon}`}></i>
+                      </div>
+                    </AnimatedIcon>
                     <div className="service-detailed-content">
                       <h3>{service.title}</h3>
                       <p>{service.desc}</p>
                       <ul>
-                        {service.features.map((f, j) => <li key={j}>{f}</li>)}
+                        {service.features.map((f, j) => (
+                          <motion.li
+                            key={j}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 * j + 0.3, duration: 0.3 }}
+                          >
+                            {f}
+                          </motion.li>
+                        ))}
                       </ul>
                     </div>
+                    <motion.div
+                      className="card-shimmer"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '200%' }}
+                      transition={{ duration: 0.6 }}
+                    />
                   </div>
-                </HoverScale>
+                </HoverGlow>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -229,54 +376,92 @@ export default function HomePage() {
       </section>
 
       {/* ═══ OUR WORK ═══ */}
-      <section id="work" className="our-work">
+      <section id="work" className="our-work" style={{ position: 'relative', overflow: 'hidden' }}>
+        <MorphingBlob className="section-blob section-blob-right" color="rgba(6,182,212,0.03)" size={400} />
+
         <div className="container">
           <FadeIn direction="up">
             <h2 className="section-title">Our Work</h2>
             <p className="section-subtitle">Successful projects we&apos;ve delivered for our clients</p>
+            <AnimatedDivider />
           </FadeIn>
 
           <StaggerContainer className="work-grid" staggerDelay={0.12}>
             {projects.map((project, i) => (
               <StaggerItem key={i}>
-                <div className="work-card">
-                  <div className="work-image">
-                    <img
-                      src={project.img}
-                      alt={`${project.name} Website`}
-                      className="project-screenshot"
-                      onClick={() => openImageLightbox(project.img, `${project.name} Website`)}
-                    />
-                    <div
-                      className="work-overlay"
-                      onClick={() => openImageLightbox(project.img, `${project.name} Website`)}
-                    >
-                      <div className="work-overlay-content">
-                        <i className="fas fa-eye"></i>
-                        <span>View</span>
-                      </div>
+                <motion.div
+                  className="work-card"
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ImageReveal direction={i % 2 === 0 ? 'left' : 'right'} delay={0.1}>
+                    <div className="work-image">
+                      <img
+                        src={project.img}
+                        alt={`${project.name} Website`}
+                        className="project-screenshot"
+                        onClick={() => openImageLightbox(project.img, `${project.name} Website`)}
+                      />
+                      <motion.div
+                        className="work-overlay"
+                        onClick={() => openImageLightbox(project.img, `${project.name} Website`)}
+                        whileHover={{ opacity: 1 }}
+                        initial={{ opacity: 0 }}
+                      >
+                        <motion.div
+                          className="work-overlay-content"
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          whileHover={{ scale: 1, opacity: 1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <i className="fas fa-eye"></i>
+                          <span>View</span>
+                        </motion.div>
+                      </motion.div>
                     </div>
-                  </div>
+                  </ImageReveal>
                   <div className="work-content">
                     <div className="work-header">
                       <h3>{project.name}</h3>
                       <div className="work-tags">
-                        {project.tags.map((tag, j) => <span key={j} className="work-tag">{tag}</span>)}
+                        {project.tags.map((tag, j) => (
+                          <motion.span
+                            key={j}
+                            className="work-tag"
+                            whileHover={{ scale: 1.1, backgroundColor: 'rgba(37,99,235,0.2)' }}
+                          >
+                            {tag}
+                          </motion.span>
+                        ))}
                       </div>
                     </div>
                     <p className="work-description">{project.desc}</p>
                     <div className="work-tech">
                       <div className="tech-stack">
-                        {project.tech.map((t, j) => <span key={j} className="tech-item">{t}</span>)}
+                        {project.tech.map((t, j) => (
+                          <motion.span
+                            key={j}
+                            className="tech-item"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: j * 0.05 + 0.2 }}
+                            whileHover={{ borderColor: 'var(--primary)', color: 'var(--primary-light)' }}
+                          >
+                            {t}
+                          </motion.span>
+                        ))}
                       </div>
                     </div>
                     <div className="work-actions">
-                      <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-outline work-btn">
-                        <i className="fas fa-external-link-alt"></i> Visit Site
-                      </a>
+                      <MagneticHover strength={0.2}>
+                        <a href={project.url} target="_blank" rel="noopener noreferrer" className="btn btn-outline work-btn">
+                          <i className="fas fa-external-link-alt"></i> Visit Site
+                        </a>
+                      </MagneticHover>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -285,21 +470,35 @@ export default function HomePage() {
           <div className="testimonials-section">
             <FadeIn direction="up">
               <h3 className="testimonials-title">What Our Clients Say</h3>
+              <AnimatedDivider />
             </FadeIn>
 
             <StaggerContainer className="testimonials-grid" staggerDelay={0.1}>
               {testimonials.map((t, i) => (
                 <StaggerItem key={i}>
-                  <HoverScale scale={1.02}>
+                  <HoverGlow>
                     <div className="testimonial-card">
                       <div className="testimonial-content">
                         <div className="testimonial-stars">
                           {Array.from({ length: 5 }).map((_, j) => (
-                            <i key={j} className={j < t.stars ? 'fas fa-star' : 'far fa-star'}></i>
+                            <motion.i
+                              key={j}
+                              className={j < t.stars ? 'fas fa-star' : 'far fa-star'}
+                              initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: j * 0.08 + 0.2, type: 'spring', stiffness: 200 }}
+                            />
                           ))}
                         </div>
                         <p className="testimonial-text">{t.text}</p>
                         <div className="testimonial-author">
+                          <motion.div
+                            className="author-avatar"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                          >
+                            {t.name.charAt(0)}
+                          </motion.div>
                           <div className="author-info">
                             <h4>{t.name}</h4>
                             <span className="author-title">{t.title}</span>
@@ -307,52 +506,86 @@ export default function HomePage() {
                         </div>
                       </div>
                     </div>
-                  </HoverScale>
+                  </HoverGlow>
                 </StaggerItem>
               ))}
             </StaggerContainer>
           </div>
 
-          <FadeIn direction="up">
+          <ScaleIn>
             <div className="work-cta">
-              <h3>Ready to Start Your Project?</h3>
-              <p>Let&apos;s discuss how we can bring your vision to life with modern web solutions.</p>
-              <a href="#contact" className="btn btn-primary btn-large">Get Started Today</a>
+              <ParallaxScroll speed={0.1}>
+                <h3>Ready to Start Your Project?</h3>
+                <p>Let&apos;s discuss how we can bring your vision to life with modern web solutions.</p>
+                <MagneticHover strength={0.15}>
+                  <PulseEffect>
+                    <a href="#contact" className="btn btn-primary btn-large btn-shimmer">
+                      Get Started Today
+                      <span className="btn-shine" />
+                    </a>
+                  </PulseEffect>
+                </MagneticHover>
+              </ParallaxScroll>
             </div>
-          </FadeIn>
+          </ScaleIn>
         </div>
       </section>
 
       {/* ═══ CONTACT ═══ */}
-      <section id="contact" className="contact">
-        <div className="container">
+      <section id="contact" className="contact" style={{ position: 'relative', overflow: 'hidden' }}>
+        <ParticleField count={15} />
+        <MorphingBlob className="section-blob section-blob-left" color="rgba(37,99,235,0.04)" size={300} />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <FadeIn direction="up">
             <h2 className="section-title">Get In Touch</h2>
             <p className="section-subtitle">Have a project in mind? We&apos;d love to hear about it.</p>
+            <AnimatedDivider />
           </FadeIn>
 
-          <FadeIn direction="up" delay={0.15}>
+          <ScaleIn delay={0.15}>
             <div className="contact-content">
-              <form className="contact-form" action="https://formsubmit.co/khixarn@gmail.com" method="POST">
+              <motion.form
+                className="contact-form"
+                action="https://formsubmit.co/khixarn@gmail.com"
+                method="POST"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
                 <h3>Send Us a Message</h3>
                 <input type="hidden" name="_subject" value="New Contact Form Submission from Senyo Solutions" />
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_template" value="table" />
                 <input type="hidden" name="_next" value="https://senyosolutions.com/thank-you" />
-                <div className="form-group">
-                  <input type="text" name="Company Name" placeholder="Company Name" required />
-                </div>
-                <div className="form-group">
-                  <input type="text" name="Contact Person" placeholder="Your Name" required />
-                </div>
-                <div className="form-group">
-                  <input type="email" name="email" placeholder="Email Address" required />
-                </div>
-                <div className="form-group">
-                  <input type="tel" name="Phone Number" placeholder="Phone Number" required />
-                </div>
-                <div className="form-group">
-                  <select id="serviceRequested" name="Service Requested" aria-label="Service Requested" required>
+
+                {[
+                  { type: 'text', name: 'Company Name', placeholder: 'Company Name' },
+                  { type: 'text', name: 'Contact Person', placeholder: 'Your Name' },
+                  { type: 'email', name: 'email', placeholder: 'Email Address' },
+                  { type: 'tel', name: 'Phone Number', placeholder: 'Phone Number' },
+                ].map((field, i) => (
+                  <motion.div
+                    key={field.name}
+                    className="form-group"
+                    initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 + 0.2, duration: 0.4 }}
+                  >
+                    <input type={field.type} name={field.name} placeholder={field.placeholder} required className="form-input-animated" />
+                  </motion.div>
+                ))}
+
+                <motion.div
+                  className="form-group"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
+                >
+                  <select id="serviceRequested" name="Service Requested" aria-label="Service Requested" required className="form-input-animated">
                     <option value="">Select a Service</option>
                     <option value="Website Creation">Website Creation</option>
                     <option value="Web Hosting">Web Hosting</option>
@@ -360,16 +593,34 @@ export default function HomePage() {
                     <option value="SEO Optimization">SEO Optimization</option>
                     <option value="All Services">All Services</option>
                   </select>
-                </div>
-                <div className="form-group">
-                  <textarea name="Project Details" placeholder="Tell us about your project..." rows={5} required></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
-                  <i className="fas fa-paper-plane"></i> Send Message
-                </button>
-              </form>
+                </motion.div>
+
+                <motion.div
+                  className="form-group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6, duration: 0.4 }}
+                >
+                  <textarea name="Project Details" placeholder="Tell us about your project..." rows={5} required className="form-input-animated"></textarea>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.7, duration: 0.4 }}
+                >
+                  <MagneticHover strength={0.1}>
+                    <button type="submit" className="btn btn-primary btn-shimmer" style={{ width: '100%' }}>
+                      <i className="fas fa-paper-plane"></i> Send Message
+                      <span className="btn-shine" />
+                    </button>
+                  </MagneticHover>
+                </motion.div>
+              </motion.form>
             </div>
-          </FadeIn>
+          </ScaleIn>
         </div>
       </section>
 

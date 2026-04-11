@@ -1216,3 +1216,345 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   background: rgba(37,99,235,0.3);
   color: var(--text-primary);
 }
+
+/* ============================================================
+   ANIMATION ADDITIONS
+   ============================================================ */
+
+/* --- Stats Bar --- */
+.stats-bar {
+  padding: 40px 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-number {
+  font-family: 'Archivo', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* --- Scroll Indicator --- */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.scroll-arrow {
+  color: var(--text-muted);
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+/* --- Hero Decorative Elements --- */
+.hero-blob-1 {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  z-index: 0;
+}
+
+.hero-blob-2 {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  z-index: 0;
+}
+
+.hero-deco {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-deco-1 { top: 15%; right: 10%; }
+.hero-deco-2 { bottom: 25%; left: 8%; }
+.hero-deco-3 { top: 30%; left: 15%; }
+.hero-deco-4 { bottom: 15%; right: 15%; }
+
+.deco-shape {
+  opacity: 0.15;
+}
+
+.deco-diamond {
+  width: 24px;
+  height: 24px;
+  background: var(--primary-light);
+  transform: rotate(45deg);
+  border-radius: 3px;
+}
+
+.deco-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.deco-cross {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.deco-cross::before,
+.deco-cross::after {
+  content: '';
+  position: absolute;
+  background: var(--primary-light);
+  border-radius: 2px;
+}
+
+.deco-cross::before {
+  width: 20px;
+  height: 3px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.deco-cross::after {
+  width: 3px;
+  height: 20px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.deco-ring {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+}
+
+/* --- Eyebrow dot pulse --- */
+.eyebrow-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* --- Button shimmer effect --- */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* --- Card shimmer on hover --- */
+.card-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.03),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Section blobs --- */
+.section-blob {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.section-blob-right {
+  right: -100px;
+  top: 20%;
+}
+
+.section-blob-left {
+  left: -100px;
+  top: 30%;
+}
+
+/* --- Step icon circle (process section) --- */
+.step-icon-circle {
+  width: 44px;
+  height: 44px;
+  background: rgba(37,99,235,0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--primary-light);
+  margin-bottom: 12px;
+}
+
+/* --- Author avatar (testimonials) --- */
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* --- Form input animated focus --- */
+.form-input-animated {
+  transition: all var(--transition-base) !important;
+}
+
+.form-input-animated:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(37,99,235,0.1), 0 0 0 3px rgba(37,99,235,0.1) !important;
+}
+
+/* --- Smooth page load --- */
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body {
+  animation: fadeInPage 0.5s ease-out;
+}
+
+/* --- Gradient text animation for hero --- */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Work overlay improved animation --- */
+.work-overlay {
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.work-overlay-content {
+  transition: transform 0.3s ease;
+}
+
+.work-card:hover .work-overlay-content {
+  transform: scale(1);
+}
+
+/* --- Enhanced service card hover --- */
+.service-detailed-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-detailed-card:hover .service-detailed-icon {
+  transform: scale(1.1) rotate(5deg);
+  transition: transform 0.3s ease;
+}
+
+/* --- Process step enhanced --- */
+.process-step {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* --- Testimonial card enhanced --- */
+.testimonial-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.testimonial-card:hover {
+  border-color: rgba(37,99,235,0.3);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* --- Contact form enhanced --- */
+.contact-form {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.contact-form:hover {
+  border-color: rgba(37,99,235,0.2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+/* --- Link underline animation --- */
+a[style*="textDecoration: underline"] {
+  position: relative;
+}
+
+/* --- Responsive hero decorations --- */
+@media (max-width: 768px) {
+  .hero-deco { display: none; }
+  .hero-blob-1, .hero-blob-2 { display: none; }
+  .section-blob { display: none; }
+  .scroll-indicator { display: none; }
+  .particle-field { display: none; }
+}

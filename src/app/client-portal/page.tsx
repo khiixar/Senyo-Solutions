@@ -2,7 +2,10 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { FadeIn, ScaleIn, AnimatedGradientBg, MorphingBlob } from '@/components/MotionWrapper';
 
 export default function ClientPortalPage() {
   useEffect(() => {
@@ -17,6 +20,8 @@ export default function ClientPortalPage() {
           min-height: 100vh;
           padding: 120px 20px 60px;
           background: var(--bg-primary);
+          position: relative;
+          overflow: hidden;
         }
         .login-container {
           max-width: 420px;
@@ -305,41 +310,16 @@ export default function ClientPortalPage() {
           .login-container { padding: 36px 24px; }
         }
 
-        /* Portal footer */
-        .portal-footer {
-          background: var(--bg-secondary);
-          border-top: 1px solid var(--border-subtle);
-          padding: 32px 20px;
-        }
-        .portal-footer .footer-container { max-width: 1200px; margin: 0 auto; }
-        .portal-footer .footer-grid {
-          display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-          margin-bottom: 24px;
-        }
-        .portal-footer h4 {
-          font-family: 'Archivo', sans-serif;
-          font-size: 0.92rem; color: var(--text-primary); margin-bottom: 8px;
-        }
-        .portal-footer p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; }
-        .portal-footer .footer-contact p {
-          display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
-        }
-        .portal-footer .footer-contact i { color: var(--primary-light); font-size: 0.82rem; }
-        .portal-footer .footer-bottom {
-          display: flex; justify-content: space-between; align-items: center;
-          padding-top: 20px; border-top: 1px solid var(--border-subtle);
-          font-size: 0.8rem; color: var(--text-muted); flex-wrap: wrap; gap: 12px;
-        }
-        .portal-footer .footer-legal-links { display: flex; gap: 12px; }
-        .portal-footer .footer-legal-links a { color: var(--text-muted); text-decoration: none; }
-        .portal-footer .footer-legal-links a:hover { color: var(--primary-light); }
-        @media (max-width: 768px) {
-          .portal-footer .footer-grid { grid-template-columns: 1fr; }
-        }
+
       `}</style>
 
       <section className="portal-section">
-        <div className="login-container" id="loginForm">
+        <AnimatedGradientBg />
+        <MorphingBlob color="rgba(37,99,235,0.05)" size={400} position={{ top: '-10%', right: '-10%' }} />
+        <MorphingBlob color="rgba(168,85,247,0.04)" size={300} position={{ bottom: '-5%', left: '-5%' }} />
+
+        <ScaleIn>
+        <div className="login-container" id="loginForm" style={{ position: 'relative', zIndex: 1 }}>
           <h2><i className="fas fa-user-circle" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Client Login</h2>
           <div className="login-error" id="loginError"></div>
           <form id="clientLoginForm">
@@ -355,8 +335,9 @@ export default function ClientPortalPage() {
             <a href="#" id="forgotPasswordLink">Forgot your password?</a>
           </div>
         </div>
+        </ScaleIn>
 
-        <div className="dashboard-container" id="dashboard">
+        <div className="dashboard-container" id="dashboard" style={{ position: 'relative', zIndex: 1 }}>
           <div className="dashboard-header">
             <div className="welcome-text">
               <h2>Welcome, <span id="clientName">Client</span></h2>
@@ -440,31 +421,7 @@ export default function ClientPortalPage() {
         </div>
       </section>
 
-      <footer className="portal-footer">
-        <div className="footer-container">
-          <div className="footer-grid">
-            <div className="footer-section">
-              <h4>Senyo Solutions</h4>
-              <p>Professional web development and digital solutions for businesses.</p>
-            </div>
-            <div className="footer-section">
-              <h4>Contact</h4>
-              <div className="footer-contact">
-                <p><i className="fas fa-phone"></i> (516) 707-7351</p>
-                <p suppressHydrationWarning><i className="fas fa-envelope"></i> contact@senyosolutions.com</p>
-              </div>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2025 Senyo Solutions. All rights reserved.</p>
-            <div className="footer-legal-links">
-              <Link href="/terms-of-service">Terms of Service</Link>
-              <span>&middot;</span>
-              <Link href="/privacy-policy">Privacy Policy</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Firebase Client Portal Script — PRESERVED EXACTLY */}
       <script type="module" dangerouslySetInnerHTML={{ __html: `

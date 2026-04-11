@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
+import { ScaleIn, AnimatedGradientBg, MorphingBlob } from '@/components/MotionWrapper';
 
 export default function AdminPortalPage() {
   return (
@@ -11,6 +13,7 @@ export default function AdminPortalPage() {
         .admin-section {
           min-height: 100vh; padding: 120px 20px 60px;
           background: var(--bg-primary);
+          position: relative; overflow: hidden;
         }
         .admin-container { max-width: 1400px; margin: 0 auto; }
         .admin-header {
@@ -257,7 +260,12 @@ export default function AdminPortalPage() {
       `}</style>
 
       <section className="admin-section">
-        <div className="login-container" id="adminLogin">
+        <AnimatedGradientBg />
+        <MorphingBlob color="rgba(37,99,235,0.05)" size={400} position={{ top: '-10%', right: '-10%' }} />
+        <MorphingBlob color="rgba(168,85,247,0.04)" size={300} position={{ bottom: '-5%', left: '-5%' }} />
+
+        <ScaleIn>
+        <div className="login-container" id="adminLogin" style={{ position: 'relative', zIndex: 1 }}>
           <h2><i className="fas fa-lock" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Admin Login</h2>
           <div className="login-error" id="loginError"></div>
           <form id="adminLoginForm">
@@ -266,8 +274,9 @@ export default function AdminPortalPage() {
             <button type="submit" className="btn btn-primary" style={{ width: '100%' }} id="loginBtn">Sign In</button>
           </form>
         </div>
+        </ScaleIn>
 
-        <div className="admin-container" id="adminDashboard" style={{ display: 'none' }}>
+        <div className="admin-container" id="adminDashboard" style={{ display: 'none', position: 'relative', zIndex: 1 }}>
           <div className="admin-header">
             <h1><i className="fas fa-cog" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Admin Dashboard</h1>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
