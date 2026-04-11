@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import Script from 'next/script';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { FadeIn, StaggerContainer, StaggerItem, HoverScale } from '@/components/MotionWrapper';
-import CollaborativeCursors from '@/components/CollaborativeCursors';
+const ServicesScene3D = dynamic(() => import('@/components/ServicesScene3D'), { ssr: false });
 
 export default function ServicesPage() {
   return (
@@ -159,6 +160,7 @@ export default function ServicesPage() {
 
       {/* Hero */}
       <div className="packages-hero">
+        <ServicesScene3D />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <motion.p
             className="section-eyebrow"
@@ -279,7 +281,6 @@ export default function ServicesPage() {
       </section>
 
       <Footer />
-      <CollaborativeCursors />
     </>
   );
 }

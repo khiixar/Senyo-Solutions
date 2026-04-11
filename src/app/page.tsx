@@ -2,10 +2,14 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import CollaborativeCursors from '@/components/CollaborativeCursors';
+const HeroScene3D = dynamic(() => import('@/components/HeroScene3D'), {
+  ssr: false,
+  loading: () => null,
+});
 import {
   FadeIn,
   StaggerContainer,
@@ -66,8 +70,9 @@ export default function HomePage() {
       <Navbar />
 
       {/* ═══ HERO ═══ */}
-      <section id="home" className="hero">
-        <div className="container">
+      <section id="home" className="hero" style={{ position: 'relative' }}>
+        <HeroScene3D />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <ParallaxText>
             <div className="hero-content">
               <motion.p
@@ -402,7 +407,6 @@ export default function HomePage() {
       </div>
 
       <Footer />
-      <CollaborativeCursors />
     </>
   );
 }
