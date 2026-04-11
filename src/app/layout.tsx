@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './styles.css';
 
 export const metadata: Metadata = {
@@ -72,6 +74,8 @@ export default function RootLayout({
       </head>
       <body>
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
