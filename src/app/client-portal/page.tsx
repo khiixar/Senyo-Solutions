@@ -451,7 +451,7 @@ export default function ClientPortalPage() {
               <h4>Contact</h4>
               <div className="footer-contact">
                 <p><i className="fas fa-phone"></i> (516) 707-7351</p>
-                <p><i className="fas fa-envelope"></i> contact@senyosolutions.com</p>
+                <p suppressHydrationWarning><i className="fas fa-envelope"></i> contact@senyosolutions.com</p>
               </div>
             </div>
           </div>
