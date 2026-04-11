@@ -45,18 +45,18 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="footer-social-btn linkedin-btn"
+              aria-label="LinkedIn"
             >
               <i className="fab fa-linkedin-in"></i>
-              <span>LinkedIn</span>
             </a>
             <a
               href="https://www.instagram.com/SenyoSolutions/#"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-social-btn instagram-btn"
+              aria-label="Instagram"
             >
               <i className="fab fa-instagram"></i>
-              <span>Instagram</span>
             </a>
           </div>
         </div>

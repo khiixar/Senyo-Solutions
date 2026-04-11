@@ -134,12 +134,12 @@ export default function ServicesPage() {
         .pkg-features li i { color: var(--success); font-size: 0.68rem; flex-shrink: 0; }
         .stripe-btn-wrap { display: flex; justify-content: center; }
         .pkg-btn {
-          display: block; width: 100%; padding: 10px 18px;
+          display: block; width: 100%; padding: 9px 18px;
           background: transparent;
           color: var(--primary-light); border: 1.5px solid var(--primary);
-          border-radius: 6px;
+          border-radius: 50px;
           font-family: 'Archivo', sans-serif;
-          font-size: 0.85rem; font-weight: 600;
+          font-size: 0.82rem; font-weight: 600;
           cursor: pointer;
           text-align: center; text-decoration: none;
           transition: all var(--transition-base);

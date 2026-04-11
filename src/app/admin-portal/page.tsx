@@ -24,14 +24,14 @@ export default function AdminPortalPage() {
         }
         .admin-tabs { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
         .admin-tab {
-          padding: 10px 22px;
+          padding: 8px 20px;
           background: var(--bg-card);
           border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-sm);
+          border-radius: 50px;
           color: var(--text-muted);
           cursor: pointer;
           font-family: 'Space Grotesk', sans-serif;
-          font-size: 0.88rem;
+          font-size: 0.84rem;
           font-weight: 500;
           transition: all var(--transition-base);
         }
@@ -122,8 +122,8 @@ export default function AdminPortalPage() {
         .priority-low { color: #22c55e; }
 
         .action-btn {
-          padding: 7px 12px; border: none;
-          border-radius: 6px; cursor: pointer;
+          padding: 6px 12px; border: none;
+          border-radius: 50px; cursor: pointer;
           font-size: 0.82rem; margin-right: 4px; margin-bottom: 4px;
           transition: all var(--transition-fast);
           font-family: 'Space Grotesk', sans-serif;

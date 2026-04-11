@@ -156,6 +156,42 @@ export default function HomePage() {
               </StaggerItem>
             ))}
           </StaggerContainer>
+
+          {/* Animated connector between process steps */}
+          <FadeIn direction="up" delay={0.5}>
+            <div className="process-connector-wrap">
+              <div className="process-connector">
+                <motion.div
+                  className="process-connector-line"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.4 }}
+                />
+                <motion.div
+                  className="process-connector-dot dot-start"
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                />
+                <motion.div
+                  className="process-connector-dot dot-mid"
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.3, delay: 0.9 }}
+                />
+                <motion.div
+                  className="process-connector-dot dot-end"
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.3, delay: 1.5 }}
+                />
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 

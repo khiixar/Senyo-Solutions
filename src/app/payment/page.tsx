@@ -116,19 +116,19 @@ export default function PaymentPage() {
           margin-bottom: 12px; display: none;
         }
         .pay-btn {
-          width: 100%; padding: 16px;
+          width: 100%; padding: 11px;
           background: var(--primary); color: #fff;
-          border: none; border-radius: var(--radius-sm);
+          border: none; border-radius: 50px;
           font-family: 'Archivo', sans-serif;
-          font-size: 1rem; font-weight: 600;
+          font-size: 0.88rem; font-weight: 600;
           cursor: pointer;
-          display: flex; align-items: center; justify-content: center; gap: 10px;
+          display: flex; align-items: center; justify-content: center; gap: 8px;
           transition: all var(--transition-base);
         }
         .pay-btn:hover {
           background: var(--primary-dark);
-          transform: translateY(-2px);
-          box-shadow: 0 8px 28px rgba(37,99,235,0.35);
+          transform: translateY(-1px);
+          box-shadow: 0 6px 20px rgba(37,99,235,0.3);
         }
         .pay-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
         .stripe-note {
