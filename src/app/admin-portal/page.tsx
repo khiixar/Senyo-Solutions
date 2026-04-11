@@ -8,70 +8,257 @@ export default function AdminPortalPage() {
     <>
       <Navbar />
       <style jsx global>{`
-        .admin-section { min-height: 100vh; padding: 120px 20px 60px; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); }
+        .admin-section {
+          min-height: 100vh; padding: 120px 20px 60px;
+          background: var(--bg-primary);
+        }
         .admin-container { max-width: 1400px; margin: 0 auto; }
-        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 20px; }
-        .admin-header h1 { color: var(--text-primary); }
-        .admin-tabs { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        .admin-tab { padding: 12px 24px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: var(--text-secondary); cursor: pointer; transition: all 0.3s ease; }
-        .admin-tab:hover, .admin-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .admin-header {
+          display: flex; justify-content: space-between; align-items: center;
+          margin-bottom: 32px; flex-wrap: wrap; gap: 20px;
+        }
+        .admin-header h1 {
+          font-family: 'Archivo', sans-serif;
+          color: var(--text-primary);
+          font-size: 1.6rem;
+        }
+        .admin-tabs { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+        .admin-tab {
+          padding: 10px 22px;
+          background: var(--bg-card);
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-sm);
+          color: var(--text-muted);
+          cursor: pointer;
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 0.88rem;
+          font-weight: 500;
+          transition: all var(--transition-base);
+        }
+        .admin-tab:hover, .admin-tab.active {
+          background: var(--primary);
+          color: white;
+          border-color: var(--primary);
+        }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        .login-container { max-width: 400px; margin: 0 auto; background: rgba(255, 255, 255, 0.05); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-radius: 16px; padding: 40px; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .login-container h2 { color: var(--text-primary); margin-bottom: 30px; text-align: center; }
-        .login-container input { width: 100%; padding: 14px 16px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: var(--text-primary); font-size: 1rem; }
-        .login-container input:focus { outline: none; border-color: var(--primary); }
-        .login-error { background: rgba(239, 68, 68, 0.2); color: #f87171; padding: 12px; border-radius: 8px; margin-bottom: 20px; display: none; }
-        .requests-table { width: 100%; background: rgba(255, 255, 255, 0.05); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .requests-table th, .requests-table td { padding: 16px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .requests-table th { background: rgba(255, 255, 255, 0.05); color: var(--text-secondary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+
+        /* Login */
+        .login-container {
+          max-width: 420px; margin: 0 auto;
+          background: var(--bg-card);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border-radius: var(--radius-lg);
+          padding: 48px 40px;
+          border: 1px solid var(--border-subtle);
+        }
+        .login-container h2 {
+          font-family: 'Archivo', sans-serif;
+          color: var(--text-primary);
+          margin-bottom: 32px;
+          text-align: center;
+          font-size: 1.5rem;
+        }
+        .login-container input {
+          width: 100%; padding: 14px 18px; margin-bottom: 14px;
+          background: rgba(255,255,255,0.04);
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-sm);
+          color: var(--text-primary);
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 0.95rem;
+          outline: none;
+          transition: all var(--transition-fast);
+        }
+        .login-container input:focus {
+          border-color: var(--primary);
+          box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+        .login-error {
+          background: rgba(220,38,38,0.12); color: #f87171;
+          padding: 12px 16px; border-radius: var(--radius-sm);
+          margin-bottom: 18px; display: none;
+          font-size: 0.9rem;
+          border: 1px solid rgba(220,38,38,0.2);
+        }
+
+        /* Table */
+        .requests-table {
+          width: 100%;
+          background: var(--bg-card);
+          border-radius: var(--radius-md);
+          overflow: hidden;
+          border: 1px solid var(--border-subtle);
+        }
+        .requests-table th, .requests-table td {
+          padding: 14px 16px; text-align: left;
+          border-bottom: 1px solid var(--border-subtle);
+          font-size: 0.88rem;
+        }
+        .requests-table th {
+          background: rgba(255,255,255,0.03);
+          color: var(--text-muted);
+          font-weight: 600;
+          font-size: 0.78rem;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+        }
         .requests-table td { color: var(--text-primary); }
-        .requests-table tr:hover { background: rgba(255, 255, 255, 0.03); }
-        .status-badge { padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 500; }
-        .status-pending { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
-        .status-accepted { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
-        .status-in-progress { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
-        .status-completed { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
-        .status-rejected { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .requests-table tr:hover { background: rgba(255,255,255,0.02); }
+
+        .status-badge {
+          padding: 5px 14px; border-radius: 20px;
+          font-size: 0.78rem; font-weight: 600;
+        }
+        .status-pending { background: rgba(251,191,36,0.12); color: #fbbf24; }
+        .status-accepted { background: rgba(168,85,247,0.12); color: #a855f7; }
+        .status-in-progress { background: rgba(59,130,246,0.12); color: #3b82f6; }
+        .status-completed { background: rgba(34,197,94,0.12); color: #22c55e; }
+        .status-rejected { background: rgba(220,38,38,0.12); color: #ef4444; }
         .priority-urgent { color: #ef4444; }
         .priority-high { color: #f97316; }
         .priority-medium { color: #fbbf24; }
         .priority-low { color: #22c55e; }
-        .action-btn { padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; margin-right: 5px; margin-bottom: 5px; transition: all 0.3s ease; }
-        .action-btn.edit { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
-        .action-btn.delete { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+
+        .action-btn {
+          padding: 7px 12px; border: none;
+          border-radius: 6px; cursor: pointer;
+          font-size: 0.82rem; margin-right: 4px; margin-bottom: 4px;
+          transition: all var(--transition-fast);
+          font-family: 'Space Grotesk', sans-serif;
+        }
+        .action-btn.edit { background: rgba(168,85,247,0.12); color: #a855f7; }
+        .action-btn.delete { background: rgba(220,38,38,0.12); color: #ef4444; }
         .action-btn:hover { transform: scale(1.05); }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; align-items: center; justify-content: center; }
+
+        /* Modals */
+        .modal {
+          display: none; position: fixed; inset: 0;
+          background: rgba(0,0,0,0.75);
+          backdrop-filter: blur(8px);
+          z-index: 1000;
+          align-items: center; justify-content: center;
+        }
         .modal.active { display: flex; }
-        .modal-content { background: #1a1a2e; border-radius: 16px; padding: 32px; max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-        .modal-header h3 { color: var(--text-primary); margin: 0; }
-        .modal-close { background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
-        .modal-form label { display: block; color: var(--text-secondary); margin-bottom: 8px; font-size: 0.9rem; }
-        .modal-form input, .modal-form select, .modal-form textarea { width: 100%; padding: 12px; margin-bottom: 16px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: var(--text-primary); font-size: 1rem; }
+        .modal-content {
+          background: var(--bg-secondary);
+          border-radius: var(--radius-lg);
+          padding: 36px;
+          max-width: 600px; width: 90%;
+          max-height: 90vh; overflow-y: auto;
+          border: 1px solid var(--border-subtle);
+        }
+        .modal-header {
+          display: flex; justify-content: space-between;
+          align-items: center; margin-bottom: 24px;
+        }
+        .modal-header h3 {
+          font-family: 'Archivo', sans-serif;
+          color: var(--text-primary);
+          margin: 0;
+          font-size: 1.2rem;
+        }
+        .modal-close {
+          background: none; border: none;
+          color: var(--text-muted);
+          font-size: 1.5rem; cursor: pointer;
+          transition: color var(--transition-fast);
+        }
+        .modal-close:hover { color: var(--text-primary); }
+        .modal-form label {
+          display: block; color: var(--text-muted);
+          margin-bottom: 8px; font-size: 0.85rem; font-weight: 500;
+        }
+        .modal-form input, .modal-form select, .modal-form textarea {
+          width: 100%; padding: 12px 16px; margin-bottom: 16px;
+          background: rgba(255,255,255,0.04);
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-sm);
+          color: var(--text-primary);
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 0.95rem;
+          outline: none;
+        }
+        .modal-form input:focus, .modal-form select:focus, .modal-form textarea:focus {
+          border-color: var(--primary);
+        }
         .modal-form textarea { min-height: 100px; resize: vertical; }
-        .client-card { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
-        .client-info h4 { color: var(--text-primary); margin: 0 0 5px 0; }
-        .client-info p { color: var(--text-secondary); margin: 0; font-size: 0.9rem; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
-        .stat-card { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .stat-card h3 { color: var(--primary); font-size: 2rem; margin: 0 0 5px 0; }
-        .stat-card p { color: var(--text-secondary); margin: 0; }
-        .filter-bar { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
-        .filter-bar select { padding: 10px 15px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: var(--text-primary); }
-        select { background-color: #1a1a2e !important; color: #ffffff !important; }
-        select option { background-color: #1a1a2e !important; color: #ffffff !important; }
-        .success-toast { position: fixed; bottom: 20px; right: 20px; background: rgba(34, 197, 94, 0.9); color: white; padding: 16px 24px; border-radius: 8px; display: none; z-index: 1001; }
-        .empty-state { text-align: center; padding: 40px; color: var(--text-secondary); }
+
+        /* Client cards */
+        .client-card {
+          background: var(--bg-card);
+          border-radius: var(--radius-md);
+          padding: 20px 24px;
+          border: 1px solid var(--border-subtle);
+          margin-bottom: 12px;
+          display: flex; justify-content: space-between;
+          align-items: center; flex-wrap: wrap; gap: 14px;
+          transition: all var(--transition-fast);
+        }
+        .client-card:hover { border-color: var(--border-light); }
+        .client-info h4 {
+          font-family: 'Archivo', sans-serif;
+          color: var(--text-primary);
+          margin: 0 0 4px 0; font-size: 0.95rem;
+        }
+        .client-info p { color: var(--text-secondary); margin: 0; font-size: 0.88rem; }
+
+        /* Stats */
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 16px; margin-bottom: 28px;
+        }
+        .stat-card {
+          background: var(--bg-card);
+          border-radius: var(--radius-md);
+          padding: 24px;
+          border: 1px solid var(--border-subtle);
+          transition: all var(--transition-fast);
+        }
+        .stat-card:hover { border-color: var(--border-light); }
+        .stat-card h3 {
+          font-family: 'Archivo', sans-serif;
+          color: var(--primary-light);
+          font-size: 2rem;
+          margin: 0 0 4px 0;
+        }
+        .stat-card p { color: var(--text-muted); margin: 0; font-size: 0.85rem; }
+
+        /* Filter */
+        .filter-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+        .filter-bar select {
+          padding: 10px 16px;
+          background: rgba(255,255,255,0.04);
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-sm);
+          color: var(--text-primary);
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 0.88rem;
+          outline: none;
+        }
+        select { background-color: var(--bg-tertiary) !important; color: var(--text-primary) !important; }
+        select option { background-color: var(--bg-tertiary) !important; color: var(--text-primary) !important; }
+
+        .success-toast {
+          position: fixed; bottom: 24px; right: 24px;
+          background: rgba(34,197,94,0.92); color: white;
+          padding: 14px 24px; border-radius: var(--radius-sm);
+          display: none; z-index: 1001;
+          font-size: 0.9rem; font-weight: 500;
+          box-shadow: var(--shadow-md);
+        }
+        .empty-state { text-align: center; padding: 40px; color: var(--text-muted); }
         .confirm-modal { text-align: center; }
-        .confirm-modal p { color: var(--text-primary); margin-bottom: 20px; }
+        .confirm-modal p { color: var(--text-primary); margin-bottom: 20px; font-size: 0.95rem; }
         .confirm-modal .btn-group { display: flex; gap: 10px; justify-content: center; }
         @media (max-width: 768px) { .requests-table { display: block; overflow-x: auto; } }
       `}</style>
 
       <section className="admin-section">
         <div className="login-container" id="adminLogin">
-          <h2><i className="fas fa-lock" style={{ marginRight: '10px' }}></i>Admin Login</h2>
+          <h2><i className="fas fa-lock" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Admin Login</h2>
           <div className="login-error" id="loginError"></div>
           <form id="adminLoginForm">
             <input type="email" id="adminEmail" placeholder="Admin Email" required />
@@ -82,7 +269,7 @@ export default function AdminPortalPage() {
 
         <div className="admin-container" id="adminDashboard" style={{ display: 'none' }}>
           <div className="admin-header">
-            <h1><i className="fas fa-cog" style={{ marginRight: '10px' }}></i>Admin Dashboard</h1>
+            <h1><i className="fas fa-cog" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Admin Dashboard</h1>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
               <Link href="/payment" className="btn btn-primary">
                 <i className="fas fa-credit-card" style={{ marginRight: '8px' }}></i>Make a Payment
@@ -202,7 +389,7 @@ export default function AdminPortalPage() {
           <p id="confirmMessage">Are you sure?</p>
           <div className="btn-group">
             <button className="btn btn-outline" data-close="confirmModal">Cancel</button>
-            <button className="btn btn-primary" id="confirmActionBtn" style={{ background: '#ef4444' }}>Confirm</button>
+            <button className="btn btn-primary" id="confirmActionBtn" style={{ background: '#ef4444', borderColor: '#ef4444' }}>Confirm</button>
           </div>
         </div>
       </div>
@@ -291,7 +478,7 @@ function renderRequests() {
   if (filtered.length === 0) { tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No requests found.</td></tr>'; return; }
   tbody.innerHTML = filtered.map(r => {
     const canDelete = r.status === 'Completed' || r.status === 'Rejected';
-    return '<tr><td style="color: var(--primary-light); font-weight: 600; font-size: 0.85rem;">' + escapeHtml(r.ticketNumber || '—') + '</td><td>' + escapeHtml(r.userName || r.userEmail || 'Unknown') + '</td><td>' + escapeHtml(r.title || 'No title') + '</td><td>' + escapeHtml(r.requestType || 'N/A') + '</td><td class="priority-' + (r.priority || 'medium').toLowerCase() + '">' + (r.priority || 'N/A') + '</td><td><span class="status-badge status-' + (r.status || 'pending').toLowerCase().replace(' ', '-') + '">' + (r.status || 'Pending') + '</span></td><td>' + (r.createdAt ? new Date(r.createdAt.toDate()).toLocaleDateString() : '-') + '</td><td><button class="action-btn edit" data-request-id="' + r.id + '"><i class="fas fa-edit"></i> Manage</button>' + (canDelete ? '<button class="action-btn delete" data-delete-request="' + r.id + '"><i class="fas fa-trash"></i></button>' : '') + '</td></tr>';
+    return '<tr><td style="color: var(--primary-light); font-weight: 600; font-size: 0.82rem;">' + escapeHtml(r.ticketNumber || '—') + '</td><td>' + escapeHtml(r.userName || r.userEmail || 'Unknown') + '</td><td>' + escapeHtml(r.title || 'No title') + '</td><td>' + escapeHtml(r.requestType || 'N/A') + '</td><td class="priority-' + (r.priority || 'medium').toLowerCase() + '">' + (r.priority || 'N/A') + '</td><td><span class="status-badge status-' + (r.status || 'pending').toLowerCase().replace(' ', '-') + '">' + (r.status || 'Pending') + '</span></td><td>' + (r.createdAt ? new Date(r.createdAt.toDate()).toLocaleDateString() : '-') + '</td><td><button class="action-btn edit" data-request-id="' + r.id + '"><i class="fas fa-edit"></i> Manage</button>' + (canDelete ? '<button class="action-btn delete" data-delete-request="' + r.id + '"><i class="fas fa-trash"></i></button>' : '') + '</td></tr>';
   }).join('');
 }
 
@@ -302,7 +489,7 @@ async function loadClients() {
     allClients = [];
     snapshot.forEach((docSnap) => { allClients.push({ id: docSnap.id, ...docSnap.data() }); });
     if (allClients.length === 0) { container.innerHTML = '<p style="color: var(--text-secondary);">No clients yet. Add one above.</p>'; return; }
-    container.innerHTML = allClients.map(client => '<div class="client-card"><div class="client-info"><h4>' + escapeHtml(client.name || 'No name') + '</h4><p>' + escapeHtml(client.email || 'No email') + '</p><p style="font-size: 0.8rem; color: var(--text-secondary);">Created: ' + (client.createdAt ? new Date(client.createdAt.toDate()).toLocaleDateString() : 'N/A') + '</p></div><button class="action-btn delete" data-delete-client="' + client.id + '" data-client-email="' + client.email + '"><i class="fas fa-trash"></i> Remove</button></div>').join('');
+    container.innerHTML = allClients.map(client => '<div class="client-card"><div class="client-info"><h4>' + escapeHtml(client.name || 'No name') + '</h4><p>' + escapeHtml(client.email || 'No email') + '</p><p style="font-size: 0.78rem; color: var(--text-muted);">Created: ' + (client.createdAt ? new Date(client.createdAt.toDate()).toLocaleDateString() : 'N/A') + '</p></div><button class="action-btn delete" data-delete-client="' + client.id + '" data-client-email="' + client.email + '"><i class="fas fa-trash"></i> Remove</button></div>').join('');
   } catch (error) {
     console.error('Error loading clients:', error.code, error.message);
     document.getElementById('clientsList').innerHTML = '<p style="color: #f87171;">Error loading clients</p>';
@@ -351,7 +538,7 @@ document.getElementById('requestsBody').addEventListener('click', (e) => {
     document.getElementById('requestId').value = request.id;
     document.getElementById('updateStatus').value = request.status || 'Pending';
     document.getElementById('adminNotes').value = request.adminNotes || '';
-    document.getElementById('requestDetails').innerHTML = '<div style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">' + (request.ticketNumber ? '<p style="color: var(--primary-light); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px;"><i class="fas fa-ticket-alt" style="margin-right: 6px;"></i>' + escapeHtml(request.ticketNumber) + '</p>' : '') + '<p><strong>Client:</strong> ' + escapeHtml(request.userName || 'Unknown') + ' (' + escapeHtml(request.userEmail || 'No email') + ')</p><p><strong>Title:</strong> ' + escapeHtml(request.title || 'No title') + '</p><p><strong>Type:</strong> ' + escapeHtml(request.requestType || 'N/A') + '</p><p><strong>Priority:</strong> ' + escapeHtml(request.priority || 'N/A') + '</p><p><strong>Description:</strong></p><p style="color: var(--text-secondary);">' + escapeHtml(request.description || 'No description') + '</p></div>';
+    document.getElementById('requestDetails').innerHTML = '<div style="margin-bottom: 20px; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid var(--border-subtle);">' + (request.ticketNumber ? '<p style="color: var(--primary-light); font-weight: 600; font-size: 0.88rem; margin-bottom: 10px;"><i class="fas fa-ticket-alt" style="margin-right: 6px;"></i>' + escapeHtml(request.ticketNumber) + '</p>' : '') + '<p><strong>Client:</strong> ' + escapeHtml(request.userName || 'Unknown') + ' (' + escapeHtml(request.userEmail || 'No email') + ')</p><p><strong>Title:</strong> ' + escapeHtml(request.title || 'No title') + '</p><p><strong>Type:</strong> ' + escapeHtml(request.requestType || 'N/A') + '</p><p><strong>Priority:</strong> ' + escapeHtml(request.priority || 'N/A') + '</p><p><strong>Description:</strong></p><p style="color: var(--text-secondary);">' + escapeHtml(request.description || 'No description') + '</p></div>';
     openModal('requestModal');
   }
   if (deleteBtn) {
