@@ -320,7 +320,7 @@ export function TextReveal({
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
-      transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+      transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
     },
   };
 
@@ -638,10 +638,12 @@ export function MorphingBlob({
   className = '',
   color = 'rgba(37,99,235,0.06)',
   size = 400,
+  position,
 }: {
   className?: string;
   color?: string;
   size?: number;
+  position?: Record<string, string>;
 }) {
   return (
     <motion.div
@@ -652,6 +654,7 @@ export function MorphingBlob({
         height: size,
         pointerEvents: 'none',
         filter: 'blur(60px)',
+        ...position,
       }}
       animate={{
         borderRadius: [

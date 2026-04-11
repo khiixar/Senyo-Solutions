@@ -134,11 +134,6 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                <motion.span
-                  className="eyebrow-dot"
-                  animate={{ scale: [1, 1.4, 1], opacity: [1, 0.7, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
                 Web Design &amp; Digital Marketing
               </motion.p>
 

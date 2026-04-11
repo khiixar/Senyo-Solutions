@@ -1,7 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { FadeIn, ScaleIn, AnimatedGradientBg, MorphingBlob } from '@/components/MotionWrapper';
 
 export default function PaymentSuccessPage() {
   return (
@@ -12,6 +15,7 @@ export default function PaymentSuccessPage() {
         .success-page {
           min-height: 100vh; display: flex; align-items: center; justify-content: center;
           padding: 120px 20px 60px;
+          position: relative; overflow: hidden;
         }
         .success-card {
           background: var(--bg-card);
@@ -20,6 +24,7 @@ export default function PaymentSuccessPage() {
           padding: 56px 48px;
           max-width: 560px; width: 100%;
           text-align: center;
+          position: relative; z-index: 1;
         }
         .success-icon {
           width: 80px; height: 80px;
@@ -78,35 +83,62 @@ export default function PaymentSuccessPage() {
       `}</style>
 
       <div className="success-page">
-        <div className="success-card">
-          <div className="success-icon">
-            <i className="fas fa-check"></i>
+        <AnimatedGradientBg />
+        <MorphingBlob color="rgba(16,185,129,0.06)" size={400} position={{ top: '-10%', right: '-10%' }} />
+        <MorphingBlob color="rgba(37,99,235,0.05)" size={350} position={{ bottom: '-8%', left: '-8%' }} />
+
+        <ScaleIn>
+          <div className="success-card">
+            <motion.div
+              className="success-icon"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 200, damping: 15 }}
+            >
+              <i className="fas fa-check"></i>
+            </motion.div>
+
+            <FadeIn direction="up" delay={0.3}>
+              <h1>Payment <span className="gradient-text">Received!</span></h1>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.4}>
+              <p className="subtitle">Your payment was processed successfully! A receipt has been sent to your email.</p>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.5}>
+              <div className="invoice-summary" id="invoiceSummary">
+                <div className="row">
+                  <span className="label">Invoice Reference</span>
+                  <span className="value" id="summaryRef">&mdash;</span>
+                </div>
+                <div className="row">
+                  <span className="label">Amount Paid</span>
+                  <span className="value amount" id="summaryAmount">&mdash;</span>
+                </div>
+                <div className="row">
+                  <span className="label">Status</span>
+                  <span className="value" style={{ color: 'var(--success)' }}><i className="fas fa-check-circle" style={{ marginRight: 5 }}></i>Paid via Stripe</span>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.6}>
+              <p className="email-status" id="emailStatus">
+                <i className="fas fa-spinner fa-spin"></i> Working on it...
+              </p>
+            </FadeIn>
+
+            <FadeIn direction="up" delay={0.7}>
+              <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }} style={{ display: 'inline-block' }}>
+                <Link href="/" className="btn-home">Back to Home</Link>
+              </motion.div>
+            </FadeIn>
           </div>
-          <h1>Payment <span className="gradient-text">Received!</span></h1>
-          <p className="subtitle">Your payment was processed successfully! A receipt has been sent to your email.</p>
-
-          <div className="invoice-summary" id="invoiceSummary">
-            <div className="row">
-              <span className="label">Invoice Reference</span>
-              <span className="value" id="summaryRef">&mdash;</span>
-            </div>
-            <div className="row">
-              <span className="label">Amount Paid</span>
-              <span className="value amount" id="summaryAmount">&mdash;</span>
-            </div>
-            <div className="row">
-              <span className="label">Status</span>
-              <span className="value" style={{ color: 'var(--success)' }}><i className="fas fa-check-circle" style={{ marginRight: 5 }}></i>Paid via Stripe</span>
-            </div>
-          </div>
-
-          <p className="email-status" id="emailStatus">
-            <i className="fas fa-spinner fa-spin"></i> Working on it...
-          </p>
-
-          <Link href="/" className="btn-home">Back to Home</Link>
-        </div>
+        </ScaleIn>
       </div>
+
+      <Footer />
 
       <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
       <script dangerouslySetInnerHTML={{ __html: `

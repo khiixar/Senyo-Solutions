@@ -2,8 +2,10 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { FadeIn, ScaleIn, AnimatedGradientBg, MorphingBlob } from '@/components/MotionWrapper';
 
 export default function ClientPortalPage() {
   useEffect(() => {
@@ -18,6 +20,8 @@ export default function ClientPortalPage() {
           min-height: 100vh;
           padding: 120px 20px 60px;
           background: var(--bg-primary);
+          position: relative;
+          overflow: hidden;
         }
         .login-container {
           max-width: 420px;
@@ -310,7 +314,12 @@ export default function ClientPortalPage() {
       `}</style>
 
       <section className="portal-section">
-        <div className="login-container" id="loginForm">
+        <AnimatedGradientBg />
+        <MorphingBlob color="rgba(37,99,235,0.05)" size={400} position={{ top: '-10%', right: '-10%' }} />
+        <MorphingBlob color="rgba(168,85,247,0.04)" size={300} position={{ bottom: '-5%', left: '-5%' }} />
+
+        <ScaleIn>
+        <div className="login-container" id="loginForm" style={{ position: 'relative', zIndex: 1 }}>
           <h2><i className="fas fa-user-circle" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Client Login</h2>
           <div className="login-error" id="loginError"></div>
           <form id="clientLoginForm">
@@ -326,8 +335,9 @@ export default function ClientPortalPage() {
             <a href="#" id="forgotPasswordLink">Forgot your password?</a>
           </div>
         </div>
+        </ScaleIn>
 
-        <div className="dashboard-container" id="dashboard">
+        <div className="dashboard-container" id="dashboard" style={{ position: 'relative', zIndex: 1 }}>
           <div className="dashboard-header">
             <div className="welcome-text">
               <h2>Welcome, <span id="clientName">Client</span></h2>

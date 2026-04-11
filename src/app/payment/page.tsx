@@ -5,7 +5,7 @@ import Script from 'next/script';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { FadeIn } from '@/components/MotionWrapper';
+import { FadeIn, ScaleIn, StaggerContainer, StaggerItem, AnimatedGradientBg, MorphingBlob, ParticleField, AnimatedDivider } from '@/components/MotionWrapper';
 
 export default function PaymentPage() {
   return (
@@ -18,14 +18,6 @@ export default function PaymentPage() {
           min-height: 38vh; padding: 140px 20px 60px; text-align: center;
           display: flex; align-items: center; justify-content: center;
           position: relative; overflow: hidden;
-        }
-        .payment-hero::before {
-          content: '';
-          position: absolute; top: -30%; left: 50%;
-          width: 120%; height: 120%;
-          background: radial-gradient(circle at center, rgba(37,99,235,0.06), transparent 65%);
-          transform: translateX(-50%);
-          pointer-events: none;
         }
         .payment-hero h1 {
           font-family: 'Archivo', sans-serif;
@@ -47,6 +39,11 @@ export default function PaymentPage() {
           margin-bottom: 80px;
           display: flex; gap: 48px;
           align-items: flex-start; flex-wrap: wrap;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .invoice-card:hover {
+          border-color: rgba(37,99,235,0.35);
+          box-shadow: 0 8px 32px rgba(37,99,235,0.08);
         }
         .invoice-info { flex: 1; min-width: 240px; }
         .invoice-info .pkg-icon {
@@ -79,7 +76,7 @@ export default function PaymentPage() {
           border: 1px solid var(--border-subtle);
           border-radius: var(--radius-sm);
           overflow: hidden; margin-bottom: 14px;
-          transition: border-color var(--transition-fast);
+          transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
         }
         .amount-wrapper:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
         .currency {
@@ -124,6 +121,7 @@ export default function PaymentPage() {
           cursor: pointer;
           display: flex; align-items: center; justify-content: center; gap: 8px;
           transition: all var(--transition-base);
+          position: relative; overflow: hidden;
         }
         .pay-btn:hover {
           background: var(--primary-dark);
@@ -148,12 +146,18 @@ export default function PaymentPage() {
         .sec-item {
           display: flex; align-items: center; gap: 8px;
           color: var(--text-muted); font-size: 0.85rem;
+          transition: color 0.2s ease;
         }
+        .sec-item:hover { color: var(--text-secondary); }
         .sec-item i { color: var(--success); font-size: 0.95rem; }
         @media (max-width: 768px) { .invoice-card { flex-direction: column; padding: 28px; gap: 28px; } }
       `}</style>
 
       <div className="payment-hero">
+        <AnimatedGradientBg />
+        <MorphingBlob color="rgba(37,99,235,0.06)" size={400} position={{ top: '-15%', right: '-10%' }} />
+        <MorphingBlob color="rgba(16,185,129,0.04)" size={300} position={{ bottom: '-10%', left: '-5%' }} />
+
         <div style={{ position: 'relative', zIndex: 1 }}>
           <motion.p
             className="section-eyebrow"
@@ -188,12 +192,20 @@ export default function PaymentPage() {
           <FadeIn direction="up" delay={0.15}>
             <div className="invoice-card">
               <div className="invoice-info">
-                <div className="pkg-icon"><i className="fas fa-file-invoice-dollar"></i></div>
+                <motion.div
+                  className="pkg-icon"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                >
+                  <i className="fas fa-file-invoice-dollar"></i>
+                </motion.div>
                 <h3>Invoice Payment</h3>
                 <p>Enter the exact dollar amount from your invoice along with your invoice number.</p>
-                <div className="sec-badge"><i className="fas fa-shield-alt"></i> 256-bit SSL encryption</div>
-                <div className="sec-badge"><i className="fas fa-check-circle"></i> Instant email receipt</div>
-                <div className="sec-badge"><i className="fas fa-credit-card"></i> All major cards accepted</div>
+                <StaggerContainer>
+                  <StaggerItem><div className="sec-badge"><i className="fas fa-shield-alt"></i> 256-bit SSL encryption</div></StaggerItem>
+                  <StaggerItem><div className="sec-badge"><i className="fas fa-check-circle"></i> Instant email receipt</div></StaggerItem>
+                  <StaggerItem><div className="sec-badge"><i className="fas fa-credit-card"></i> All major cards accepted</div></StaggerItem>
+                </StaggerContainer>
               </div>
               <div className="invoice-form">
                 <label className="field-label" htmlFor="clientName">Name</label>
@@ -205,9 +217,15 @@ export default function PaymentPage() {
                 </div>
                 <input className="ref-input" type="text" id="invoiceRef" placeholder="Invoice Reference #" />
                 <p className="field-error" id="amountError"></p>
-                <button className="pay-btn" id="payNowBtn" onClick={() => handleInvoicePayment()}>
+                <motion.button
+                  className="pay-btn"
+                  id="payNowBtn"
+                  onClick={() => handleInvoicePayment()}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   <i className="fas fa-lock"></i> Pay Securely Now
-                </button>
+                </motion.button>
                 <p className="stripe-note">
                   <i className="fab fa-stripe" style={{ marginRight: 4 }}></i>Powered by Stripe &nbsp;·&nbsp; Visa, Mastercard, Amex &amp; more
                 </p>
@@ -217,15 +235,30 @@ export default function PaymentPage() {
         </div>
       </section>
 
-      <div className="security-strip">
-        <div className="security-inner">
-          <div className="sec-item"><i className="fas fa-lock"></i> SSL Encrypted</div>
-          <div className="sec-item"><i className="fas fa-shield-alt"></i> PCI DSS Compliant</div>
-          <div className="sec-item"><i className="fab fa-stripe"></i> Powered by Stripe</div>
-          <div className="sec-item"><i className="fas fa-credit-card"></i> All Major Cards Accepted</div>
-          <div className="sec-item"><i className="fas fa-receipt"></i> Instant Receipt via Email</div>
+      <FadeIn direction="up">
+        <div className="security-strip">
+          <div className="security-inner">
+            {[
+              { icon: 'fas fa-lock', label: 'SSL Encrypted' },
+              { icon: 'fas fa-shield-alt', label: 'PCI DSS Compliant' },
+              { icon: 'fab fa-stripe', label: 'Powered by Stripe' },
+              { icon: 'fas fa-credit-card', label: 'All Major Cards Accepted' },
+              { icon: 'fas fa-receipt', label: 'Instant Receipt via Email' },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                className="sec-item"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.4 }}
+              >
+                <i className={item.icon}></i> {item.label}
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+      </FadeIn>
 
       <Footer />
 

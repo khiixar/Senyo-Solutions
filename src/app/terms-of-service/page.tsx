@@ -1,26 +1,35 @@
+'use client';
+
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { FadeIn, AnimatedGradientBg, MorphingBlob, AnimatedDivider } from '@/components/MotionWrapper';
 
-export const metadata = { title: 'Terms of Service | Senyo Solutions' };
+const sections = [
+  { title: '1. Acceptance of Terms', content: 'By accessing or using the services provided by Senyo Solutions (\u201cwe,\u201d \u201cus,\u201d or \u201cour\u201d), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.' },
+  { title: '2. Services', content: 'Senyo Solutions provides web development, design, and digital solution services. The scope of services for each project is defined in a separate project agreement or invoice issued to the client. We reserve the right to modify, suspend, or discontinue any service at any time with reasonable notice.' },
+  { title: '3. Payment Terms', content: 'All fees are outlined in the applicable project proposal or invoice. Unless otherwise agreed:', list: ['A deposit may be required before work begins.', 'Final payment is due upon project completion and before delivery of final files.', 'Late payments may incur a late fee of 1.5% per month on the outstanding balance.', 'All payments are non-refundable unless otherwise stated in writing.'] },
+  { title: '4. Intellectual Property', content: 'Upon receipt of full payment, the client receives ownership rights to the final deliverables as specified in the project agreement. Senyo Solutions retains the right to display completed work in its portfolio unless the client requests confidentiality in writing.', content2: 'All tools, frameworks, third-party libraries, and pre-existing code used in development remain the property of their respective owners and are subject to their own licenses.' },
+  { title: '5. Client Responsibilities', content: 'The client agrees to:', list: ['Provide accurate and complete information required for the project.', 'Supply content, assets, and feedback in a timely manner.', 'Not use delivered services for unlawful, harmful, or fraudulent purposes.', 'Maintain the security of any login credentials provided.'] },
+  { title: '6. Revisions & Project Scope', content: 'The number of revisions included is outlined in each project proposal. Requests that fall outside the agreed scope may be subject to additional charges. Significant changes to project requirements after work has begun may result in revised timelines and pricing.' },
+  { title: '7. Limitation of Liability', content: 'Senyo Solutions shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of our services, including but not limited to loss of revenue, data, or business opportunities. Our total liability in connection with any project shall not exceed the total fees paid by the client for that project.' },
+  { title: '8. Warranties', content: 'We warrant that all work will be performed with reasonable skill and care. We do not guarantee uninterrupted operation of any website or application, as this is subject to third-party hosting, domain, and infrastructure providers outside our control.' },
+  { title: '9. Termination', content: 'Either party may terminate a project agreement with written notice. In the event of termination, the client is responsible for payment for all work completed up to the termination date. Any outstanding invoices become immediately due upon termination.' },
+  { title: '10. Governing Law', content: 'These Terms of Service are governed by the laws of the State of New York, United States, without regard to its conflict of law provisions. Any disputes shall be resolved in the courts of Nassau County, New York.' },
+  { title: '11. Changes to These Terms', content: 'We reserve the right to update these Terms of Service at any time. Continued use of our services following any changes constitutes acceptance of the revised terms. We encourage you to review this page periodically.' },
+  { title: '12. Contact Us', content: 'If you have any questions about these Terms of Service, please contact us:', list: ['Email: contact@senyosolutions.com', 'Phone: (516) 707-7351'] },
+];
 
 export default function TermsOfServicePage() {
   return (
     <>
       <Navbar />
 
-      <style>{`
+      <style jsx global>{`
         .legal-hero {
           padding: 140px 20px 60px; text-align: center;
           position: relative; overflow: hidden;
-        }
-        .legal-hero::before {
-          content: '';
-          position: absolute; top: -30%; left: 50%;
-          width: 120%; height: 120%;
-          background: radial-gradient(circle at center, rgba(37,99,235,0.05), transparent 65%);
-          transform: translateX(-50%);
-          pointer-events: none;
         }
         .legal-hero h1 {
           font-family: 'Archivo', sans-serif;
@@ -57,77 +66,36 @@ export default function TermsOfServicePage() {
       `}</style>
 
       <div className="legal-hero">
-        <h1>Terms of <span className="gradient-text">Service</span></h1>
-        <p>Please read these terms carefully before using our services.</p>
+        <AnimatedGradientBg />
+        <MorphingBlob color="rgba(37,99,235,0.05)" size={350} position={{ top: '-10%', right: '-5%' }} />
+
+        <FadeIn direction="up">
+          <h1>Terms of <span className="gradient-text">Service</span></h1>
+        </FadeIn>
+        <FadeIn direction="up" delay={0.15}>
+          <p>Please read these terms carefully before using our services.</p>
+        </FadeIn>
       </div>
 
       <div className="legal-body">
         <div className="legal-container">
-          <span className="legal-updated"><i className="fas fa-calendar-alt" style={{ marginRight: '6px' }}></i>Last updated: March 2026</span>
+          <FadeIn direction="up">
+            <span className="legal-updated"><i className="fas fa-calendar-alt" style={{ marginRight: '6px' }}></i>Last updated: March 2026</span>
+          </FadeIn>
 
-          <h2>1. Acceptance of Terms</h2>
-          <p>By accessing or using the services provided by Senyo Solutions (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
-          <hr className="legal-divider" />
-
-          <h2>2. Services</h2>
-          <p>Senyo Solutions provides web development, design, and digital solution services. The scope of services for each project is defined in a separate project agreement or invoice issued to the client. We reserve the right to modify, suspend, or discontinue any service at any time with reasonable notice.</p>
-          <hr className="legal-divider" />
-
-          <h2>3. Payment Terms</h2>
-          <p>All fees are outlined in the applicable project proposal or invoice. Unless otherwise agreed:</p>
-          <ul>
-            <li>A deposit may be required before work begins.</li>
-            <li>Final payment is due upon project completion and before delivery of final files.</li>
-            <li>Late payments may incur a late fee of 1.5% per month on the outstanding balance.</li>
-            <li>All payments are non-refundable unless otherwise stated in writing.</li>
-          </ul>
-          <hr className="legal-divider" />
-
-          <h2>4. Intellectual Property</h2>
-          <p>Upon receipt of full payment, the client receives ownership rights to the final deliverables as specified in the project agreement. Senyo Solutions retains the right to display completed work in its portfolio unless the client requests confidentiality in writing.</p>
-          <p>All tools, frameworks, third-party libraries, and pre-existing code used in development remain the property of their respective owners and are subject to their own licenses.</p>
-          <hr className="legal-divider" />
-
-          <h2>5. Client Responsibilities</h2>
-          <p>The client agrees to:</p>
-          <ul>
-            <li>Provide accurate and complete information required for the project.</li>
-            <li>Supply content, assets, and feedback in a timely manner.</li>
-            <li>Not use delivered services for unlawful, harmful, or fraudulent purposes.</li>
-            <li>Maintain the security of any login credentials provided.</li>
-          </ul>
-          <hr className="legal-divider" />
-
-          <h2>6. Revisions &amp; Project Scope</h2>
-          <p>The number of revisions included is outlined in each project proposal. Requests that fall outside the agreed scope may be subject to additional charges. Significant changes to project requirements after work has begun may result in revised timelines and pricing.</p>
-          <hr className="legal-divider" />
-
-          <h2>7. Limitation of Liability</h2>
-          <p>Senyo Solutions shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of our services, including but not limited to loss of revenue, data, or business opportunities. Our total liability in connection with any project shall not exceed the total fees paid by the client for that project.</p>
-          <hr className="legal-divider" />
-
-          <h2>8. Warranties</h2>
-          <p>We warrant that all work will be performed with reasonable skill and care. We do not guarantee uninterrupted operation of any website or application, as this is subject to third-party hosting, domain, and infrastructure providers outside our control.</p>
-          <hr className="legal-divider" />
-
-          <h2>9. Termination</h2>
-          <p>Either party may terminate a project agreement with written notice. In the event of termination, the client is responsible for payment for all work completed up to the termination date. Any outstanding invoices become immediately due upon termination.</p>
-          <hr className="legal-divider" />
-
-          <h2>10. Governing Law</h2>
-          <p>These Terms of Service are governed by the laws of the State of New York, United States, without regard to its conflict of law provisions. Any disputes shall be resolved in the courts of Nassau County, New York.</p>
-          <hr className="legal-divider" />
-
-          <h2>11. Changes to These Terms</h2>
-          <p>We reserve the right to update these Terms of Service at any time. Continued use of our services following any changes constitutes acceptance of the revised terms. We encourage you to review this page periodically.</p>
-          <hr className="legal-divider" />
-
-          <h2>12. Contact Us</h2>
-          <p>If you have any questions about these Terms of Service, please contact us:</p>
-          <ul>
-            <li>Email: contact@senyosolutions.com</li>
-            <li>Phone: (516) 707-7351</li>
-          </ul>
+          {sections.map((section, index) => (
+            <FadeIn key={index} direction="up" delay={0.05 * index}>
+              <h2>{section.title}</h2>
+              <p>{section.content}</p>
+              {section.content2 && <p>{section.content2}</p>}
+              {section.list && (
+                <ul>
+                  {section.list.map((item, i) => <li key={i}>{item}</li>)}
+                </ul>
+              )}
+              {index < sections.length - 1 && <hr className="legal-divider" />}
+            </FadeIn>
+          ))}
         </div>
       </div>
 
