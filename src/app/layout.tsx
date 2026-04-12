@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Suspense } from 'react';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+import GoogleAnalyticsPageView from '@/components/GoogleAnalyticsPageView';
 import './styles.css';
 
 export const metadata: Metadata = {
@@ -106,6 +109,8 @@ const structuredData = {
   ],
 };
 
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? 'G-50TB2Q2L1G';
+
 export default function RootLayout({
   children,
 }: {
@@ -132,10 +137,14 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
+        <Suspense fallback={null}>
+          <GoogleAnalyticsPageView measurementId={GA_MEASUREMENT_ID} />
+        </Suspense>
         {children}
         <Analytics />
         <SpeedInsights />
-      </body>
+}
     </html>
   );
 }
