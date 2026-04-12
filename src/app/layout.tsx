@@ -5,8 +5,39 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import './styles.css';
 
 export const metadata: Metadata = {
-  title: 'Senyo Solutions',
-  description: 'Professional digital marketing and web solutions provider',
+  metadataBase: new URL('https://senyosolutions.com'),
+  title: {
+    default: 'Senyo Solutions | Web Design, SEO, Hosting & Digital Marketing',
+    template: '%s | Senyo Solutions',
+  },
+  description:
+    'Senyo Solutions is a digital services agency offering web design, SEO optimization, managed hosting, digital marketing, and analytics reporting for growing businesses.',
+  keywords: [
+    'Senyo Solutions',
+    'web design agency',
+    'SEO services',
+    'website hosting',
+    'digital marketing',
+    'analytics reporting',
+  ],
+  alternates: {
+    canonical: 'https://senyosolutions.com',
+  },
+  openGraph: {
+    title: 'Senyo Solutions | Web Design, SEO, Hosting & Digital Marketing',
+    description:
+      'Grow your business with high-performance websites, SEO optimization, managed hosting, digital marketing campaigns, and analytics reporting.',
+    url: 'https://senyosolutions.com',
+    siteName: 'Senyo Solutions',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Senyo Solutions | Web Design, SEO, Hosting & Digital Marketing',
+    description:
+      'Digital services for modern businesses: web design, SEO, hosting, digital marketing, and analytics reporting.',
+  },
   icons: {
     icon: [
       { url: '/favicon/favicon.ico', type: 'image/x-icon' },
@@ -18,6 +49,63 @@ export const metadata: Metadata = {
   manifest: '/favicon/site.webmanifest',
 };
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://senyosolutions.com/#organization',
+      name: 'Senyo Solutions',
+      url: 'https://senyosolutions.com',
+      logo: 'https://senyosolutions.com/images/logo1.png',
+      email: 'contact@senyosolutions.com',
+      telephone: '+1-516-707-7351',
+      sameAs: [
+        'https://www.linkedin.com/company/senyo-solutions',
+        'https://www.instagram.com/SenyoSolutions/',
+      ],
+      areaServed: 'US',
+      description:
+        'Senyo Solutions provides web design, SEO, hosting, digital marketing, and analytics services to help businesses grow online.',
+    },
+    {
+      '@type': 'Service',
+      serviceType: 'Web Design',
+      provider: { '@id': 'https://senyosolutions.com/#organization' },
+      areaServed: 'US',
+      url: 'https://senyosolutions.com/services/web-design',
+    },
+    {
+      '@type': 'Service',
+      serviceType: 'SEO Optimization',
+      provider: { '@id': 'https://senyosolutions.com/#organization' },
+      areaServed: 'US',
+      url: 'https://senyosolutions.com/services/seo',
+    },
+    {
+      '@type': 'Service',
+      serviceType: 'Managed Hosting',
+      provider: { '@id': 'https://senyosolutions.com/#organization' },
+      areaServed: 'US',
+      url: 'https://senyosolutions.com/services/hosting',
+    },
+    {
+      '@type': 'Service',
+      serviceType: 'Digital Marketing',
+      provider: { '@id': 'https://senyosolutions.com/#organization' },
+      areaServed: 'US',
+      url: 'https://senyosolutions.com/services/digital-marketing',
+    },
+    {
+      '@type': 'Service',
+      serviceType: 'Analytics & Reporting',
+      provider: { '@id': 'https://senyosolutions.com/#organization' },
+      areaServed: 'US',
+      url: 'https://senyosolutions.com/services/analytics',
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -26,7 +114,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Archivo + Space Grotesk — modern portfolio pairing */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -37,39 +124,11 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
-        <script
+        <Script
+          id="senyo-organization-services-jsonld"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "Senyo Solutions",
-              "description": "Professional digital marketing and web solutions provider",
-              "url": "https://senyosolutions.com",
-              "logo": "https://play-lh.googleusercontent.com/PxVKjgVqH7hidrji0tXzOObaunLZRZ5sRuborJHPyM1z2WFczc4uW2tXva3iOyqgtzI",
-              "telephone": "(516) 707-7351",
-              "email": "contact@senyosolutions.com",
-              "image": [
-                "https://media-cdn.tripadvisor.com/media/photo-m/1280/1f/36/2d/d5/bar-and-dining-room.jpg",
-                "https://play-lh.googleusercontent.com/E3JHvb2T15eu1JiwmfxK77lTGu0iTxlXmjtN1l6jH1FOUvkKNnLkdycipRBtFX0tTBUlPenNJrr5lrs0XTppLg=w240-h480-rw"
-              ],
-              "priceRange": "$$",
-              "areaServed": "US",
-              "availableLanguage": ["en"],
-              "serviceType": [
-                "Web Design",
-                "SEO Optimization",
-                "Web Hosting",
-                "Digital Advertising",
-                "Marketing Strategy"
-              ],
-              "sameAs": [
-                "https://www.facebook.com/senyosolutions",
-                "https://www.twitter.com/senyosolutions",
-                "https://www.linkedin.com/company/senyosolutions"
-              ]
-            }),
-          }}
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
       <body>

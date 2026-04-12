@@ -21,10 +21,11 @@ export default function Footer() {
             <div className="footer-section">
               <h4>Services</h4>
               <ul>
-                <li><Link href="/services">Website Creation</Link></li>
-                <li><Link href="/services">Web Hosting</Link></li>
-                <li><Link href="/services">Marketing</Link></li>
-                <li><Link href="/services">SEO Optimization</Link></li>
+                <li><Link href="/services/web-design">Web Design</Link></li>
+                <li><Link href="/services/seo">SEO Optimization</Link></li>
+                <li><Link href="/services/hosting">Web Hosting</Link></li>
+                <li><Link href="/services/digital-marketing">Digital Marketing</Link></li>
+                <li><Link href="/services/analytics">Analytics & Reporting</Link></li>
               </ul>
             </div>
             <div className="footer-section">

@@ -28,6 +28,8 @@ export default function Navbar() {
   const links = [
     { href: '/#home', label: 'Home' },
     { href: '/services', label: 'Services' },
+    { href: '/services/web-design', label: 'Web Design' },
+    { href: '/services/seo', label: 'SEO' },
     { href: '/#work', label: 'Our Work' },
     { href: '/#contact', label: 'Contact' },
   ];

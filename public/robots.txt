@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block private utility routes from indexing
+Disallow: /admin-portal
+Disallow: /client-portal
+Disallow: /payment
+Disallow: /payment-success
+Disallow: /thank-you
+Disallow: /client-thank-you
+
+Sitemap: https://senyosolutions.com/sitemap.xml
