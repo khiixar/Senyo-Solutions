@@ -212,8 +212,8 @@ export default function HomePage() {
         >
           <motion.div
             className="scroll-arrow"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            animate={{ opacity: [0.45, 0.85, 0.45], scale: [0.98, 1.05, 0.98] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
           >
             <i className="fas fa-chevron-down" />
           </motion.div>
@@ -405,22 +405,17 @@ export default function HomePage() {
                         className="project-screenshot"
                         onClick={() => openImageLightbox(project.img, `${project.name} Website`)}
                       />
-                      <motion.div
+                      <button
+                        type="button"
                         className="work-overlay"
                         onClick={() => openImageLightbox(project.img, `${project.name} Website`)}
-                        whileHover={{ opacity: 1 }}
-                        initial={{ opacity: 0 }}
+                        aria-label={`View ${project.name} project screenshot`}
                       >
-                        <motion.div
-                          className="work-overlay-content"
-                          initial={{ scale: 0.8, opacity: 0 }}
-                          whileHover={{ scale: 1, opacity: 1 }}
-                          transition={{ duration: 0.2 }}
-                        >
+                        <span className="work-overlay-content">
                           <i className="fas fa-eye"></i>
                           <span>View</span>
-                        </motion.div>
-                      </motion.div>
+                        </span>
+                      </button>
                     </div>
                   </ImageReveal>
                   <div className="work-content">

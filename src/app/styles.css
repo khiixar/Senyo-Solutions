@@ -618,29 +618,48 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
 .work-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(9,9,11,0.6);
+  background: linear-gradient(180deg, rgba(9,9,11,0.1) 0%, rgba(9,9,11,0.72) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 0;
+  width: 100%;
   opacity: 0;
-  transition: opacity var(--transition-base);
+  transition: opacity 0.35s ease, backdrop-filter 0.35s ease;
   cursor: pointer;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(0px);
+  pointer-events: none;
 }
 
-.work-card:hover .work-overlay { opacity: 1; }
+.work-card:hover .work-overlay {
+  opacity: 1;
+  backdrop-filter: blur(3px);
+  pointer-events: auto;
+}
 
 .work-overlay-content {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   color: #fff;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  border: 1px solid rgba(255,255,255,0.36);
+  border-radius: 999px;
+  background: rgba(9,9,11,0.52);
+  padding: 8px 14px;
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  transition: transform 0.28s ease, opacity 0.28s ease, border-color 0.28s ease;
 }
 
-.work-overlay-content i { font-size: 1.6rem; }
+.work-card:hover .work-overlay-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.work-overlay-content i { font-size: 0.95rem; }
+.work-overlay:hover .work-overlay-content { border-color: rgba(96,165,250,0.75); }
 
 .work-content {
   padding: 28px 28px 24px;
@@ -1497,18 +1516,6 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* --- Work overlay improved animation --- */
-.work-overlay {
-  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.work-overlay-content {
-  transition: transform 0.3s ease;
-}
-
-.work-card:hover .work-overlay-content {
-  transform: scale(1);
-}
 
 /* --- Enhanced service card hover --- */
 .service-detailed-card {

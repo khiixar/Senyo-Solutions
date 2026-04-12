@@ -98,6 +98,13 @@ export default function ServicesPage() {
           box-shadow: var(--shadow-md);
         }
         .pkg-card:hover::before { opacity: 1; }
+        .pkg-card:hover .pkg-icon {
+          transform: translateY(-2px) scale(1.04);
+          background: rgba(37,99,235,0.16);
+        }
+        .pkg-card:hover .pkg-features li {
+          color: #d4d4d8;
+        }
         .pkg-card.featured {
           border-color: rgba(37,99,235,0.35);
           background: rgba(37,99,235,0.05);
@@ -122,6 +129,7 @@ export default function ServicesPage() {
           display: flex; align-items: center; justify-content: center;
           font-size: 1rem; color: var(--primary-light);
           margin-bottom: 16px;
+          transition: transform var(--transition-base), background var(--transition-base);
         }
         .pkg-name {
           font-family: 'Archivo', sans-serif;
@@ -153,6 +161,12 @@ export default function ServicesPage() {
         }
         .pkg-features li i { color: var(--success); font-size: 0.68rem; flex-shrink: 0; }
         .stripe-btn-wrap { display: flex; justify-content: center; }
+        .pkg-actions {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 8px;
+          margin-top: 4px;
+        }
         .pkg-btn {
           display: block; width: 100%; padding: 9px 18px;
           background: transparent;
@@ -170,6 +184,16 @@ export default function ServicesPage() {
           color: #fff;
           transform: translateY(-1px);
           box-shadow: 0 4px 16px rgba(37,99,235,0.25);
+        }
+        .pkg-btn-secondary {
+          border-color: var(--border-light);
+          color: var(--text-primary);
+          background: rgba(255,255,255,0.02);
+        }
+        .pkg-btn-secondary:hover {
+          border-color: rgba(37,99,235,0.65);
+          color: var(--primary-light);
+          background: rgba(37,99,235,0.12);
         }
 
         .why-section {
@@ -357,7 +381,14 @@ export default function ServicesPage() {
             {/* Web Hosting */}
             <StaggerItem>
               <HoverGlow>
-                <div className="pkg-card">
+                <motion.article
+                  className="pkg-card"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.45 }}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                >
                   <AnimatedIcon>
                     <div className="pkg-icon"><i className="fas fa-server"></i></div>
                   </AnimatedIcon>
@@ -385,18 +416,30 @@ export default function ServicesPage() {
                       </motion.li>
                     ))}
                   </ul>
-                  <MagneticHover strength={0.15}>
-                    <Link href="/services/hosting" className="pkg-btn">View Hosting Service</Link>
-                  </MagneticHover>
+                  <div className="pkg-actions">
+                    <MagneticHover strength={0.12}>
+                      <Link href="/#contact" className="pkg-btn">Get Started</Link>
+                    </MagneticHover>
+                    <MagneticHover strength={0.12}>
+                      <Link href="/services/hosting" className="pkg-btn pkg-btn-secondary">View Hosting Service</Link>
+                    </MagneticHover>
+                  </div>
                   <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
-                </div>
+                </motion.article>
               </HoverGlow>
             </StaggerItem>
 
             {/* SEO */}
             <StaggerItem>
               <HoverGlow>
-                <div className="pkg-card">
+                <motion.article
+                  className="pkg-card"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.45, delay: 0.04 }}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                >
                   <AnimatedIcon delay={0.1}>
                     <div className="pkg-icon"><i className="fas fa-search"></i></div>
                   </AnimatedIcon>
@@ -424,18 +467,30 @@ export default function ServicesPage() {
                       </motion.li>
                     ))}
                   </ul>
-                  <MagneticHover strength={0.15}>
-                    <Link href="/services/seo" className="pkg-btn">View SEO Service</Link>
-                  </MagneticHover>
+                  <div className="pkg-actions">
+                    <MagneticHover strength={0.12}>
+                      <Link href="/#contact" className="pkg-btn">Get Started</Link>
+                    </MagneticHover>
+                    <MagneticHover strength={0.12}>
+                      <Link href="/services/seo" className="pkg-btn pkg-btn-secondary">View SEO Service</Link>
+                    </MagneticHover>
+                  </div>
                   <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
-                </div>
+                </motion.article>
               </HoverGlow>
             </StaggerItem>
 
             {/* Digital Advertising */}
             <StaggerItem>
               <HoverGlow>
-                <div className="pkg-card">
+                <motion.article
+                  className="pkg-card"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.45, delay: 0.08 }}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                >
                   <AnimatedIcon delay={0.2}>
                     <div className="pkg-icon"><i className="fas fa-bullhorn"></i></div>
                   </AnimatedIcon>
@@ -463,18 +518,30 @@ export default function ServicesPage() {
                       </motion.li>
                     ))}
                   </ul>
-                  <MagneticHover strength={0.15}>
-                    <Link href="/services/digital-marketing" className="pkg-btn">View Digital Marketing Service</Link>
-                  </MagneticHover>
+                  <div className="pkg-actions">
+                    <MagneticHover strength={0.12}>
+                      <Link href="/#contact" className="pkg-btn">Get Started</Link>
+                    </MagneticHover>
+                    <MagneticHover strength={0.12}>
+                      <Link href="/services/digital-marketing" className="pkg-btn pkg-btn-secondary">View Digital Marketing Service</Link>
+                    </MagneticHover>
+                  </div>
                   <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
-                </div>
+                </motion.article>
               </HoverGlow>
             </StaggerItem>
 
             {/* Website Creation */}
             <StaggerItem>
               <HoverGlow>
-                <div className="pkg-card featured">
+                <motion.article
+                  className="pkg-card featured"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.45, delay: 0.12 }}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                >
                   <motion.span
                     className="popular-badge"
                     animate={{ scale: [1, 1.05, 1] }}
@@ -510,12 +577,17 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                   <div className="stripe-btn-wrap" dangerouslySetInnerHTML={{ __html: `<stripe-buy-button buy-button-id="buy_btn_1T649OFiNzXfgM2ZHtdrJCZ6" publishable-key="pk_live_51T63tvFiNzXfgM2ZZssIdyEa4NID7xNgQnr3WDc6ptvUjbYhScum4NDkjBk4bMDkAwlM9FcekecHbra1lPX04RcC00wfI9kREJ"></stripe-buy-button>` }} />
-                  <div style={{ marginTop: 12, display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-                    <Link href="/services/web-design" className="pkg-btn" style={{ width: 'auto' }}>Web Design Details</Link>
-                    <Link href="/services/analytics" className="pkg-btn" style={{ width: 'auto' }}>Analytics Details</Link>
+                  <div className="pkg-actions" style={{ marginTop: 12 }}>
+                    <MagneticHover strength={0.12}>
+                      <Link href="/#contact" className="pkg-btn">Get Started</Link>
+                    </MagneticHover>
+                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
+                      <Link href="/services/web-design" className="pkg-btn pkg-btn-secondary" style={{ width: 'auto' }}>Web Design Details</Link>
+                      <Link href="/services/analytics" className="pkg-btn pkg-btn-secondary" style={{ width: 'auto' }}>Analytics Details</Link>
+                    </div>
                   </div>
                   <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
-                </div>
+                </motion.article>
               </HoverGlow>
             </StaggerItem>
           </StaggerContainer>
