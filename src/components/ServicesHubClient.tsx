@@ -75,39 +75,48 @@ export default function ServicesPage() {
           margin-bottom: 40px;
         }
         .pkg-card {
-          background: var(--bg-card);
-          border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-md);
-          padding: 28px 24px;
+          background: linear-gradient(165deg, rgba(255,255,255,0.03), rgba(37,99,235,0.035));
+          border: 1px solid rgba(99, 102, 241, 0.22);
+          border-radius: 20px;
+          padding: 30px 24px 24px;
           display: flex;
           flex-direction: column;
           position: relative;
           overflow: hidden;
+          min-height: 100%;
           transition: all var(--transition-base);
+          backdrop-filter: blur(8px);
         }
         .pkg-card::before {
           content: '';
           position: absolute;
           top: 0; left: 0; right: 0; height: 3px;
           background: linear-gradient(90deg, var(--primary), var(--accent));
-          opacity: 0;
+          opacity: 0.7;
           transition: opacity var(--transition-base);
         }
-        .pkg-card:hover {
-          border-color: rgba(37,99,235,0.3);
-          box-shadow: var(--shadow-md);
+        .pkg-card::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at top right, rgba(96,165,250,0.12), transparent 55%);
+          pointer-events: none;
         }
-        .pkg-card:hover::before { opacity: 1; }
+        .pkg-card:hover {
+          border-color: rgba(96,165,250,0.5);
+          box-shadow: 0 18px 44px rgba(2, 6, 23, 0.55);
+        }
         .pkg-card:hover .pkg-icon {
-          transform: translateY(-2px) scale(1.04);
-          background: rgba(37,99,235,0.16);
+          transform: translateY(-2px) scale(1.05);
+          background: rgba(37,99,235,0.24);
+          border-color: rgba(96,165,250,0.45);
         }
         .pkg-card:hover .pkg-features li {
-          color: #d4d4d8;
+          color: #e4e4e7;
         }
         .pkg-card.featured {
-          border-color: rgba(37,99,235,0.35);
-          background: rgba(37,99,235,0.05);
+          border-color: rgba(56,189,248,0.45);
+          background: linear-gradient(165deg, rgba(37,99,235,0.14), rgba(6,182,212,0.08));
         }
         .pkg-card.featured::before { opacity: 1; }
         .popular-badge {
@@ -115,7 +124,7 @@ export default function ServicesPage() {
           background: linear-gradient(135deg, var(--primary), var(--accent));
           color: #fff;
           font-family: 'Archivo', sans-serif;
-          font-size: 0.68rem;
+          font-size: 0.66rem;
           font-weight: 700;
           padding: 5px 12px;
           border-radius: 20px;
@@ -123,77 +132,110 @@ export default function ServicesPage() {
           text-transform: uppercase;
         }
         .pkg-icon {
-          width: 40px; height: 40px;
-          background: rgba(37,99,235,0.1);
-          border-radius: 8px;
+          width: 46px; height: 46px;
+          background: rgba(37,99,235,0.15);
+          border: 1px solid rgba(96,165,250,0.32);
+          border-radius: 12px;
           display: flex; align-items: center; justify-content: center;
-          font-size: 1rem; color: var(--primary-light);
+          font-size: 1.05rem; color: var(--primary-light);
           margin-bottom: 16px;
-          transition: transform var(--transition-base), background var(--transition-base);
+          transition: transform var(--transition-base), background var(--transition-base), border-color var(--transition-base);
+          position: relative;
+          z-index: 1;
         }
         .pkg-name {
           font-family: 'Archivo', sans-serif;
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          margin-bottom: 6px;
-        }
-        .pkg-desc {
-          color: var(--text-secondary);
-          font-size: 0.84rem;
-          line-height: 1.6;
-          margin-bottom: 16px;
-          flex: 1;
-        }
-        .pkg-price { margin-bottom: 16px; }
-        .pkg-price .amount {
-          font-family: 'Archivo', sans-serif;
-          font-size: 1.8rem;
+          font-size: 1.2rem;
           font-weight: 700;
           color: var(--text-primary);
+          margin-bottom: 8px;
+          position: relative;
+          z-index: 1;
         }
-        .pkg-price .period { font-size: 0.82rem; color: var(--text-muted); margin-left: 2px; }
-        .pkg-features { list-style: none; margin-bottom: 20px; padding: 0; }
+        .pkg-desc {
+          color: #c4c4cd;
+          font-size: 0.93rem;
+          line-height: 1.65;
+          margin-bottom: 20px;
+          flex: 1;
+          position: relative;
+          z-index: 1;
+        }
+        .pkg-price {
+          margin-bottom: 16px;
+          position: relative;
+          z-index: 1;
+        }
+        .pkg-price .amount {
+          font-family: 'Archivo', sans-serif;
+          font-size: 2rem;
+          font-weight: 800;
+          color: var(--text-primary);
+          letter-spacing: -0.02em;
+        }
+        .pkg-price .period { font-size: 0.9rem; color: var(--text-muted); margin-left: 4px; }
+        .pkg-features {
+          list-style: none;
+          margin-bottom: 22px;
+          padding: 0;
+          position: relative;
+          z-index: 1;
+        }
         .pkg-features li {
-          display: flex; align-items: center; gap: 8px;
-          font-size: 0.82rem; color: var(--text-secondary);
-          padding: 4px 0;
+          display: flex; align-items: flex-start; gap: 10px;
+          font-size: 0.86rem;
+          color: var(--text-secondary);
+          padding: 7px 0;
+          line-height: 1.5;
         }
-        .pkg-features li i { color: var(--success); font-size: 0.68rem; flex-shrink: 0; }
-        .stripe-btn-wrap { display: flex; justify-content: center; }
+        .pkg-features li i {
+          color: var(--success);
+          font-size: 0.72rem;
+          flex-shrink: 0;
+          margin-top: 4px;
+        }
+        .stripe-btn-wrap { display: flex; justify-content: center; position: relative; z-index: 1; }
         .pkg-actions {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 8px;
-          margin-top: 4px;
+          gap: 0;
+          margin-top: auto;
+          position: relative;
+          z-index: 1;
         }
         .pkg-btn {
-          display: block; width: 100%; padding: 9px 18px;
-          background: transparent;
-          color: var(--primary-light); border: 1.5px solid var(--primary);
-          border-radius: 50px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          min-height: 46px;
+          padding: 11px 18px;
+          background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+          color: #fff;
+          border: 1px solid rgba(96,165,250,0.7);
+          border-radius: 12px;
           font-family: 'Archivo', sans-serif;
-          font-size: 0.82rem; font-weight: 600;
+          font-size: 0.9rem;
+          font-weight: 700;
           cursor: pointer;
-          text-align: center; text-decoration: none;
-          transition: all var(--transition-base);
+          text-align: center;
+          text-decoration: none;
+          transition: transform var(--transition-base), box-shadow var(--transition-base), filter var(--transition-base);
           letter-spacing: 0.01em;
+          box-shadow: 0 10px 22px rgba(37,99,235,0.32);
         }
         .pkg-btn:hover {
-          background: var(--primary);
-          color: #fff;
-          transform: translateY(-1px);
-          box-shadow: 0 4px 16px rgba(37,99,235,0.25);
+          filter: brightness(1.08);
+          transform: translateY(-2px);
+          box-shadow: 0 14px 28px rgba(37,99,235,0.38);
         }
-        .pkg-btn-secondary {
-          border-color: var(--border-light);
-          color: var(--text-primary);
-          background: rgba(255,255,255,0.02);
+        .pkg-btn:active {
+          transform: translateY(0);
+          box-shadow: 0 8px 16px rgba(37,99,235,0.26);
         }
-        .pkg-btn-secondary:hover {
-          border-color: rgba(37,99,235,0.65);
-          color: var(--primary-light);
-          background: rgba(37,99,235,0.12);
+        .pkg-btn:focus-visible {
+          outline: 2px solid rgba(103,232,249,0.7);
+          outline-offset: 2px;
         }
 
         .why-section {
@@ -299,7 +341,39 @@ export default function ServicesPage() {
         }
 
         @media (max-width: 768px) {
-          .packages-grid { grid-template-columns: 1fr; }
+          .packages-hero {
+            min-height: auto;
+            padding: 118px 16px 52px;
+          }
+          .packages-section {
+            padding: 0 16px 84px;
+          }
+          .packages-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+          .pkg-card {
+            border-radius: 16px;
+            padding: 24px 18px 18px;
+          }
+          .pkg-name {
+            font-size: 1.08rem;
+          }
+          .pkg-desc {
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+          }
+          .pkg-price .amount {
+            font-size: 1.8rem;
+          }
+          .pkg-features li {
+            font-size: 0.84rem;
+            padding: 6px 0;
+          }
+          .pkg-btn {
+            min-height: 48px;
+            font-size: 0.88rem;
+          }
           .why-grid { grid-template-columns: 1fr; }
         }
       `}</style>
@@ -420,9 +494,6 @@ export default function ServicesPage() {
                     <MagneticHover strength={0.12}>
                       <Link href="/#contact" className="pkg-btn">Get Started</Link>
                     </MagneticHover>
-                    <MagneticHover strength={0.12}>
-                      <Link href="/services/hosting" className="pkg-btn pkg-btn-secondary">View Hosting Service</Link>
-                    </MagneticHover>
                   </div>
                   <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
                 </motion.article>
@@ -471,9 +542,6 @@ export default function ServicesPage() {
                     <MagneticHover strength={0.12}>
                       <Link href="/#contact" className="pkg-btn">Get Started</Link>
                     </MagneticHover>
-                    <MagneticHover strength={0.12}>
-                      <Link href="/services/seo" className="pkg-btn pkg-btn-secondary">View SEO Service</Link>
-                    </MagneticHover>
                   </div>
                   <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
                 </motion.article>
@@ -521,9 +589,6 @@ export default function ServicesPage() {
                   <div className="pkg-actions">
                     <MagneticHover strength={0.12}>
                       <Link href="/#contact" className="pkg-btn">Get Started</Link>
-                    </MagneticHover>
-                    <MagneticHover strength={0.12}>
-                      <Link href="/services/digital-marketing" className="pkg-btn pkg-btn-secondary">View Digital Marketing Service</Link>
                     </MagneticHover>
                   </div>
                   <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
@@ -581,10 +646,6 @@ export default function ServicesPage() {
                     <MagneticHover strength={0.12}>
                       <Link href="/#contact" className="pkg-btn">Get Started</Link>
                     </MagneticHover>
-                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-                      <Link href="/services/web-design" className="pkg-btn pkg-btn-secondary" style={{ width: 'auto' }}>Web Design Details</Link>
-                      <Link href="/services/analytics" className="pkg-btn pkg-btn-secondary" style={{ width: 'auto' }}>Analytics Details</Link>
-                    </div>
                   </div>
                   <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
                 </motion.article>
