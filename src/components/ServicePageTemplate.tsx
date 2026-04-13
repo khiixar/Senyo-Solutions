@@ -5,6 +5,7 @@ import Script from 'next/script';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { AnimatedGradientBg, MorphingBlob, ParticleField } from '@/components/MotionWrapper';
 
 type ServicePageProps = {
   serviceName: string;
@@ -59,6 +60,12 @@ export default function ServicePageTemplate({
         .service-page-main {
           padding-top: 120px;
           padding-bottom: 80px;
+          position: relative;
+          overflow: hidden;
+        }
+        .service-page-main :global(.container) {
+          position: relative;
+          z-index: 1;
         }
         .service-hero {
           max-width: 980px;
@@ -95,6 +102,11 @@ export default function ServicePageTemplate({
       `}</style>
 
       <main className="service-page-main">
+        <ParticleField count={18} />
+        <AnimatedGradientBg />
+        <MorphingBlob className="section-blob section-blob-left" color="rgba(37,99,235,0.05)" size={320} />
+        <MorphingBlob className="section-blob section-blob-right" color="rgba(6,182,212,0.05)" size={290} />
+
         <section className="container service-hero">
           <motion.div
             className="service-hero-accent"
