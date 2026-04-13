@@ -194,10 +194,8 @@ export default function HomePage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.9, duration: 0.5 }}
               >
-                Existing client?{' '}
                 <Link href="/client-portal" style={{ color: 'var(--primary-light)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-                  Click here
-                </Link>
+                  Existing client?</Link>
               </motion.p>
             </div>
           </ParallaxText>
