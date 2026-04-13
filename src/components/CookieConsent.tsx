@@ -35,12 +35,15 @@ export default function CookieConsent() {
       aria-describedby="cookie-consent-description"
     >
       <div className="cookie-consent__content">
-        <h2 id="cookie-consent-title" className="cookie-consent__title">
-          Cookie Preferences
-        </h2>
-        <p id="cookie-consent-description" className="cookie-consent__description">
-          We use cookies to improve your browsing experience and understand website performance. You can accept or reject non-essential cookies.
-        </p>
+        <span className="cookie-consent__icon" aria-hidden="true">🍪</span>
+        <div className="cookie-consent__text">
+          <h2 id="cookie-consent-title" className="cookie-consent__title">
+            Cookie Preferences
+          </h2>
+          <p id="cookie-consent-description" className="cookie-consent__description">
+            We use cookies to improve your browsing experience and understand website performance. You can accept or decline non-essential cookies.
+          </p>
+        </div>
       </div>
 
       <div className="cookie-consent__actions">
@@ -49,14 +52,14 @@ export default function CookieConsent() {
           className="btn btn-outline cookie-consent__button"
           onClick={() => handlePreference('rejected')}
         >
-          Reject
+          Decline
         </button>
         <button
           type="button"
           className="btn btn-primary cookie-consent__button"
           onClick={() => handlePreference('accepted')}
         >
-          Accept
+          Accept All
         </button>
       </div>
     </section>

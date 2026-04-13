@@ -44,10 +44,9 @@ export default function ServicesPage() {
         <AnimatedGradientBg />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <FadeIn direction="up">
-            <p className="section-eyebrow" style={{ textAlign: 'center' }}>Services</p>
-            <h1 className="section-title">Micro MSP IT Services for Small Practices</h1>
+            <h1 className="section-title">IT Services</h1>
             <p className="section-subtitle">
-              Built for therapists, counselors, and small wellness offices in Long Island, New York, and New Jersey.
+              Reliable, professional IT support for small businesses and practices across New York and New Jersey.
             </p>
           </FadeIn>
         </div>

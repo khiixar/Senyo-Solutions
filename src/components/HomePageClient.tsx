@@ -47,14 +47,14 @@ export default function HomePage() {
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="hero-content">
-            <motion.p className="hero-eyebrow" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-              Senyo Solutions • Micro MSP
+            <motion.p className="hero-eyebrow" style={{ fontSize: '1rem' }} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+              MSP
             </motion.p>
             <motion.h1 className="hero-title" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
-              Simple, secure IT support for small practices on Long Island
+              Simple, secure IT support for small businesses and professional practices
             </motion.h1>
             <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-              We help therapists, counselors, psychologists, and small wellness teams stay protected and productive —
+              We help small businesses and professional practices stay protected and productive —
               without expensive MSP contracts.
             </motion.p>
             <motion.div className="hero-ctas" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
@@ -62,7 +62,7 @@ export default function HomePage() {
               <Link className="btn btn-outline btn-large" href="/pricing">See Plans & Pricing</Link>
             </motion.div>
             <p style={{ marginTop: 16, color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Month-to-month plans • Local support in NY & NJ • Web services available as a value-add
+              Month-to-month plans • No long-term contracts • Local support in NY & NJ
             </p>
           </div>
         </div>

@@ -10,7 +10,7 @@ const faqItems = [
   {
     question: 'Who is Senyo Solutions best for?',
     answer:
-      'We are built for therapists, counselors, psychologists, and small wellness or medical offices that need dependable IT support without enterprise complexity.',
+      'We are built for small businesses, startups, and professional service firms that need dependable IT support without enterprise complexity. Whether you run a law office, creative agency, consulting firm, or local business, we have you covered.',
   },
   {
     question: 'Do you require long-term contracts?',
@@ -30,7 +30,7 @@ const faqItems = [
   {
     question: 'Do you offer website services too?',
     answer:
-      'Yes. We offer website design, hosting, and maintenance as a complementary service so your practice can keep both IT and online presence under one trusted partner.',
+      'Yes. We offer website design, hosting, and maintenance as a service so your practice can keep both IT and online presence under one trusted partner.',
   },
 ];
 

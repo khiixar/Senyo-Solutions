@@ -14,8 +14,8 @@ export default function Footer() {
                 <img src="/images/logo1.png" alt="Senyo Solutions" className="footer-logo-img" />
               </div>
               <p>
-                Simple, secure IT support for small practices on Long Island — without expensive MSP contracts.
-                We also handle websites and hosting as a value-add so your team can stay focused on patient care.
+                Simple, secure IT support for small businesses and professional practices — without expensive MSP contracts.
+                We also handle websites and hosting so your team can stay focused on what matters most.
               </p>
             </div>
             <div className="footer-section">

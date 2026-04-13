@@ -15,7 +15,7 @@ export default function WebServicesPage() {
       <main style={{ padding: '130px 0 80px' }}>
         <section className="container" style={{ maxWidth: 980 }}>
           <p className="section-eyebrow" style={{ textAlign: 'center' }}>Web Services</p>
-          <h1 className="section-title">Website Design & Hosting for Small Practices</h1>
+          <h1 className="section-title">Website Design & Hosting</h1>
           <p className="section-subtitle">
             We handle your tech, including your online presence. Web services are offered as a complementary value-add to our MSP support.
           </p>
@@ -25,7 +25,7 @@ export default function WebServicesPage() {
               <div className="service-detailed-content">
                 <h3>Website Design & Development</h3>
                 <ul>
-                  <li>Professional website design for therapists and wellness practices</li>
+                  <li>Professional website design for businesses and professionals</li>
                   <li>Mobile-friendly development and performance optimization</li>
                   <li>Secure contact form and conversion-focused page structure</li>
                 </ul>

@@ -13,7 +13,7 @@ export default function ContactPage() {
       <Navbar />
       <main style={{ padding: '130px 0 80px' }}>
         <section className="container" style={{ maxWidth: 760 }}>
-          <p className="section-eyebrow" style={{ textAlign: 'center' }}>Contact</p>
+          <p className="section-eyebrow" style={{ textAlign: 'center' }}>Contact us Now</p>
           <h1 className="section-title">Book a Free Tech Review</h1>
           <p className="section-subtitle">
             Tell us what you need and we’ll recommend the right next step for your practice.
