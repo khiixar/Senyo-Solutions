@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Suspense } from 'react';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import GoogleAnalyticsPageView from '@/components/GoogleAnalyticsPageView';
+import CookieConsent from '@/components/CookieConsent';
 import './styles.css';
 
 export const metadata: Metadata = {
@@ -142,6 +143,7 @@ export default function RootLayout({
           <GoogleAnalyticsPageView measurementId={GA_MEASUREMENT_ID} />
         </Suspense>
         {children}
+        <CookieConsent />
         <Analytics />
         <SpeedInsights />
       </body>
