@@ -2,16 +2,16 @@ import type { Metadata } from 'next';
 import ServicesHubClient from '@/components/ServicesHubClient';
 
 export const metadata: Metadata = {
-  title: 'Digital Services',
+  title: 'Managed IT Services | Senyo Solutions',
   description:
-    'Explore Senyo Solutions digital services including web design, SEO optimization, managed hosting, digital marketing, and analytics reporting.',
+    'Explore Senyo Solutions managed IT plans, MSP add-ons, and complementary web services for small practices in New York and New Jersey.',
   alternates: {
     canonical: 'https://senyosolutions.com/services',
   },
   openGraph: {
-    title: 'Senyo Solutions Services | Web Design, SEO, Hosting & Marketing',
+    title: 'Senyo Solutions Services | Micro MSP Plans + Add-ons',
     description:
-      'Browse all Senyo Solutions services and find the right package for your business growth goals.',
+      'Review Starter, Standard, and Premium IT plans plus add-ons and website support services.',
     url: 'https://senyosolutions.com/services',
     type: 'website',
   },

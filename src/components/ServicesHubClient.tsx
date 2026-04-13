@@ -1,20 +1,37 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import {
-  FadeIn,
-  ScaleIn,
-  AnimatedGradientBg,
-  ScrollProgressBar,
-  ParticleField,
-  MorphingBlob,
-  AnimatedLine,
-  MagneticHover,
-  PulseEffect,
-} from '@/components/MotionWrapper';
+import { FadeIn, StaggerContainer, StaggerItem, AnimatedGradientBg, ParticleField, ScrollProgressBar } from '@/components/MotionWrapper';
+
+const managedPlans = [
+  {
+    name: 'Starter',
+    price: '$99/month',
+    features: ['Monitoring and patching', 'Backup checks', 'Antivirus', 'Email support', 'Remote IT support'],
+  },
+  {
+    name: 'Standard',
+    price: '$149/month',
+    features: ['Everything in Starter', 'Priority response', 'Quarterly reviews', 'MFA/security guidance', 'Account hygiene support'],
+  },
+  {
+    name: 'Premium',
+    price: '$199/month',
+    features: ['Everything in Standard', 'Highest priority support', 'Limited on-site time', 'Hands-on oversight'],
+  },
+];
+
+const addOns = [
+  'On-site support: $75–$125/hour',
+  'Emergency same-day support (premium surcharge)',
+  'New computer setup or migration (flat-rate)',
+  'Microsoft 365 setup or cleanup (flat-rate)',
+  'Wi-Fi and small office network optimization (flat-rate)',
+  'Backup restore / recovery testing (flat-rate or hourly)',
+  'Printer and scanner troubleshooting (hourly or bundled)',
+];
 
 export default function ServicesPage() {
   return (
@@ -22,155 +39,68 @@ export default function ServicesPage() {
       <ScrollProgressBar />
       <Navbar />
 
-      <style jsx>{`
-        .packages-hero {
-          min-height: 58vh;
-          padding: 140px 20px 100px;
-          text-align: center;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .packages-hero::before {
-          content: '';
-          position: absolute;
-          top: -30%;
-          left: 50%;
-          width: 120%;
-          height: 120%;
-          background: radial-gradient(circle at center, rgba(37, 99, 235, 0.08), transparent 65%);
-          transform: translateX(-50%);
-          pointer-events: none;
-        }
-
-        .services-cta-section {
-          padding: 0 20px 100px;
-        }
-
-        .services-cta {
-          max-width: 800px;
-          margin: 0 auto;
-          text-align: center;
-          padding: 60px 40px;
-          background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(6, 182, 212, 0.04));
-          border: 1px solid rgba(37, 99, 235, 0.15);
-          border-radius: var(--radius-xl);
-          position: relative;
-          overflow: hidden;
-        }
-
-        @media (max-width: 768px) {
-          .packages-hero {
-            min-height: auto;
-            padding: 118px 16px 80px;
-          }
-
-          .services-cta-section {
-            padding: 0 16px 84px;
-          }
-
-          .services-cta {
-            padding: 48px 24px;
-          }
-        }
-      `}</style>
-
-      <section className="packages-hero">
-        <ParticleField count={20} />
+      <main className="hero" style={{ minHeight: 'auto', paddingBottom: 70, position: 'relative' }}>
+        <ParticleField count={16} />
         <AnimatedGradientBg />
-        <MorphingBlob className="hero-blob-1" color="rgba(37,99,235,0.06)" size={300} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <FadeIn direction="up">
+            <p className="section-eyebrow" style={{ textAlign: 'center' }}>Services</p>
+            <h1 className="section-title">Micro MSP IT Services for Small Practices</h1>
+            <p className="section-subtitle">
+              Built for therapists, counselors, and small wellness offices in Long Island, New York, and New Jersey.
+            </p>
+          </FadeIn>
+        </div>
+      </main>
 
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <motion.p
-            className="section-eyebrow"
-            initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            Services
-          </motion.p>
-
-          <motion.h1
-            style={{
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              fontWeight: 700,
-              color: 'var(--text-primary)',
-              marginBottom: 16,
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.6 }}
-          >
-            Coming Soon
-          </motion.h1>
-
-          <motion.p
-            style={{
-              fontSize: '1.05rem',
-              color: 'var(--text-secondary)',
-              maxWidth: 560,
-              margin: '0 auto',
-            }}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-          >
-            We&apos;re refreshing this page. Our full service offerings will be available here soon.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-            style={{ marginTop: 24 }}
-          >
-            <AnimatedLine />
-          </motion.div>
+      <section className="digital-services">
+        <div className="container">
+          <FadeIn direction="up">
+            <h2 className="section-title">Managed IT Plans</h2>
+          </FadeIn>
+          <StaggerContainer className="services-detailed-grid">
+            {managedPlans.map((plan) => (
+              <StaggerItem key={plan.name}>
+                <article className="service-detailed-card">
+                  <div className="service-detailed-content">
+                    <h3>{plan.name} <span className="gradient-text">{plan.price}</span></h3>
+                    <ul>{plan.features.map((f) => <li key={f}>{f}</li>)}</ul>
+                  </div>
+                </article>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
-      <section className="services-cta-section">
-        <ScaleIn>
-          <div className="services-cta">
-            <ParticleField count={10} />
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <h3
-                style={{
-                  fontSize: 'clamp(1.4rem, 3vw, 2rem)',
-                  fontWeight: 700,
-                  color: 'var(--text-primary)',
-                  marginBottom: 12,
-                }}
-              >
-                Need Help Right Now?
-              </h3>
-              <p
-                style={{
-                  color: 'var(--text-secondary)',
-                  marginBottom: 28,
-                  fontSize: '1rem',
-                  maxWidth: 500,
-                  margin: '0 auto 28px',
-                }}
-              >
-                While we finalize our service pages, you can still reach out for a free consultation.
-              </p>
-              <FadeIn direction="up" delay={0.1}>
-                <MagneticHover strength={0.15}>
-                  <PulseEffect>
-                    <Link href="/#contact" className="btn btn-primary btn-large btn-shimmer">
-                      Start Your Project
-                      <span className="btn-shine" />
-                    </Link>
-                  </PulseEffect>
-                </MagneticHover>
-              </FadeIn>
+      <section className="our-work">
+        <div className="container" style={{ maxWidth: 980 }}>
+          <FadeIn direction="up">
+            <h2 className="section-title">Add-ons & One-Time Services</h2>
+          </FadeIn>
+          <div className="service-detailed-card" style={{ marginTop: 20 }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              {addOns.map((item) => (
+                <li key={item} style={{ padding: '8px 0', color: 'var(--text-secondary)' }}>
+                  <i className="fas fa-check-circle" style={{ marginRight: 10, color: 'var(--primary)' }}></i>{item}
+                </li>
+              ))}
+            </ul>
+            <p style={{ marginTop: 16, color: 'var(--text-muted)' }}>
+              On-site work is billed separately unless included in Premium. Emergency/after-hours support is billed at premium rates.
+              Project work is quoted separately.
+            </p>
+          </div>
+
+          <div className="work-cta" style={{ marginTop: 28 }}>
+            <h3>Website Services Available</h3>
+            <p>Need help with your online presence too? We offer website development, hosting, updates, and domain management.</p>
+            <div className="hero-ctas">
+              <Link href="/web-services" className="btn btn-outline">View Web Services</Link>
+              <Link href="/pricing" className="btn btn-primary">Compare Pricing</Link>
             </div>
           </div>
-        </ScaleIn>
+        </div>
       </section>
 
       <Footer />

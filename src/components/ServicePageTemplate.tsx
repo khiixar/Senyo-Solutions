@@ -246,13 +246,13 @@ export default function ServicePageTemplate({
             transition={{ duration: 0.45 }}
             whileHover={{ borderColor: 'rgba(37,99,235,0.3)' }}
           >
-            <h3>Looking for a complete growth stack?</h3>
+            <h3>Need a complete technology support package?</h3>
             <p>
-              Combine {serviceName.toLowerCase()} with our SEO, hosting, digital marketing, and analytics services for faster and more predictable growth.
+              Pair this service with our managed IT plans, security guidance, and optional web support for one reliable technology partner.
             </p>
             <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.2 }} style={{ display: 'inline-block' }}>
               <Link className="btn btn-primary" href="/services">
-                Explore Related Services
+                Explore MSP Services
               </Link>
             </motion.div>
           </motion.div>

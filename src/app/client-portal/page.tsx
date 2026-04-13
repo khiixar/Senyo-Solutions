@@ -320,7 +320,7 @@ export default function ClientPortalPage() {
 
         <ScaleIn>
         <div className="login-container" id="loginForm" style={{ position: 'relative', zIndex: 1 }}>
-          <h2><i className="fas fa-user-circle" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Client Login</h2>
+          <h2><i className="fas fa-user-circle" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>MSP Support Portal Login</h2>
           <div className="login-error" id="loginError"></div>
           <form id="clientLoginForm">
             <div className="form-group">
@@ -341,11 +341,11 @@ export default function ClientPortalPage() {
           <div className="dashboard-header">
             <div className="welcome-text">
               <h2>Welcome, <span id="clientName">Client</span></h2>
-              <p>Manage your requests and track progress</p>
+              <p>Track support tickets, device tasks, and service requests</p>
             </div>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
               <Link href="/payment" className="btn btn-primary">
-                <i className="fas fa-credit-card" style={{ marginRight: '8px' }}></i>Make a Payment
+                <i className="fas fa-credit-card" style={{ marginRight: '8px' }}></i>Pay Invoice
               </Link>
               <button className="btn btn-outline" id="logoutBtn">
                 <i className="fas fa-sign-out-alt"></i> Logout
@@ -355,7 +355,7 @@ export default function ClientPortalPage() {
 
           <div className="projects-section">
             <h3 className="section-title" style={{ textAlign: 'left', fontSize: '1.25rem', marginBottom: 24 }}>
-              <i className="fas fa-clipboard-list" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Active Requests
+              <i className="fas fa-clipboard-list" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Open Support Tickets
             </h3>
             <div className="projects-grid" id="projectsGrid">
               <div className="loading-spinner"></div>
@@ -375,18 +375,19 @@ export default function ClientPortalPage() {
           </div>
 
           <div className="update-request-section">
-            <h3><i className="fas fa-plus-circle" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Submit New Request</h3>
+            <h3><i className="fas fa-plus-circle" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Submit New Support Ticket</h3>
             <form className="request-form" id="requestForm">
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="requestType">Request Type</label>
+                  <label htmlFor="requestType">Ticket Type</label>
                   <select id="requestType" required>
                     <option value="">Select type...</option>
-                    <option value="Website Development">Website Development</option>
-                    <option value="Website Update">Website Update</option>
-                    <option value="Bug Fix">Bug Fix</option>
-                    <option value="New Feature">New Feature</option>
-                    <option value="Consultation">Consultation</option>
+                    <option value="IT Support">IT Support</option>
+                    <option value="Device Setup">Device Setup</option>
+                    <option value="Security Review">Security Review</option>
+                    <option value="Microsoft 365">Microsoft 365</option>
+                    <option value="Network/Wi-Fi">Network/Wi-Fi</option>
+                    <option value="Web Services">Web Services</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
@@ -415,7 +416,7 @@ export default function ClientPortalPage() {
             </form>
             <div className="success-message" id="successMessage">
               <i className="fas fa-check-circle" style={{ marginRight: '8px' }}></i>
-              Your request has been submitted successfully!
+              Your support ticket has been submitted successfully!
             </div>
           </div>
         </div>
@@ -521,7 +522,7 @@ export default function ClientPortalPage() {
                 else activeRequests.push(request);
               });
               if (activeRequests.length === 0) {
-                grid.innerHTML = '<div class="empty-projects"><i class="fas fa-folder-open"></i><h3>No Active Requests</h3><p>Submit your first request below to get started.</p></div>';
+                grid.innerHTML = '<div class="empty-projects"><i class="fas fa-folder-open"></i><h3>No Open Support Tickets</h3><p>Submit your first ticket below to get started.</p></div>';
               } else {
                 grid.innerHTML = '';
                 activeRequests.forEach((request) => grid.appendChild(createRequestCard(request)));
@@ -534,11 +535,12 @@ export default function ClientPortalPage() {
               } else { historySection.style.display = 'none'; }
             }, (error) => {
               console.error('Error loading requests:', error);
-              grid.innerHTML = '<div class="empty-projects"><i class="fas fa-folder-open"></i><h3>No Active Requests</h3><p>Submit your first request below to get started.</p></div>';
+              grid.innerHTML = '<div class="empty-projects"><i class="fas fa-folder-open"></i><h3>No Open Support Tickets</h3><p>Submit your first ticket below to get started.</p></div>';
             });
           } catch (error) {
             console.error('Error:', error);
-            grid.innerHTML = '<div class="empty-projects"><i class="fas fa-folder-open"></i><h3>No Active Requests</h3><p>Submit your first request below to get started.</p></div>';
+            grid.innerHTML = '<div class="empty-projects"><i class="fas fa-folder-open"></i><h3>No Open Support Tickets</h3><p>Submit your first ticket below to get started.</p></div>';
+          }
           }
         }
 
@@ -552,7 +554,7 @@ export default function ClientPortalPage() {
           const statusClass = getStatusClass(request.status);
           const date = request.createdAt ? new Date(request.createdAt.toDate()).toLocaleDateString() : 'N/A';
           const ticketNum = request.ticketNumber || '';
-          row.innerHTML = '<div class="ticket-row-header">' + (ticketNum ? '<span class="ticket-row-number"><i class="fas fa-ticket-alt" style="margin-right:4px;"></i>' + escapeHtml(ticketNum) + '</span>' : '') + '<span class="ticket-row-title">' + escapeHtml(request.title) + '</span><span class="ticket-row-status"><span class="project-status ' + statusClass + '">' + request.status + '</span></span><span class="ticket-row-date"><i class="fas fa-calendar" style="margin-right:4px;"></i>' + date + '</span><i class="fas fa-chevron-down ticket-row-chevron"></i></div><div class="ticket-row-details"><p class="ticket-detail-description">' + escapeHtml(request.description) + '</p><div class="ticket-detail-meta"><span><i class="fas fa-tag"></i> ' + escapeHtml(request.requestType) + '</span><span><i class="fas fa-flag"></i> ' + escapeHtml(request.priority) + '</span><span><i class="fas fa-calendar"></i> ' + date + '</span></div>' + (request.adminNotes ? '<div class="ticket-detail-notes"><h5><i class="fas fa-comment"></i> Admin Notes</h5><p>' + escapeHtml(request.adminNotes) + '</p></div>' : '') + '</div>';
+          row.innerHTML = '<div class="ticket-row-header">' + (ticketNum ? '<span class="ticket-row-number"><i class="fas fa-ticket-alt" style="margin-right:4px;"></i>' + escapeHtml(ticketNum) + '</span>' : '') + '<span class="ticket-row-title">' + escapeHtml(request.title) + '</span><span class="ticket-row-status"><span class="project-status ' + statusClass + '">' + request.status + '</span></span><span class="ticket-row-date"><i class="fas fa-calendar" style="margin-right:4px;"></i>' + date + '</span><i class="fas fa-chevron-down ticket-row-chevron"></i></div><div class="ticket-row-details"><p class="ticket-detail-description">' + escapeHtml(request.description) + '</p><div class="ticket-detail-meta"><span><i class="fas fa-tag"></i> ' + escapeHtml(request.requestType) + '</span><span><i class="fas fa-flag"></i> ' + escapeHtml(request.priority) + '</span><span><i class="fas fa-calendar"></i> ' + date + '</span></div>' + (request.adminNotes ? '<div class="ticket-detail-notes"><h5><i class="fas fa-comment"></i> Support Notes</h5><p>' + escapeHtml(request.adminNotes) + '</p></div>' : '') + '</div>';
           const header = row.querySelector('.ticket-row-header');
           const details = row.querySelector('.ticket-row-details');
           const chevron = row.querySelector('.ticket-row-chevron');
@@ -564,7 +566,7 @@ export default function ClientPortalPage() {
           const card = document.createElement('div'); card.className = 'project-card';
           const statusClass = getStatusClass(request.status);
           const date = request.createdAt ? new Date(request.createdAt.toDate()).toLocaleDateString() : 'Just now';
-          card.innerHTML = (request.ticketNumber ? '<span class="ticket-number"><i class="fas fa-ticket-alt" style="margin-right: 5px;"></i>' + escapeHtml(request.ticketNumber) + '</span>' : '') + '<h4>' + escapeHtml(request.title) + '</h4><p>' + escapeHtml(request.description.substring(0, 150)) + (request.description.length > 150 ? '...' : '') + '</p><div class="status-wrapper"><span class="project-status ' + statusClass + '">' + request.status + '</span></div><div class="request-meta"><span><i class="fas fa-tag"></i> ' + escapeHtml(request.requestType) + '</span><span><i class="fas fa-flag"></i> ' + escapeHtml(request.priority) + '</span><span><i class="fas fa-calendar"></i> ' + date + '</span></div>' + (request.adminNotes ? '<div class="admin-notes"><h5><i class="fas fa-comment"></i> Admin Notes</h5><p>' + escapeHtml(request.adminNotes) + '</p></div>' : '');
+          card.innerHTML = (request.ticketNumber ? '<span class="ticket-number"><i class="fas fa-ticket-alt" style="margin-right: 5px;"></i>' + escapeHtml(request.ticketNumber) + '</span>' : '') + '<h4>' + escapeHtml(request.title) + '</h4><p>' + escapeHtml(request.description.substring(0, 150)) + (request.description.length > 150 ? '...' : '') + '</p><div class="status-wrapper"><span class="project-status ' + statusClass + '">' + request.status + '</span></div><div class="request-meta"><span><i class="fas fa-tag"></i> ' + escapeHtml(request.requestType) + '</span><span><i class="fas fa-flag"></i> ' + escapeHtml(request.priority) + '</span><span><i class="fas fa-calendar"></i> ' + date + '</span></div>' + (request.adminNotes ? '<div class="admin-notes"><h5><i class="fas fa-comment"></i> Support Notes</h5><p>' + escapeHtml(request.adminNotes) + '</p></div>' : '');
           return card;
         }
 

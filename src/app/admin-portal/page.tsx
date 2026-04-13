@@ -266,7 +266,7 @@ export default function AdminPortalPage() {
 
         <ScaleIn>
         <div className="login-container" id="adminLogin" style={{ position: 'relative', zIndex: 1 }}>
-          <h2><i className="fas fa-lock" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Admin Login</h2>
+          <h2><i className="fas fa-lock" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>MSP Operations Login</h2>
           <div className="login-error" id="loginError"></div>
           <form id="adminLoginForm">
             <input type="email" id="adminEmail" placeholder="Admin Email" required />
@@ -278,10 +278,10 @@ export default function AdminPortalPage() {
 
         <div className="admin-container" id="adminDashboard" style={{ display: 'none', position: 'relative', zIndex: 1 }}>
           <div className="admin-header">
-            <h1><i className="fas fa-cog" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>Admin Dashboard</h1>
+            <h1><i className="fas fa-cog" style={{ marginRight: '10px', color: 'var(--primary-light)' }}></i>MSP Operations Dashboard</h1>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
               <Link href="/payment" className="btn btn-primary">
-                <i className="fas fa-credit-card" style={{ marginRight: '8px' }}></i>Make a Payment
+                <i className="fas fa-credit-card" style={{ marginRight: '8px' }}></i>Pay Invoice
               </Link>
               <button className="btn btn-outline" id="logoutBtn">
                 <i className="fas fa-sign-out-alt"></i> Logout
@@ -293,10 +293,10 @@ export default function AdminPortalPage() {
 
           <div className="admin-tabs">
             <button className="admin-tab active" data-tab="requests">
-              <i className="fas fa-clipboard-list"></i> Requests
+              <i className="fas fa-clipboard-list"></i> Support Tickets
             </button>
             <button className="admin-tab" data-tab="clients">
-              <i className="fas fa-users"></i> Manage Clients
+              <i className="fas fa-users"></i> Manage Practice Accounts
             </button>
           </div>
 
@@ -338,7 +338,7 @@ export default function AdminPortalPage() {
           <div className="tab-content" id="clients-tab">
             <div style={{ marginBottom: '20px' }}>
               <button className="btn btn-primary" id="addClientBtn">
-                <i className="fas fa-plus"></i> Add New Client
+                <i className="fas fa-plus"></i> Add New Practice Account
               </button>
             </div>
             <div id="clientsList"></div>
@@ -350,7 +350,7 @@ export default function AdminPortalPage() {
       <div className="modal" id="requestModal">
         <div className="modal-content">
           <div className="modal-header">
-            <h3>Manage Request</h3>
+            <h3>Manage Support Ticket</h3>
             <button className="modal-close" data-close="requestModal">&times;</button>
           </div>
           <form className="modal-form" id="updateRequestForm">
@@ -364,9 +364,9 @@ export default function AdminPortalPage() {
               <option value="Completed">Completed</option>
               <option value="Rejected">Rejected</option>
             </select>
-            <label>Admin Notes (visible to client)</label>
+            <label>Support Notes (visible to client)</label>
             <textarea id="adminNotes" placeholder="Add notes for the client..."></textarea>
-            <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>Update Request</button>
+            <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>Update Support Ticket</button>
           </form>
         </div>
       </div>
@@ -374,11 +374,11 @@ export default function AdminPortalPage() {
       <div className="modal" id="clientModal">
         <div className="modal-content">
           <div className="modal-header">
-            <h3>Create New Client</h3>
+            <h3>Create New Practice Account</h3>
             <button className="modal-close" data-close="clientModal">&times;</button>
           </div>
           <form className="modal-form" id="clientForm">
-            <label>Client Name</label>
+            <label>Practice Contact Name</label>
             <input type="text" id="clientName" placeholder="Full name" required />
             <label>Email</label>
             <input type="email" id="clientEmail" placeholder="client@example.com" required />
@@ -474,7 +474,7 @@ function loadRequests() {
 
 function updateStats() {
   const stats = { total: allRequests.length, pending: allRequests.filter(r => r.status === 'Pending').length, inProgress: allRequests.filter(r => r.status === 'In Progress').length, completed: allRequests.filter(r => r.status === 'Completed').length };
-  document.getElementById('statsGrid').innerHTML = '<div class="stat-card"><h3>' + stats.total + '</h3><p>Total Requests</p></div><div class="stat-card"><h3>' + stats.pending + '</h3><p>Pending</p></div><div class="stat-card"><h3>' + stats.inProgress + '</h3><p>In Progress</p></div><div class="stat-card"><h3>' + stats.completed + '</h3><p>Completed</p></div>';
+  document.getElementById('statsGrid').innerHTML = '<div class="stat-card"><h3>' + stats.total + '</h3><p>Total Tickets</p></div><div class="stat-card"><h3>' + stats.pending + '</h3><p>Pending</p></div><div class="stat-card"><h3>' + stats.inProgress + '</h3><p>In Progress</p></div><div class="stat-card"><h3>' + stats.completed + '</h3><p>Completed</p></div>';
 }
 
 function renderRequests() {
@@ -484,7 +484,7 @@ function renderRequests() {
   if (statusFilter) filtered = filtered.filter(r => r.status === statusFilter);
   if (priorityFilter) filtered = filtered.filter(r => r.priority === priorityFilter);
   const tbody = document.getElementById('requestsBody');
-  if (filtered.length === 0) { tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No requests found.</td></tr>'; return; }
+  if (filtered.length === 0) { tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No support tickets found.</td></tr>'; return; }
   tbody.innerHTML = filtered.map(r => {
     const canDelete = r.status === 'Completed' || r.status === 'Rejected';
     return '<tr><td style="color: var(--primary-light); font-weight: 600; font-size: 0.82rem;">' + escapeHtml(r.ticketNumber || '—') + '</td><td>' + escapeHtml(r.userName || r.userEmail || 'Unknown') + '</td><td>' + escapeHtml(r.title || 'No title') + '</td><td>' + escapeHtml(r.requestType || 'N/A') + '</td><td class="priority-' + (r.priority || 'medium').toLowerCase() + '">' + (r.priority || 'N/A') + '</td><td><span class="status-badge status-' + (r.status || 'pending').toLowerCase().replace(' ', '-') + '">' + (r.status || 'Pending') + '</span></td><td>' + (r.createdAt ? new Date(r.createdAt.toDate()).toLocaleDateString() : '-') + '</td><td><button class="action-btn edit" data-request-id="' + r.id + '"><i class="fas fa-edit"></i> Manage</button>' + (canDelete ? '<button class="action-btn delete" data-delete-request="' + r.id + '"><i class="fas fa-trash"></i></button>' : '') + '</td></tr>';
@@ -552,8 +552,8 @@ document.getElementById('requestsBody').addEventListener('click', (e) => {
   }
   if (deleteBtn) {
     const requestId = deleteBtn.dataset.deleteRequest;
-    showConfirm('Delete Request', 'Are you sure you want to delete this request? This cannot be undone.', async () => {
-      try { await deleteDoc(doc(db, 'requests', requestId)); showToast('Request deleted successfully!'); }
+    showConfirm('Delete Support Ticket', 'Are you sure you want to delete this support ticket? This cannot be undone.', async () => {
+      try { await deleteDoc(doc(db, 'requests', requestId)); showToast('Support ticket deleted successfully!'); }
       catch (error) { alert('Error deleting request: ' + error.message); }
     });
   }
@@ -564,7 +564,7 @@ document.getElementById('updateRequestForm').addEventListener('submit', async (e
   const id = document.getElementById('requestId').value;
   try {
     await updateDoc(doc(db, 'requests', id), { status: document.getElementById('updateStatus').value, adminNotes: document.getElementById('adminNotes').value, updatedAt: serverTimestamp() });
-    closeModal('requestModal'); showToast('Request updated successfully!');
+    closeModal('requestModal'); showToast('Support ticket updated successfully!');
   } catch (error) { alert('Error updating request: ' + error.message); }
 });
 

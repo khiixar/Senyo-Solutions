@@ -14,18 +14,17 @@ export default function Footer() {
                 <img src="/images/logo1.png" alt="Senyo Solutions" className="footer-logo-img" />
               </div>
               <p>
-                We craft modern digital experiences that help businesses grow — from design to
-                deployment and everything in between.
+                Simple, secure IT support for small practices on Long Island — without expensive MSP contracts.
+                We also handle websites and hosting as a value-add so your team can stay focused on patient care.
               </p>
             </div>
             <div className="footer-section">
               <h4>Services</h4>
               <ul>
-                <li><Link href="/services/web-design">Web Design</Link></li>
-                <li><Link href="/services/seo">SEO Optimization</Link></li>
-                <li><Link href="/services/hosting">Web Hosting</Link></li>
-                <li><Link href="/services/digital-marketing">Digital Marketing</Link></li>
-                <li><Link href="/services/analytics">Analytics & Reporting</Link></li>
+                <li><Link href="/services">Managed IT Plans</Link></li>
+                <li><Link href="/pricing">Pricing & Add-ons</Link></li>
+                <li><Link href="/web-services">Web Services</Link></li>
+                <li><Link href="/contact">Book a Free Tech Review</Link></li>
               </ul>
             </div>
             <div className="footer-section">
@@ -33,34 +32,12 @@ export default function Footer() {
               <div className="footer-contact">
                 <p><i className="fas fa-phone"></i> (516) 707-7351</p>
                 <p suppressHydrationWarning><i className="fas fa-envelope"></i> contact@senyosolutions.com</p>
+                <p><i className="fas fa-location-dot"></i> Long Island, New York</p>
+                <p><i className="fas fa-map"></i> Serving NY State, Long Island & New Jersey</p>
               </div>
             </div>
           </div>
         </FadeIn>
-
-        <div className="footer-follow-us">
-          <h4>Follow Us</h4>
-          <div className="footer-social-buttons">
-            <a
-              href="https://www.linkedin.com/company/senyo-solutions"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-social-btn linkedin-btn"
-              aria-label="LinkedIn"
-            >
-              <i className="fab fa-linkedin-in"></i>
-            </a>
-            <a
-              href="https://www.instagram.com/SenyoSolutions/#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-social-btn instagram-btn"
-              aria-label="Instagram"
-            >
-              <i className="fab fa-instagram"></i>
-            </a>
-          </div>
-        </div>
 
         <div className="footer-bottom">
           <p>&copy; 2024-2026 Senyo Solutions. All rights reserved.</p>

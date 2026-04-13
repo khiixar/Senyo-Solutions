@@ -8,29 +8,29 @@ import { AnimatedGradientBg, MorphingBlob, ParticleField } from '@/components/Mo
 
 const faqItems = [
   {
-    question: 'What services does Senyo Solutions provide?',
+    question: 'Who is Senyo Solutions best for?',
     answer:
-      'We provide web design, SEO optimization, managed hosting, digital marketing, and analytics/reporting services tailored to business growth goals.',
+      'We are built for therapists, counselors, psychologists, and small wellness or medical offices that need dependable IT support without enterprise complexity.',
   },
   {
-    question: 'How long does a typical website project take?',
+    question: 'Do you require long-term contracts?',
     answer:
-      'Most websites are completed in about 2–4 weeks, depending on project scope, required features, and how quickly content/feedback is provided.',
+      'No. Our plans are month-to-month so you can get professional support without being locked into a long agreement.',
   },
   {
-    question: 'Do you offer ongoing support after launch?',
+    question: 'Do you provide on-site support?',
     answer:
-      'Yes. We offer ongoing support and maintenance options, including updates, performance checks, and technical assistance after your site goes live.',
+      'Yes. On-site work is available as an add-on (hourly) and limited on-site time is included in the Premium plan.',
   },
   {
-    question: 'Can you improve my current website instead of rebuilding it?',
+    question: 'What areas do you serve?',
     answer:
-      'Absolutely. We can audit your current website and recommend targeted improvements for design, speed, SEO, and conversion performance.',
+      'We serve Long Island, broader New York State, and New Jersey with a mix of remote-first support and local on-site assistance when needed.',
   },
   {
-    question: 'How do we get started?',
+    question: 'Do you offer website services too?',
     answer:
-      'Start by contacting us through the form on our homepage. We will schedule a discovery call to understand your goals and recommend the best next steps.',
+      'Yes. We offer website design, hosting, and maintenance as a complementary service so your practice can keep both IT and online presence under one trusted partner.',
   },
 ];
 
@@ -48,18 +48,10 @@ export default function FAQPageClient() {
         <MorphingBlob className="section-blob section-blob-right" color="rgba(6,182,212,0.05)" size={300} />
 
         <section className="container" style={{ maxWidth: 820, textAlign: 'center', marginBottom: 48, position: 'relative', zIndex: 1 }}>
-          <p className="section-eyebrow">Support</p>
+          <p className="section-eyebrow">FAQ</p>
           <h1 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: 16 }}>Frequently Asked Questions</h1>
-          <p
-            style={{
-              color: 'var(--text-secondary)',
-              fontSize: '1.05rem',
-              lineHeight: 1.7,
-              margin: '0 auto',
-              maxWidth: 620,
-            }}
-          >
-            Quick answers to common questions about our services, timelines, and process.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.7, margin: '0 auto', maxWidth: 620 }}>
+            Common questions about our MSP plans, support model, and service area.
           </p>
         </section>
 

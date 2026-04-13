@@ -11,26 +11,27 @@ import './styles.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://senyosolutions.com'),
   title: {
-    default: 'Senyo Solutions | Web Design, SEO, Hosting & Digital Marketing',
+    default: 'Senyo Solutions | Micro MSP IT Support for Small Practices',
     template: '%s | Senyo Solutions',
   },
   description:
-    'Senyo Solutions is a digital services agency offering web design, SEO optimization, managed hosting, digital marketing, and analytics reporting for growing businesses.',
+    'Senyo Solutions provides simple, secure IT support for therapists and small practices across Long Island, New York State, and New Jersey. Month-to-month plans with no long-term contracts.',
   keywords: [
     'Senyo Solutions',
-    'web design agency',
-    'SEO services',
-    'website hosting',
-    'digital marketing',
-    'analytics reporting',
+    'micro msp',
+    'managed IT services',
+    'small practice IT support',
+    'Long Island IT support',
+    'therapist office IT',
+    'web design for small practices',
   ],
   alternates: {
     canonical: 'https://senyosolutions.com',
   },
   openGraph: {
-    title: 'Senyo Solutions | Web Design, SEO, Hosting & Digital Marketing',
+    title: 'Senyo Solutions | Micro MSP IT Support',
     description:
-      'Grow your business with high-performance websites, SEO optimization, managed hosting, digital marketing campaigns, and analytics reporting.',
+      'Simple, secure IT support for small practices on Long Island — without expensive MSP contracts.',
     url: 'https://senyosolutions.com',
     siteName: 'Senyo Solutions',
     locale: 'en_US',
@@ -38,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Senyo Solutions | Web Design, SEO, Hosting & Digital Marketing',
+    title: 'Senyo Solutions | Micro MSP IT Support',
     description:
-      'Digital services for modern businesses: web design, SEO, hosting, digital marketing, and analytics reporting.',
+      'Managed IT plans, responsive local support, and complementary web services for small practices.',
   },
   icons: {
     icon: [
@@ -64,48 +65,21 @@ const structuredData = {
       logo: 'https://senyosolutions.com/images/logo1.png',
       email: 'contact@senyosolutions.com',
       telephone: '+1-516-707-7351',
-      sameAs: [
-        'https://www.linkedin.com/company/senyo-solutions',
-        'https://www.instagram.com/SenyoSolutions/',
-      ],
-      areaServed: 'US',
+      areaServed: ['Long Island, NY', 'New York, NY', 'New Jersey, US'],
       description:
-        'Senyo Solutions provides web design, SEO, hosting, digital marketing, and analytics services to help businesses grow online.',
+        'Micro MSP delivering managed IT support for therapists, counselors, psychologists, and small wellness or medical practices.',
     },
     {
       '@type': 'Service',
-      serviceType: 'Web Design',
+      serviceType: 'Managed IT Support',
       provider: { '@id': 'https://senyosolutions.com/#organization' },
-      areaServed: 'US',
-      url: 'https://senyosolutions.com/services/web-design',
+      url: 'https://senyosolutions.com/services',
     },
     {
       '@type': 'Service',
-      serviceType: 'SEO Optimization',
+      serviceType: 'Website Design and Hosting',
       provider: { '@id': 'https://senyosolutions.com/#organization' },
-      areaServed: 'US',
-      url: 'https://senyosolutions.com/services/seo',
-    },
-    {
-      '@type': 'Service',
-      serviceType: 'Managed Hosting',
-      provider: { '@id': 'https://senyosolutions.com/#organization' },
-      areaServed: 'US',
-      url: 'https://senyosolutions.com/services/hosting',
-    },
-    {
-      '@type': 'Service',
-      serviceType: 'Digital Marketing',
-      provider: { '@id': 'https://senyosolutions.com/#organization' },
-      areaServed: 'US',
-      url: 'https://senyosolutions.com/services/digital-marketing',
-    },
-    {
-      '@type': 'Service',
-      serviceType: 'Analytics & Reporting',
-      provider: { '@id': 'https://senyosolutions.com/#organization' },
-      areaServed: 'US',
-      url: 'https://senyosolutions.com/services/analytics',
+      url: 'https://senyosolutions.com/web-services',
     },
   ],
 };

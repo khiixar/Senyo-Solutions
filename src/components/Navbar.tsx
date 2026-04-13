@@ -5,39 +5,37 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const mainLinks = [
-  { href: '/#home', label: 'Home' },
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/web-services', label: 'Web Services' },
+  { href: '/contact', label: 'Contact' },
   { href: '/faq', label: 'FAQ' },
-  { href: '/#work', label: 'Our Work' },
-  { href: '/#contact', label: 'Contact' },
 ];
 
-const serviceLinks = [
-  { href: '/services', label: 'Overview' },
-  { href: '/services/web-design', label: 'Web Design' },
-  { href: '/services/seo', label: 'SEO' },
-  { href: '/services/hosting', label: 'Hosting' },
-  { href: '/services/digital-marketing', label: 'Digital Marketing' },
-  { href: '/services/analytics', label: 'Analytics' },
+const portalLinks = [
+  { href: '/client-portal', label: 'Support Portal' },
+  { href: '/admin-portal', label: 'Operations Portal' },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const servicesRef = useRef<HTMLLIElement>(null);
+  const [isPortalsOpen, setIsPortalsOpen] = useState(false);
+  const [isMobilePortalsOpen, setIsMobilePortalsOpen] = useState(false);
+  const portalsRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 50);
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
     const handleOutside = (event: MouseEvent) => {
-      if (!servicesRef.current) return;
-      if (!servicesRef.current.contains(event.target as Node)) {
-        setIsServicesOpen(false);
+      if (!portalsRef.current) return;
+      if (!portalsRef.current.contains(event.target as Node)) {
+        setIsPortalsOpen(false);
       }
     };
 
@@ -47,17 +45,15 @@ export default function Navbar() {
 
   const closeMobile = () => {
     setIsMobileOpen(false);
-    setIsMobileServicesOpen(false);
-    setIsServicesOpen(false);
+    setIsMobilePortalsOpen(false);
+    setIsPortalsOpen(false);
     document.body.style.overflow = 'auto';
   };
 
   const toggleMobile = () => {
     const next = !isMobileOpen;
     setIsMobileOpen(next);
-    if (!next) {
-      setIsMobileServicesOpen(false);
-    }
+    if (!next) setIsMobilePortalsOpen(false);
     document.body.style.overflow = next ? 'hidden' : 'auto';
   };
 
@@ -66,7 +62,7 @@ export default function Navbar() {
       className={`navbar ${isScrolled ? 'scrolled' : ''}`}
       initial={{ y: -80 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: 0.4 }}
     >
       <div className="nav-container">
         <div className="nav-logo">
@@ -82,7 +78,7 @@ export default function Navbar() {
               className="nav-item"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.08 + i * 0.06, duration: 0.35 }}
+              transition={{ delay: 0.06 + i * 0.04, duration: 0.3 }}
             >
               <Link href={link.href} className="nav-link" onClick={closeMobile}>
                 {link.label}
@@ -91,26 +87,26 @@ export default function Navbar() {
           ))}
 
           <motion.li
-            ref={servicesRef}
+            ref={portalsRef}
             className="nav-item nav-item-dropdown"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.35 }}
-            onMouseEnter={() => setIsServicesOpen(true)}
-            onMouseLeave={() => setIsServicesOpen(false)}
+            transition={{ delay: 0.28, duration: 0.3 }}
+            onMouseEnter={() => setIsPortalsOpen(true)}
+            onMouseLeave={() => setIsPortalsOpen(false)}
           >
             <button
               type="button"
               className="nav-link dropdown-toggle"
-              onClick={() => setIsServicesOpen((prev) => !prev)}
+              onClick={() => setIsPortalsOpen((prev) => !prev)}
               aria-haspopup="menu"
-              aria-expanded={isServicesOpen}
+              aria-expanded={isPortalsOpen}
             >
-              Services <span className={`dropdown-caret ${isServicesOpen ? 'open' : ''}`}>▾</span>
+              Portals <span className={`dropdown-caret ${isPortalsOpen ? 'open' : ''}`}>▾</span>
             </button>
 
             <AnimatePresence>
-              {isServicesOpen && (
+              {isPortalsOpen && (
                 <motion.ul
                   className="services-dropdown"
                   role="menu"
@@ -119,10 +115,10 @@ export default function Navbar() {
                   exit={{ opacity: 0, y: 6, scale: 0.98 }}
                   transition={{ duration: 0.18 }}
                 >
-                  {serviceLinks.map((service) => (
-                    <li key={service.href} role="none">
-                      <Link href={service.href} role="menuitem" className="dropdown-link" onClick={() => setIsServicesOpen(false)}>
-                        {service.label}
+                  {portalLinks.map((item) => (
+                    <li key={item.href} role="none">
+                      <Link href={item.href} role="menuitem" className="dropdown-link" onClick={() => setIsPortalsOpen(false)}>
+                        {item.label}
                       </Link>
                     </li>
                   ))}
@@ -156,33 +152,28 @@ export default function Navbar() {
               position: 'fixed',
               inset: 0,
               top: 72,
-              background: 'rgba(9,9,11,0.97)',
-              backdropFilter: 'blur(30px)',
-              WebkitBackdropFilter: 'blur(30px)',
+              background: 'rgba(247, 250, 253, 0.98)',
+              backdropFilter: 'blur(16px)',
               zIndex: 999,
               display: 'flex',
               flexDirection: 'column',
-              padding: '34px 24px 40px',
+              padding: '24px',
               gap: 8,
               overflowY: 'auto',
             }}
           >
             {mainLinks.map((link, i) => (
-              <motion.div
-                key={link.href}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.07, duration: 0.3 }}
-              >
+              <motion.div key={link.href} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
                 <Link
                   href={link.href}
                   className="nav-link"
                   onClick={closeMobile}
                   style={{
                     display: 'block',
-                    fontSize: '1.2rem',
+                    fontSize: '1.08rem',
+                    color: 'var(--text-primary)',
                     padding: '14px 0',
-                    borderBottom: '1px solid rgba(63,63,70,0.25)',
+                    borderBottom: '1px solid var(--border-subtle)',
                   }}
                 >
                   {link.label}
@@ -190,24 +181,19 @@ export default function Navbar() {
               </motion.div>
             ))}
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: mainLinks.length * 0.07, duration: 0.3 }}
-              className="mobile-services-wrap"
-            >
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.35 }} className="mobile-services-wrap">
               <button
                 type="button"
                 className="mobile-services-toggle"
-                onClick={() => setIsMobileServicesOpen((prev) => !prev)}
-                aria-expanded={isMobileServicesOpen}
+                onClick={() => setIsMobilePortalsOpen((prev) => !prev)}
+                aria-expanded={isMobilePortalsOpen}
               >
-                <span>Services</span>
-                <span className={`mobile-services-icon ${isMobileServicesOpen ? 'open' : ''}`}>+</span>
+                <span>Portals</span>
+                <span className={`mobile-services-icon ${isMobilePortalsOpen ? 'open' : ''}`}>+</span>
               </button>
 
               <AnimatePresence>
-                {isMobileServicesOpen && (
+                {isMobilePortalsOpen && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -215,14 +201,9 @@ export default function Navbar() {
                     transition={{ duration: 0.2 }}
                     className="mobile-services-list"
                   >
-                    {serviceLinks.map((service) => (
-                      <Link
-                        key={service.href}
-                        href={service.href}
-                        className="mobile-service-link"
-                        onClick={closeMobile}
-                      >
-                        {service.label}
+                    {portalLinks.map((item) => (
+                      <Link key={item.href} href={item.href} className="mobile-service-link" onClick={closeMobile}>
+                        {item.label}
                       </Link>
                     ))}
                   </motion.div>
