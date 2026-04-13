@@ -18,13 +18,9 @@ export default function ClientThankYouPage() {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="thank-you-content">
             <ScaleIn>
-              <motion.div
-                className="thank-you-icon"
-                animate={{ scale: [1, 1.08, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              >
+              <div className="thank-you-icon">
                 <i className="fas fa-check-circle"></i>
-              </motion.div>
+              </div>
             </ScaleIn>
 
             <FadeIn direction="up" delay={0.2}>

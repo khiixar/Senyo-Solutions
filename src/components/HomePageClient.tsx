@@ -210,13 +210,9 @@ export default function HomePage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.5 }}
         >
-          <motion.div
-            className="scroll-arrow"
-            animate={{ opacity: [0.45, 0.85, 0.45], scale: [0.98, 1.05, 0.98] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-          >
+          <div className="scroll-arrow">
             <i className="fas fa-chevron-down" />
-          </motion.div>
+          </div>
         </motion.div>
       </section>
 

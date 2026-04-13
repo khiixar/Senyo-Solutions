@@ -99,10 +99,28 @@ export default function ServicePageTemplate({
           text-align: left;
           overflow: hidden;
         }
+        :global(.service-particle-field > div) {
+          background: rgba(110, 168, 254, 0.38) !important;
+        }
+        .service-page-analytics .service-actions {
+          gap: 16px;
+        }
+        @media (max-width: 640px) {
+          .service-page-analytics .service-actions {
+            row-gap: 14px;
+          }
+          .service-page-analytics .service-actions > div {
+            width: 100%;
+          }
+          .service-page-analytics .service-actions :global(.btn) {
+            width: 100%;
+            justify-content: center;
+          }
+        }
       `}</style>
 
-      <main className="service-page-main">
-        <ParticleField count={18} />
+      <main className={`service-page-main service-page-${slug}`}>
+        <ParticleField count={30} className="service-particle-field" />
         <AnimatedGradientBg />
         <MorphingBlob className="section-blob section-blob-left" color="rgba(37,99,235,0.05)" size={320} />
         <MorphingBlob className="section-blob section-blob-right" color="rgba(6,182,212,0.05)" size={290} />

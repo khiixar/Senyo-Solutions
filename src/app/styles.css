@@ -207,6 +207,11 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   font-size: 0.88rem;
 }
 
+/* Disable Font Awesome bounce utility globally */
+.fa-bounce {
+  animation: none !important;
+}
+
 /* ============================================================
    NAVIGATION
    ============================================================ */
