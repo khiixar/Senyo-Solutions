@@ -55,7 +55,7 @@ export default function ServicesPage() {
         .packages-section {
           padding: 0 20px 100px;
           position: relative;
-          overflow: hidden;
+          overflow: visible;
         }
         .packages-container {
           max-width: 1100px;
@@ -75,17 +75,20 @@ export default function ServicesPage() {
           margin-bottom: 40px;
         }
         .pkg-card {
-          background: linear-gradient(165deg, rgba(255,255,255,0.03), rgba(37,99,235,0.035));
-          border: 1px solid rgba(99, 102, 241, 0.22);
+          background: linear-gradient(170deg, rgba(15, 23, 42, 0.92), rgba(16, 24, 40, 0.86) 55%, rgba(30, 64, 175, 0.2));
+          border: 1px solid rgba(96, 165, 250, 0.24);
           border-radius: 20px;
-          padding: 30px 24px 24px;
+          padding: 30px 24px 26px;
           display: flex;
           flex-direction: column;
           position: relative;
-          overflow: hidden;
+          overflow: visible;
+          isolation: isolate;
           min-height: 100%;
-          transition: all var(--transition-base);
-          backdrop-filter: blur(8px);
+          transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 18px 34px rgba(2, 6, 23, 0.42);
         }
         .pkg-card::before {
           content: '';
@@ -103,8 +106,8 @@ export default function ServicesPage() {
           pointer-events: none;
         }
         .pkg-card:hover {
-          border-color: rgba(96,165,250,0.5);
-          box-shadow: 0 18px 44px rgba(2, 6, 23, 0.55);
+          border-color: rgba(103, 232, 249, 0.45);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 26px 54px rgba(2, 6, 23, 0.62), 0 0 0 1px rgba(96, 165, 250, 0.1);
         }
         .pkg-card:hover .pkg-icon {
           transform: translateY(-2px) scale(1.05);
@@ -200,41 +203,63 @@ export default function ServicesPage() {
           grid-template-columns: 1fr;
           gap: 0;
           margin-top: auto;
+          padding-top: 8px;
           position: relative;
-          z-index: 1;
+          z-index: 2;
+        }
+        .pkg-magnetic {
+          display: block;
+          width: 100%;
+          border-radius: 12px;
         }
         .pkg-btn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
+          gap: 8px;
           width: 100%;
-          min-height: 46px;
-          padding: 11px 18px;
-          background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-          color: #fff;
-          border: 1px solid rgba(96,165,250,0.7);
+          min-height: 48px;
+          padding: 12px 18px;
+          background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 55%, #0f7ac7 100%);
+          color: #ffffff !important;
+          border: 1px solid rgba(147, 197, 253, 0.62);
           border-radius: 12px;
           font-family: 'Archivo', sans-serif;
           font-size: 0.9rem;
           font-weight: 700;
           cursor: pointer;
           text-align: center;
-          text-decoration: none;
-          transition: transform var(--transition-base), box-shadow var(--transition-base), filter var(--transition-base);
+          text-decoration: none !important;
+          transition: transform var(--transition-base), box-shadow var(--transition-base), filter var(--transition-base), border-color var(--transition-base);
           letter-spacing: 0.01em;
-          box-shadow: 0 10px 22px rgba(37,99,235,0.32);
+          box-shadow: 0 12px 24px rgba(37, 99, 235, 0.32);
+          position: relative;
+          overflow: hidden;
+        }
+        .pkg-btn::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,0.24) 50%, transparent 75%);
+          transform: translateX(-120%);
+          transition: transform 0.45s ease;
+          pointer-events: none;
         }
         .pkg-btn:hover {
           filter: brightness(1.08);
           transform: translateY(-2px);
-          box-shadow: 0 14px 28px rgba(37,99,235,0.38);
+          border-color: rgba(165, 243, 252, 0.85);
+          box-shadow: 0 18px 34px rgba(37, 99, 235, 0.44);
+        }
+        .pkg-btn:hover::before {
+          transform: translateX(120%);
         }
         .pkg-btn:active {
           transform: translateY(0);
           box-shadow: 0 8px 16px rgba(37,99,235,0.26);
         }
         .pkg-btn:focus-visible {
-          outline: 2px solid rgba(103,232,249,0.7);
+          outline: 2px solid rgba(103,232,249,0.8);
           outline-offset: 2px;
         }
 
@@ -491,7 +516,7 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                   <div className="pkg-actions">
-                    <MagneticHover strength={0.12}>
+                    <MagneticHover className="pkg-magnetic" strength={0.12}>
                       <Link href="/#contact" className="pkg-btn">Get Started</Link>
                     </MagneticHover>
                   </div>
@@ -539,7 +564,7 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                   <div className="pkg-actions">
-                    <MagneticHover strength={0.12}>
+                    <MagneticHover className="pkg-magnetic" strength={0.12}>
                       <Link href="/#contact" className="pkg-btn">Get Started</Link>
                     </MagneticHover>
                   </div>
@@ -587,7 +612,7 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                   <div className="pkg-actions">
-                    <MagneticHover strength={0.12}>
+                    <MagneticHover className="pkg-magnetic" strength={0.12}>
                       <Link href="/#contact" className="pkg-btn">Get Started</Link>
                     </MagneticHover>
                   </div>
@@ -643,7 +668,7 @@ export default function ServicesPage() {
                   </ul>
                   <div className="stripe-btn-wrap" dangerouslySetInnerHTML={{ __html: `<stripe-buy-button buy-button-id="buy_btn_1T649OFiNzXfgM2ZHtdrJCZ6" publishable-key="pk_live_51T63tvFiNzXfgM2ZZssIdyEa4NID7xNgQnr3WDc6ptvUjbYhScum4NDkjBk4bMDkAwlM9FcekecHbra1lPX04RcC00wfI9kREJ"></stripe-buy-button>` }} />
                   <div className="pkg-actions" style={{ marginTop: 12 }}>
-                    <MagneticHover strength={0.12}>
+                    <MagneticHover className="pkg-magnetic" strength={0.12}>
                       <Link href="/#contact" className="pkg-btn">Get Started</Link>
                     </MagneticHover>
                   </div>
