@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Script from 'next/script';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -30,7 +29,6 @@ export default function ServicesPage() {
     <>
       <ScrollProgressBar />
       <Navbar />
-      <Script src="https://js.stripe.com/v3/buy-button.js" strategy="afterInteractive" />
 
       <style jsx>{`
         .packages-hero {
@@ -427,7 +425,7 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            Pricing
+            Services
           </motion.p>
           <motion.h1
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}
@@ -435,21 +433,7 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.6 }}
           >
-            Purchase a{' '}
-            <motion.span
-              className="gradient-text"
-              animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              style={{
-                backgroundSize: '200% 200%',
-                background: 'linear-gradient(135deg, var(--primary-light), var(--accent), var(--primary-light))',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              Package
-            </motion.span>
+            Coming Soon
           </motion.h1>
           <motion.p
             style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: 560, margin: '0 auto' }}
@@ -457,8 +441,7 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            Choose a standard service package and pay instantly. Not sure what you need?{' '}
-            <Link href="/#contact" style={{ color: 'var(--primary-light)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Contact us first</Link>
+            We&apos;re refreshing this page. Our service offerings will be available here soon.
           </motion.p>
 
           <motion.div
@@ -472,222 +455,33 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      {/* ═══ Packages ═══ */}
+      {/* ═══ Services / Products (Coming Soon) ═══ */}
       <section className="packages-section">
         <MorphingBlob className="section-blob section-blob-right" color="rgba(6,182,212,0.03)" size={300} />
         <div className="packages-container">
-          <StaggerContainer className="packages-grid" staggerDelay={0.12}>
-            {/* Web Hosting */}
-            <StaggerItem>
-              <HoverGlow>
-                <motion.article
-                  className="pkg-card"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.45 }}
-                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                >
-                  <AnimatedIcon>
-                    <div className="pkg-icon"><i className="fas fa-server"></i></div>
-                  </AnimatedIcon>
-                  <p className="pkg-name">Web Hosting</p>
-                  <p className="pkg-desc">Fast, secure, managed web hosting with 99.9% uptime guarantee, SSL, and daily backups.</p>
-                  <motion.div
-                    className="pkg-price"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-                  >
-                    <span className="amount">$100</span><span className="period">/mo</span>
-                  </motion.div>
-                  <ul className="pkg-features">
-                    {['99.9% Uptime Guarantee', 'Daily Backups & Free SSL', '24/7 Technical Support', 'Scalable Resources'].map((f, j) => (
-                      <motion.li
-                        key={j}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: j * 0.08 + 0.3 }}
-                      >
-                        <i className="fas fa-check"></i> {f}
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <div className="pkg-actions">
-                    <MagneticHover className="pkg-magnetic" strength={0.12}>
-                      <Link href="/#contact" className="pkg-btn">Get Started</Link>
-                    </MagneticHover>
-                  </div>
-                  <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
-                </motion.article>
-              </HoverGlow>
-            </StaggerItem>
-
-            {/* SEO */}
-            <StaggerItem>
-              <HoverGlow>
-                <motion.article
-                  className="pkg-card"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.45, delay: 0.04 }}
-                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                >
-                  <AnimatedIcon delay={0.1}>
-                    <div className="pkg-icon"><i className="fas fa-search"></i></div>
-                  </AnimatedIcon>
-                  <p className="pkg-name">SEO Optimization</p>
-                  <p className="pkg-desc">Monthly SEO management with keyword research, on-page optimization, and transparent reporting.</p>
-                  <motion.div
-                    className="pkg-price"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
-                  >
-                    <span className="amount">$200</span><span className="period">/mo</span>
-                  </motion.div>
-                  <ul className="pkg-features">
-                    {['Keyword Research & Analysis', 'On-Page Optimization', 'Monthly Performance Reports', 'Competitor Analysis'].map((f, j) => (
-                      <motion.li
-                        key={j}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: j * 0.08 + 0.4 }}
-                      >
-                        <i className="fas fa-check"></i> {f}
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <div className="pkg-actions">
-                    <MagneticHover className="pkg-magnetic" strength={0.12}>
-                      <Link href="/#contact" className="pkg-btn">Get Started</Link>
-                    </MagneticHover>
-                  </div>
-                  <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
-                </motion.article>
-              </HoverGlow>
-            </StaggerItem>
-
-            {/* Digital Advertising */}
-            <StaggerItem>
-              <HoverGlow>
-                <motion.article
-                  className="pkg-card"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.45, delay: 0.08 }}
-                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                >
-                  <AnimatedIcon delay={0.2}>
-                    <div className="pkg-icon"><i className="fas fa-bullhorn"></i></div>
-                  </AnimatedIcon>
-                  <p className="pkg-name">Digital Advertising</p>
-                  <p className="pkg-desc">Managed Google & Facebook/Instagram ad campaigns with full optimization.</p>
-                  <motion.div
-                    className="pkg-price"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5, type: 'spring', stiffness: 200 }}
-                  >
-                    <span className="amount">$150</span><span className="period">/mo</span>
-                  </motion.div>
-                  <ul className="pkg-features">
-                    {['Google Ads Management', 'Facebook & Instagram Ads', 'ROI Tracking & Analytics'].map((f, j) => (
-                      <motion.li
-                        key={j}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: j * 0.08 + 0.5 }}
-                      >
-                        <i className="fas fa-check"></i> {f}
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <div className="pkg-actions">
-                    <MagneticHover className="pkg-magnetic" strength={0.12}>
-                      <Link href="/#contact" className="pkg-btn">Get Started</Link>
-                    </MagneticHover>
-                  </div>
-                  <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
-                </motion.article>
-              </HoverGlow>
-            </StaggerItem>
-
-            {/* Website Creation */}
-            <StaggerItem>
-              <HoverGlow>
-                <motion.article
-                  className="pkg-card featured"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.45, delay: 0.12 }}
-                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                >
-                  <motion.span
-                    className="popular-badge"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    Most Popular
-                  </motion.span>
-                  <AnimatedIcon delay={0.3}>
-                    <div className="pkg-icon"><i className="fas fa-chart-line"></i></div>
-                  </AnimatedIcon>
-                  <p className="pkg-name">Website Creation Package</p>
-                  <p className="pkg-desc">Complete Website Creation — hosting, 24/7 support, and monthly reporting all in one.</p>
-                  <motion.div
-                    className="pkg-price"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6, type: 'spring', stiffness: 200 }}
-                  >
-                    <span className="amount">$450</span>
-                  </motion.div>
-                  <ul className="pkg-features">
-                    {['Everything in SEO & Ads', 'Hosting', '24/7 Support', 'Analytics Reporting'].map((f, j) => (
-                      <motion.li
-                        key={j}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: j * 0.08 + 0.6 }}
-                      >
-                        <i className="fas fa-check"></i> {f}
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <div className="stripe-btn-wrap" dangerouslySetInnerHTML={{ __html: `<stripe-buy-button buy-button-id="buy_btn_1T649OFiNzXfgM2ZHtdrJCZ6" publishable-key="pk_live_51T63tvFiNzXfgM2ZZssIdyEa4NID7xNgQnr3WDc6ptvUjbYhScum4NDkjBk4bMDkAwlM9FcekecHbra1lPX04RcC00wfI9kREJ"></stripe-buy-button>` }} />
-                  <div className="pkg-actions" style={{ marginTop: 12 }}>
-                    <MagneticHover className="pkg-magnetic" strength={0.12}>
-                      <Link href="/#contact" className="pkg-btn">Get Started</Link>
-                    </MagneticHover>
-                  </div>
-                  <motion.div className="card-shimmer" initial={{ x: '-100%' }} whileHover={{ x: '200%' }} transition={{ duration: 0.6 }} />
-                </motion.article>
-              </HoverGlow>
-            </StaggerItem>
-          </StaggerContainer>
-
-          <FadeIn direction="up" delay={0.2}>
-            <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem', paddingBottom: 20 }}>
-              Need a custom quote?{' '}
-              <Link href="/#contact" style={{ color: 'var(--primary-light)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Get in touch</Link>{' '}
-              and we&apos;ll tailor a package for your business.
-            </p>
+          <FadeIn direction="up">
+            <div
+              style={{
+                margin: '0 auto',
+                maxWidth: 760,
+                textAlign: 'center',
+                padding: '56px 28px',
+                borderRadius: '20px',
+                border: '1px solid rgba(96, 165, 250, 0.24)',
+                background: 'linear-gradient(170deg, rgba(15, 23, 42, 0.92), rgba(16, 24, 40, 0.86) 55%, rgba(30, 64, 175, 0.2))',
+                boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 18px 34px rgba(2, 6, 23, 0.42)',
+              }}
+            >
+              <h2 style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)', marginBottom: 12, color: 'var(--text-primary)' }}>
+                Coming Soon
+              </h2>
+              <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'var(--text-secondary)', margin: 0 }}>
+                We&apos;re currently updating our services and product offerings. Please check back soon.
+              </p>
+            </div>
           </FadeIn>
         </div>
       </section>
-
       {/* ═══ Why Choose Us ═══ */}
       <section className="why-section">
         <MorphingBlob className="section-blob section-blob-left" color="rgba(37,99,235,0.04)" size={350} />
