@@ -1,0 +1,27 @@
+<svg width="100%" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(54,108)">
+    <rect x="0" y="0" width="132" height="132" rx="28" fill="none" stroke="#0F172A" stroke-width="7"/>
+    <path d="M78 26 H53
+             C38 26 28 36 28 49
+             C28 61 36 68 50 71
+             L71 76
+             C86 79 95 87 95 101
+             C95 116 83 126 66 126
+             H36"
+          fill="none" stroke="#2563EB" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M22 -16 V0 M66 -16 V0 M110 -16 V0
+             M22 132 V148 M66 132 V148 M110 132 V148
+             M-16 22 H0 M-16 66 H0 M-16 110 H0
+             M132 22 H148 M132 66 H148 M132 110 H148"
+          fill="none" stroke="#14B8A6" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="110" cy="22" r="7" fill="#14B8A6"/>
+    <circle cx="22" cy="110" r="7" fill="#2563EB"/>
+  </g>
+
+  <g transform="translate(250,146)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="70" font-weight="700" letter-spacing="0.5" fill="#0F172A">Senyo</text>
+    <text x="2" y="56" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="500" letter-spacing="0.3" fill="#475569">Solutions</text>
+    <path d="M2 74 H278" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
+    <text x="2" y="105" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="500" letter-spacing="3.2" fill="#64748B">SYSTEMS • SOFTWARE • SCALE</text>
+  </g>
+</svg>

@@ -67,7 +67,7 @@ export default function Navbar() {
           <div className="nav-container">
             <div className="nav-logo">
               <Link href="/" className="logo-link" onClick={closeMobile}>
-                <img src="/images/logo1.png" alt="Senyo Solutions" className="logo-svg" />
+                <img src="/images/logo2.svg" alt="Senyo Solutions" className="logo-svg" />
               </Link>
             </div>
 
@@ -145,7 +145,7 @@ export default function Navbar() {
           >
             <div className="mobile-overlay-header">
               <Link href="/" className="logo-link" onClick={closeMobile}>
-                <img src="/images/logo1.png" alt="Senyo Solutions" className="logo-svg" />
+                <img src="/images/logo2.svg" alt="Senyo Solutions" className="logo-svg" />
               </Link>
               <button
                 type="button"

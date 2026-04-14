@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="footer-content">
             <div className="footer-section">
               <div className="footer-logo">
-                <img src="/images/logo1.png" alt="Senyo Solutions" className="footer-logo-img" />
+                <img src="/images/logo2.svg" alt="Senyo Solutions" className="footer-logo-img" />
               </div>
               <p>
                 Simple, secure IT support for small businesses and professional practices — without expensive MSP contracts.
