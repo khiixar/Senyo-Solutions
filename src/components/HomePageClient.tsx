@@ -30,7 +30,6 @@ const plans = [
 const trustPoints = [
   'Month-to-month plans with no long-term contracts',
   'Local support across Long Island, New York State, and New Jersey',
-  'Plain-English communication for therapists and small practices',
   'Security-focused support for day-to-day reliability',
 ];
 
@@ -98,7 +97,7 @@ export default function HomePage() {
       <section className="our-work" id="positioning">
         <div className="container" style={{ maxWidth: 980 }}>
           <FadeIn direction="up">
-            <h2 className="section-title">Why Small Practices Choose Senyo Solutions</h2>
+            <h2 className="section-title">Why Choose Senyo Solutions</h2>
           </FadeIn>
           <div className="service-detailed-card" style={{ marginTop: 24 }}>
             <ul style={{ listStyle: 'none', padding: 0 }}>

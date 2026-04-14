@@ -11,27 +11,28 @@ import './styles.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://senyosolutions.com'),
   title: {
-    default: 'Senyo Solutions | Micro MSP IT Support for Small Practices',
+    default: 'Senyo Solutions | Micro MSP IT Support for Small businesses',
     template: '%s | Senyo Solutions',
   },
   description:
-    'Senyo Solutions provides simple, secure IT support for therapists and small practices across Long Island, New York State, and New Jersey. Month-to-month plans with no long-term contracts.',
+    'Senyo Solutions provides simple, secure IT support for small businesses across Long Island, New York State, and New Jersey. Month-to-month plans with no long-term contracts.',
   keywords: [
     'Senyo Solutions',
     'micro msp',
+    'IT Support',
     'managed IT services',
     'small practice IT support',
     'Long Island IT support',
-    'therapist office IT',
-    'web design for small practices',
+    'small businesses',
+    'web design',
   ],
   alternates: {
     canonical: 'https://senyosolutions.com',
   },
   openGraph: {
-    title: 'Senyo Solutions | Micro MSP IT Support',
+    title: 'Senyo Solutions | MSP, IT Support',
     description:
-      'Simple, secure IT support for small practices on Long Island — without expensive MSP contracts.',
+      'Simple, secure IT support for small businesses on Long Island — without expensive MSP contracts.',
     url: 'https://senyosolutions.com',
     siteName: 'Senyo Solutions',
     locale: 'en_US',
@@ -39,9 +40,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Senyo Solutions | Micro MSP IT Support',
+    title: 'Senyo Solutions | MSP, IT Support',
     description:
-      'Managed IT plans, responsive local support, and complementary web services for small practices.',
+      'Managed IT plans, responsive local support, and complementary web services for small businesses.',
   },
   icons: {
     icon: [
@@ -67,7 +68,7 @@ const structuredData = {
       telephone: '+1-516-707-7351',
       areaServed: ['Long Island, NY', 'New York, NY', 'New Jersey, US'],
       description:
-        'Micro MSP delivering managed IT support for therapists, counselors, psychologists, and small wellness or medical practices.',
+        'MSP delivering managed IT support for small businesses.',
     },
     {
       '@type': 'Service',
