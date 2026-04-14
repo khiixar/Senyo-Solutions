@@ -63,7 +63,7 @@ const structuredData = {
       '@id': 'https://senyosolutions.com/#organization',
       name: 'Senyo Solutions',
       url: 'https://senyosolutions.com',
-      logo: 'https://senyosolutions.com/images/logo2.svg',
+      logo: 'https://senyosolutions.com/images/logo.svg',
       email: 'contact@senyosolutions.com',
       telephone: '+1-516-707-7351',
       areaServed: ['Long Island, NY', 'New York, NY', 'New Jersey, US'],
