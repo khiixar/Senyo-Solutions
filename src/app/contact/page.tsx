@@ -4,7 +4,16 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Contact | Senyo Solutions',
-  description: 'Book a free tech review with Senyo Solutions for IT support, web services, or general inquiries.',
+  description: 'Book a free tech review with Senyo Solutions for IT support, web services, or general inquiries. Serving Long Island, New York, and New Jersey.',
+  alternates: {
+    canonical: 'https://senyosolutions.com/contact',
+  },
+  openGraph: {
+    title: 'Contact | Senyo Solutions',
+    description: 'Book a free tech review with Senyo Solutions for IT support, web services, or general inquiries.',
+    url: 'https://senyosolutions.com/contact',
+    type: 'website',
+  },
 };
 
 export default function ContactPage() {

@@ -6,6 +6,15 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      { source: '/services/web-design', destination: '/web-services', permanent: true },
+      { source: '/services/seo', destination: '/web-services', permanent: true },
+      { source: '/services/hosting', destination: '/web-services', permanent: true },
+      { source: '/services/digital-marketing', destination: '/web-services', permanent: true },
+      { source: '/services/analytics', destination: '/web-services', permanent: true },
+    ];
+  },
   // Security headers
   async headers() {
     return [
