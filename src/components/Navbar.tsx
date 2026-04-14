@@ -46,75 +46,101 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="navbar">
-        <div className="nav-container">
-          <div className="nav-logo">
-            <Link href="/" className="logo-link" onClick={closeMobile}>
-              <img src="/images/logo1.png" alt="Senyo Solutions" className="logo-svg" />
-            </Link>
+      <div className="navbar-wrapper">
+        <div className="nav-utility-bar">
+          <div className="nav-utility-inner">
+            <div className="nav-utility-items">
+              <span className="nav-utility-item">
+                <i className="fas fa-phone" /> (516) 707-7351
+              </span>
+              <span className="nav-utility-sep">|</span>
+              <span className="nav-utility-item">
+                <i className="fas fa-location-dot" /> Long Island, NY &amp; New Jersey
+              </span>
+            </div>
+            <div className="nav-utility-actions">
+              <Link href="/client-portal" className="nav-utility-btn">
+                Client Portal
+              </Link>
+            </div>
           </div>
+        </div>
 
-          <ul className="nav-menu" role="menubar" aria-label="Main navigation">
-            {mainLinks.map((link) => (
-              <li key={link.href} className="nav-item">
-                <Link href={link.href} className="nav-link">
-                  {link.label}
-                </Link>
+        <nav className="navbar">
+          <div className="nav-container">
+            <div className="nav-logo">
+              <Link href="/" className="logo-link" onClick={closeMobile}>
+                <img src="/images/logo1.png" alt="Senyo Solutions" className="logo-svg" />
+              </Link>
+            </div>
+
+            <ul className="nav-menu" role="menubar" aria-label="Main navigation">
+              {mainLinks.map((link) => (
+                <li key={link.href} className="nav-item">
+                  <Link href={link.href} className="nav-link">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+
+              <li
+                ref={portalsRef}
+                className="nav-item nav-item-dropdown"
+                onMouseEnter={() => setIsPortalsOpen(true)}
+                onMouseLeave={() => setIsPortalsOpen(false)}
+              >
+                <button
+                  type="button"
+                  className="nav-link dropdown-toggle"
+                  onClick={() => setIsPortalsOpen((prev) => !prev)}
+                  aria-haspopup="menu"
+                  aria-expanded={isPortalsOpen}
+                >
+                  Portals <span className={`dropdown-caret ${isPortalsOpen ? 'open' : ''}`}>▾</span>
+                </button>
+
+                <AnimatePresence>
+                  {isPortalsOpen && (
+                    <motion.ul
+                      className="services-dropdown"
+                      role="menu"
+                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                      transition={{ duration: 0.18 }}
+                    >
+                      {portalLinks.map((item) => (
+                        <li key={item.href} role="none">
+                          <Link href={item.href} role="menuitem" className="dropdown-link" onClick={() => setIsPortalsOpen(false)}>
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
               </li>
-            ))}
+            </ul>
 
-            <li
-              ref={portalsRef}
-              className="nav-item nav-item-dropdown"
-              onMouseEnter={() => setIsPortalsOpen(true)}
-              onMouseLeave={() => setIsPortalsOpen(false)}
-            >
+            <div className="nav-cta-area">
+              <Link href="/contact" className="nav-cta-btn" onClick={closeMobile}>
+                Get a Free Quote
+              </Link>
               <button
                 type="button"
-                className="nav-link dropdown-toggle"
-                onClick={() => setIsPortalsOpen((prev) => !prev)}
-                aria-haspopup="menu"
-                aria-expanded={isPortalsOpen}
+                className={`hamburger ${isMobileOpen ? 'active' : ''}`}
+                onClick={() => setIsMobileOpen((prev) => !prev)}
+                aria-label="Toggle menu"
+                aria-expanded={isMobileOpen}
               >
-                Portals <span className={`dropdown-caret ${isPortalsOpen ? 'open' : ''}`}>▾</span>
+                <span className="bar" />
+                <span className="bar" />
+                <span className="bar" />
               </button>
-
-              <AnimatePresence>
-                {isPortalsOpen && (
-                  <motion.ul
-                    className="services-dropdown"
-                    role="menu"
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                    transition={{ duration: 0.18 }}
-                  >
-                    {portalLinks.map((item) => (
-                      <li key={item.href} role="none">
-                        <Link href={item.href} role="menuitem" className="dropdown-link" onClick={() => setIsPortalsOpen(false)}>
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </motion.ul>
-                )}
-              </AnimatePresence>
-            </li>
-          </ul>
-
-          <button
-            type="button"
-            className={`hamburger ${isMobileOpen ? 'active' : ''}`}
-            onClick={() => setIsMobileOpen((prev) => !prev)}
-            aria-label="Toggle menu"
-            aria-expanded={isMobileOpen}
-          >
-            <span className="bar" />
-            <span className="bar" />
-            <span className="bar" />
-          </button>
-        </div>
-      </nav>
+            </div>
+          </div>
+        </nav>
+      </div>
 
       <AnimatePresence>
         {isMobileOpen && (
