@@ -240,7 +240,7 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
 
 .nav-logo { flex-shrink: 0; }
 .logo-link { display: flex; align-items: center; text-decoration: none; }
-.logo-svg { height: 38px; width: auto; }
+.logo-svg { height: 64px; width: auto; }
 
 .nav-menu {
   display: flex;
@@ -1164,9 +1164,10 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
 }
 
 .footer-logo-img {
-  height: 36px;
+  height: 72px;
   width: auto;
   margin-bottom: 16px;
+  mix-blend-mode: multiply;
 }
 
 .footer-section p {
