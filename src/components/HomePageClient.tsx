@@ -47,7 +47,7 @@ export default function HomePage() {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="hero-content">
             <motion.p className="hero-eyebrow" style={{ fontSize: '1rem' }} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-              MSP
+              MSP &nbsp;·&nbsp; Senyo Solutions
             </motion.p>
             <motion.h1 className="hero-title" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
               Simple, secure IT support for small businesses and professional practices
