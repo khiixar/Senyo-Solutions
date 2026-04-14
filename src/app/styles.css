@@ -1161,13 +1161,14 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   grid-template-columns: 2fr 1fr 1fr;
   gap: 48px;
   margin-bottom: 48px;
+  align-items: center;
 }
 
 .footer-logo-img {
   height: 149px;
   width: auto;
   max-width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 6px;
 }
 
 .footer-section p {
