@@ -49,20 +49,17 @@ export default function Navbar() {
       <div className="navbar-wrapper">
         <div className="nav-utility-bar">
           <div className="nav-utility-inner">
-            <div className="nav-utility-items">
-              <span className="nav-utility-item">
-                <i className="fas fa-phone" /> (516) 707-7351
-              </span>
-              <span className="nav-utility-sep">|</span>
-              <span className="nav-utility-item">
-                <i className="fas fa-location-dot" /> Long Island, NY &amp; New Jersey
-              </span>
-            </div>
-            <div className="nav-utility-actions">
-              <Link href="/client-portal" className="nav-utility-btn">
-                Client Portal
-              </Link>
-            </div>
+            <span className="nav-utility-item">
+              <i className="fas fa-phone" /> (516) 707-7351
+            </span>
+            <span className="nav-utility-sep">|</span>
+            <span className="nav-utility-item">
+              <i className="fas fa-envelope" /> contact@senyosolutions.com
+            </span>
+            <span className="nav-utility-sep">|</span>
+            <span className="nav-utility-item">
+              <i className="fas fa-location-dot" /> Long Island, NY &amp; New Jersey
+            </span>
           </div>
         </div>
 
@@ -122,22 +119,17 @@ export default function Navbar() {
               </li>
             </ul>
 
-            <div className="nav-cta-area">
-              <Link href="/contact" className="nav-cta-btn" onClick={closeMobile}>
-                Get a Free Quote
-              </Link>
-              <button
-                type="button"
-                className={`hamburger ${isMobileOpen ? 'active' : ''}`}
-                onClick={() => setIsMobileOpen((prev) => !prev)}
-                aria-label="Toggle menu"
-                aria-expanded={isMobileOpen}
-              >
-                <span className="bar" />
-                <span className="bar" />
-                <span className="bar" />
-              </button>
-            </div>
+            <button
+              type="button"
+              className={`hamburger ${isMobileOpen ? 'active' : ''}`}
+              onClick={() => setIsMobileOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+              aria-expanded={isMobileOpen}
+            >
+              <span className="bar" />
+              <span className="bar" />
+              <span className="bar" />
+            </button>
           </div>
         </nav>
       </div>
