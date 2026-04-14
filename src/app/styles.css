@@ -235,12 +235,12 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 88px;
 }
 
 .nav-logo { flex-shrink: 0; }
 .logo-link { display: flex; align-items: center; text-decoration: none; }
-.logo-svg { width: 981px; height: 216px; max-width: 100%; }
+.logo-svg { height: 72px; width: auto; }
 
 .nav-menu {
   display: flex;
@@ -1164,8 +1164,8 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
 }
 
 .footer-logo-img {
-  width: 981px;
-  height: 216px;
+  height: 110px;
+  width: auto;
   max-width: 100%;
   margin-bottom: 16px;
   mix-blend-mode: multiply;
