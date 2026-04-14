@@ -235,7 +235,7 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 165px;
+  height: 72px;
 }
 
 .nav-logo { flex-shrink: 0; }
