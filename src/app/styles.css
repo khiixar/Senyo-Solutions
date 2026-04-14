@@ -1907,58 +1907,68 @@ a[style*="textDecoration: underline"] {
   font-size: 0.85rem;
 }
 /* ============================================================
-   BADGE STRIP
+   TRUSTED BY STRIP
    ============================================================ */
-.badge-strip {
-  padding: 36px 0;
+.trusted-by-strip {
+  padding: 48px 0;
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.badge-strip-label {
+.trusted-by-label {
   text-align: center;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 
-.badge-track-wrap {
-  display: flex;
-  justify-content: center;
-}
-
-.badge-track {
+.trusted-by-logos {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px 48px;
+  gap: 36px 56px;
   align-items: center;
   justify-content: center;
   max-width: var(--container-max);
+  margin: 0 auto;
   padding: 0 clamp(20px, 4vw, 48px);
 }
 
-.badge-item {
+.trusted-logo {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 56px;
+  gap: 8px;
+  opacity: 0.55;
+  transition: opacity var(--transition-base);
 }
 
-.badge-item img {
-  max-height: 48px;
-  width: auto;
-  max-width: 130px;
-  object-fit: contain;
-  opacity: 0.7;
-  filter: grayscale(30%);
-  transition: opacity var(--transition-fast), filter var(--transition-fast);
-}
-
-.badge-item img:hover {
+.trusted-logo:hover {
   opacity: 1;
-  filter: grayscale(0%);
+}
+
+.trusted-logo svg {
+  width: 40px;
+  height: 40px;
+}
+
+.trusted-logo span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .trusted-by-logos {
+    gap: 24px 36px;
+  }
+  .trusted-logo svg {
+    width: 32px;
+    height: 32px;
+  }
 }
