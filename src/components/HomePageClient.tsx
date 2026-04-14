@@ -67,6 +67,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="badge-strip" aria-label="Industry certifications and partnerships">
+        <p className="badge-strip-label">Industry Certifications &amp; Partnerships</p>
+        <div className="badge-track-wrap">
+          <div className="badge-track">
+            {[
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2022/06/microsoft-solutions-partner-modern-work-300x100.png', alt: 'Microsoft Solutions Partner — Modern Work' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2025/03/hipaa-seal-compliance-badge.png', alt: 'HIPAA Compliance Badge' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2022/06/aicpa-soc-certification-logo-300x108.png', alt: 'AICPA SOC Certification' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2022/06/channel-futures-2024-msp-501-winner-badge-purple-e1775047373336-300x173.png', alt: 'Channel Futures 2024 MSP 501 Winner' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2021/05/inc-500-transparent-logo-300x108.png', alt: 'Inc 500' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2020/09/microsoft-southeast-partner-of-the-year.png', alt: 'Microsoft Southeast Partner of the Year' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2022/06/microsoft-solutions-partner-azure-infrastructure-300x100.png', alt: 'Microsoft Solutions Partner — Azure Infrastructure' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2022/06/microsoft-solutions-partner-modern-work-300x100.png', alt: 'Microsoft Solutions Partner — Modern Work' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2025/03/hipaa-seal-compliance-badge.png', alt: 'HIPAA Compliance Badge' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2022/06/aicpa-soc-certification-logo-300x108.png', alt: 'AICPA SOC Certification' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2022/06/channel-futures-2024-msp-501-winner-badge-purple-e1775047373336-300x173.png', alt: 'Channel Futures 2024 MSP 501 Winner' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2021/05/inc-500-transparent-logo-300x108.png', alt: 'Inc 500' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2020/09/microsoft-southeast-partner-of-the-year.png', alt: 'Microsoft Southeast Partner of the Year' },
+              { src: 'https://www.wheelhouseit.com/wp-content/uploads/2022/06/microsoft-solutions-partner-azure-infrastructure-300x100.png', alt: 'Microsoft Solutions Partner — Azure Infrastructure' },
+            ].map((badge, i) => (
+              <div key={i} className="badge-item">
+                <img src={badge.src} alt={badge.alt} decoding="async" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="digital-services">
         <div className="container">
           <FadeIn direction="up">
