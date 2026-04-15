@@ -289,9 +289,14 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   align-items: center;
   justify-content: space-between;
   height: 75px;
+  overflow: hidden;
 }
 
-.nav-logo { flex-shrink: 0; }
+.nav-logo { 
+  flex-shrink: 0;
+  max-width: 60%;
+  overflow: hidden;
+}
 .logo-link { display: flex; align-items: center; text-decoration: none; }
 .logo-svg { height: 90px; width: auto; }
 
@@ -433,6 +438,8 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   .nav-utility-bar { display: none; }
   .hamburger { display: flex; }
   .nav-menu { display: none; }
+  .logo-svg { height: 50px; }
+  .nav-container { height: auto; padding: 12px clamp(16px, 4vw, 24px); }
 }
 
 /* ============================================================
