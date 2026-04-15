@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Web Services',
+  title: { absolute: 'Web Services' },
   description: 'Website design, hosting, maintenance, and domain management for small practices as a complementary Senyo Solutions service.',
   alternates: {
     canonical: 'https://senyosolutions.com/web-services',

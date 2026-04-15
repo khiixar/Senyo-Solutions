@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import FAQPageClient from '@/components/FAQPageClient';
 
 export const metadata: Metadata = {
-  title: 'FAQ',
+  title: { absolute: 'FAQ' },
   description:
     'Frequently asked questions about Senyo Solutions managed IT plans, support model, and web services for small practices.',
   alternates: {

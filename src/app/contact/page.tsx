@@ -3,13 +3,13 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Contact | Senyo Solutions',
+  title: { absolute: 'Contact' },
   description: 'Book a free tech review with Senyo Solutions for IT support, web services, or general inquiries. Serving Long Island, New York, and New Jersey.',
   alternates: {
     canonical: 'https://senyosolutions.com/contact',
   },
   openGraph: {
-    title: 'Contact | Senyo Solutions',
+    title: 'Contact',
     description: 'Book a free tech review with Senyo Solutions for IT support, web services, or general inquiries.',
     url: 'https://senyosolutions.com/contact',
     type: 'website',
