@@ -634,6 +634,8 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   display: block;
   width: 100%;
   word-break: break-word;
+  font-family: 'Courier New', monospace;
+  font-weight: 800;
 }
 
 .hero-subtitle {

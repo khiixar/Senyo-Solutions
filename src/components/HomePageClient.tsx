@@ -54,7 +54,7 @@ export default function HomePage() {
               <DecryptedText
                 text="Simple, secure IT support for small businesses and professional practices"
                 animateOn="view"
-                speed={80}
+                speed={120}
                 maxIterations={8}
                 sequential={true}
                 revealDirection="center"
