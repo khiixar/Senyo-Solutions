@@ -11,7 +11,7 @@ import './styles.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://senyosolutions.com'),
   title: {
-    default: 'Senyo Solutions | IT Support for Small businesses',
+    default: 'Senyo Solutions',
     template: '%s | Senyo Solutions',
   },
   description:
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     canonical: 'https://senyosolutions.com',
   },
   openGraph: {
-    title: 'Senyo Solutions | IT Support for Small businesses',
+    title: 'Senyo Solutions',
     description:
       'Simple, secure IT support for small businesses on Long Island — without expensive MSP contracts.',
     url: 'https://senyosolutions.com',

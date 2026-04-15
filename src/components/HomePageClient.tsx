@@ -47,7 +47,7 @@ export default function HomePage() {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="hero-content">
             <motion.p className="hero-eyebrow" style={{ fontSize: '1rem' }} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-              MSP &nbsp;·&nbsp; Senyo Solutions
+              MSP &nbsp;
             </motion.p>
             <motion.h1 className="hero-title" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
               Simple, secure IT support for small businesses and professional practices
@@ -63,35 +63,6 @@ export default function HomePage() {
             <p style={{ marginTop: 16, color: 'var(--text-muted)', fontSize: '0.9rem' }}>
               Month-to-month plans • No long-term contracts • Local support in NY & NJ
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="trusted-by-strip" aria-label="Powered by industry tools">
-        <p className="trusted-by-label">Powered By</p>
-        <div className="trusted-by-logos">
-          <div className="trusted-logo" aria-label="Freshdesk">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="20" cy="20" r="20" fill="#25C16F"/>
-              <path d="M13 12h10a5 5 0 0 1 0 10H13V12z" fill="white"/>
-              <rect x="13" y="24" width="6" height="4" rx="1" fill="white"/>
-            </svg>
-            <span>Freshdesk</span>
-          </div>
-          <div className="trusted-logo" aria-label="NinjaRMM">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="40" height="40" rx="8" fill="#1A1A2E"/>
-              <polygon points="20,6 24,16 35,16 26,23 29,34 20,27 11,34 14,23 5,16 16,16" fill="#FFC200"/>
-            </svg>
-            <span>NinjaRMM</span>
-          </div>
-          <div className="trusted-logo" aria-label="ConnectWise">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="40" height="40" rx="8" fill="#005DA8"/>
-              <path d="M28 13a10 10 0 1 0 0 14" stroke="white" strokeWidth="3" strokeLinecap="round" fill="none"/>
-              <path d="M24 17a5 5 0 1 0 0 6" stroke="white" strokeWidth="3" strokeLinecap="round" fill="none"/>
-            </svg>
-            <span>ConnectWise</span>
           </div>
         </div>
       </section>
@@ -146,6 +117,35 @@ export default function HomePage() {
               <Link className="btn btn-outline" href="/web-services">Explore Web Services</Link>
               <Link className="btn btn-primary" href="/contact">Talk to Senyo Solutions</Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="trusted-by-strip" aria-label="Powered by industry tools">
+        <p className="trusted-by-label">Powered By</p>
+        <div className="trusted-by-logos">
+          <div className="trusted-logo" aria-label="Freshdesk">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="20" fill="#25C16F"/>
+              <path d="M13 12h10a5 5 0 0 1 0 10H13V12z" fill="white"/>
+              <rect x="13" y="24" width="6" height="4" rx="1" fill="white"/>
+            </svg>
+            <span>Freshdesk</span>
+          </div>
+          <div className="trusted-logo" aria-label="NinjaRMM">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="8" fill="#1A1A2E"/>
+              <polygon points="20,6 24,16 35,16 26,23 29,34 20,27 11,34 14,23 5,16 16,16" fill="#FFC200"/>
+            </svg>
+            <span>NinjaRMM</span>
+          </div>
+          <div className="trusted-logo" aria-label="ConnectWise">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="8" fill="#005DA8"/>
+              <path d="M28 13a10 10 0 1 0 0 14" stroke="white" strokeWidth="3" strokeLinecap="round" fill="none"/>
+              <path d="M24 17a5 5 0 1 0 0 6" stroke="white" strokeWidth="3" strokeLinecap="round" fill="none"/>
+            </svg>
+            <span>ConnectWise</span>
           </div>
         </div>
       </section>
