@@ -709,12 +709,12 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
 
 .service-detailed-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  border: none;
   border-radius: var(--radius-lg);
   padding: 36px 32px;
   transition: all var(--transition-base);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .service-detailed-card::after {
@@ -728,9 +728,7 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
 }
 
 .service-detailed-card:hover {
-  border-color: rgba(37,99,235,0.3);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
 }
 .service-detailed-card:hover::after { opacity: 1; }
 

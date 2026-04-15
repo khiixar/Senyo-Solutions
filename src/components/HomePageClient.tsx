@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import BorderGlow from '@/components/BorderGlow';
 import { FadeIn, StaggerContainer, StaggerItem, AnimatedGradientBg, ScrollProgressBar, ParticleField, MorphingBlob } from '@/components/MotionWrapper';
 
 const plans = [
@@ -77,7 +78,16 @@ export default function HomePage() {
           <StaggerContainer className="services-detailed-grid" staggerDelay={0.12}>
             {plans.map((plan) => (
               <StaggerItem key={plan.name}>
-                <article className="service-detailed-card">
+                <BorderGlow
+                  backgroundColor="rgba(255,255,255,0.93)"
+                  glowColor="37 99 235"
+                  colors={['#2563eb', '#60a5fa', '#1d4ed8']}
+                  borderRadius={16}
+                  glowRadius={32}
+                  glowIntensity={1.2}
+                  edgeSensitivity={25}
+                  className="service-detailed-card"
+                >
                   <div className="service-detailed-content">
                     <h3>{plan.name} <span className="gradient-text">{plan.price}</span></h3>
                     <p>{plan.forWho}</p>
@@ -87,7 +97,7 @@ export default function HomePage() {
                       ))}
                     </ul>
                   </div>
-                </article>
+                </BorderGlow>
               </StaggerItem>
             ))}
           </StaggerContainer>
