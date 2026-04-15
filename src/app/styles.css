@@ -620,6 +620,20 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 20px;
+  min-height: 1.15em;
+  display: flex;
+  align-items: flex-start;
+}
+
+.hero-title span {
+  display: inline;
+  white-space: normal;
+}
+
+.decrypted-hero-title {
+  display: block;
+  width: 100%;
+  word-break: break-word;
 }
 
 .hero-subtitle {

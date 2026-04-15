@@ -58,6 +58,7 @@ export default function HomePage() {
                 maxIterations={8}
                 sequential={true}
                 revealDirection="center"
+                parentClassName="decrypted-hero-title"
               />
             </motion.h1>
             <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
