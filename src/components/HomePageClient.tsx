@@ -83,8 +83,9 @@ export default function HomePage() {
                   glowColor="37 99 235"
                   colors={['#2563eb', '#60a5fa', '#1d4ed8']}
                   borderRadius={16}
-                  glowRadius={32}
-                  glowIntensity={1.2}
+                  glowRadius={22}
+                  glowIntensity={0.55}
+                  fillOpacity={0.2}
                   edgeSensitivity={25}
                   className="service-detailed-card"
                 >
