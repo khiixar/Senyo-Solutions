@@ -80,7 +80,7 @@ export default function HomePage() {
               <StaggerItem key={plan.name}>
                 <BorderGlow
                   backgroundColor="rgba(255,255,255,0.93)"
-                  glowColor="37 99 235"
+                  glowColor="217 92 43"
                   colors={['#2563eb', '#60a5fa', '#1d4ed8']}
                   borderRadius={16}
                   glowRadius={22}
