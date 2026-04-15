@@ -51,9 +51,6 @@ export default function HomePage() {
               MSP &nbsp;
             </motion.p>
             <motion.h1 className="hero-title" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
-              Simple, secure IT support for small businesses and professional practices
-            </motion.h1>
-            <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
               <DecryptedText
                 text="Simple, secure IT support for small businesses and professional practices"
                 animateOn="view"
@@ -62,6 +59,10 @@ export default function HomePage() {
                 sequential={true}
                 revealDirection="center"
               />
+            </motion.h1>
+            <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+              We help small businesses and professional practices stay protected and productive —
+              without expensive MSP contracts.
             </motion.p>
             <motion.div className="hero-ctas" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
               <Link className="btn btn-primary btn-large" href="/contact">Book a Free Tech Review</Link>
