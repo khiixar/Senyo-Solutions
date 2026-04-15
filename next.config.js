@@ -6,13 +6,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.(glb|gltf)$/,
-      type: 'asset/resource',
-    });
-    return config;
-  },
   async redirects() {
     return [
       { source: '/services/web-design', destination: '/web-services', permanent: true },
