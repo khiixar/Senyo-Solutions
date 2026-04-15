@@ -620,9 +620,7 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 20px;
-  min-height: 1.15em;
-  display: flex;
-  align-items: flex-start;
+  position: relative;
 }
 
 .hero-title span {
@@ -636,6 +634,25 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   word-break: break-word;
   font-family: 'Courier New', monospace;
   font-weight: 800;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hidden reference text to lock dimensions and prevent layout shift */
+.decrypted-hero-title::before {
+  content: 'Simple, secure IT support for small businesses and professional practices';
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+  font-family: 'Courier New', monospace;
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  width: 100%;
+  word-break: break-word;
 }
 
 .hero-subtitle {
