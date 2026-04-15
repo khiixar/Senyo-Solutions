@@ -5,13 +5,13 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Pricing | Senyo Solutions',
+  title: 'Senyo Solutions | Pricing',
   description: 'Compare Starter, Standard, and Premium managed IT plans and review MSP add-on service pricing. Month-to-month, no long-term contracts.',
   alternates: {
     canonical: 'https://senyosolutions.com/pricing',
   },
   openGraph: {
-    title: 'Pricing | Senyo Solutions',
+    title: 'Senyo Solutions | Pricing',
     description: 'Compare Starter, Standard, and Premium managed IT plans and review MSP add-on service pricing.',
     url: 'https://senyosolutions.com/pricing',
     type: 'website',

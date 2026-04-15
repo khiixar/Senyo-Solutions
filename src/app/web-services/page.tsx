@@ -4,13 +4,13 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Web Services | Senyo Solutions',
+  title: 'Web Services',
   description: 'Website design, hosting, maintenance, and domain management for small practices as a complementary Senyo Solutions service.',
   alternates: {
     canonical: 'https://senyosolutions.com/web-services',
   },
   openGraph: {
-    title: 'Web Services | Senyo Solutions',
+    title: 'Web Services',
     description: 'Website design, hosting, maintenance, and domain management for small practices as a complementary Senyo Solutions service.',
     url: 'https://senyosolutions.com/web-services',
     type: 'website',

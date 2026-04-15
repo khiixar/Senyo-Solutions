@@ -11,7 +11,7 @@ import './styles.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://senyosolutions.com'),
   title: {
-    default: 'Senyo Solutions | Micro MSP IT Support for Small businesses',
+    default: 'Senyo Solutions | IT Support for Small businesses',
     template: '%s | Senyo Solutions',
   },
   description:
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     canonical: 'https://senyosolutions.com',
   },
   openGraph: {
-    title: 'Senyo Solutions | MSP, IT Support',
+    title: 'Senyo Solutions | IT Support for Small businesses',
     description:
       'Simple, secure IT support for small businesses on Long Island — without expensive MSP contracts.',
     url: 'https://senyosolutions.com',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Senyo Solutions | MSP, IT Support',
+    title: 'Senyo Solutions | IT Support for small businesses',
     description:
       'Managed IT plans, responsive local support, and complementary web services for small businesses.',
   },
