@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import BorderGlow from '@/components/BorderGlow';
+import DecryptedText from '@/components/DecryptedText';
 import { FadeIn, StaggerContainer, StaggerItem, AnimatedGradientBg, ScrollProgressBar, ParticleField, MorphingBlob } from '@/components/MotionWrapper';
 
 const plans = [
@@ -54,8 +54,14 @@ export default function HomePage() {
               Simple, secure IT support for small businesses and professional practices
             </motion.h1>
             <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-              We help small businesses and professional practices stay protected and productive —
-              without expensive MSP contracts.
+              <DecryptedText
+                text="Simple, secure IT support for small businesses and professional practices"
+                animateOn="view"
+                speed={30}
+                maxIterations={8}
+                sequential={true}
+                revealDirection="center"
+              />
             </motion.p>
             <motion.div className="hero-ctas" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
               <Link className="btn btn-primary btn-large" href="/contact">Book a Free Tech Review</Link>
@@ -78,17 +84,7 @@ export default function HomePage() {
           <StaggerContainer className="services-detailed-grid" staggerDelay={0.12}>
             {plans.map((plan) => (
               <StaggerItem key={plan.name}>
-                <BorderGlow
-                  backgroundColor="rgba(255,255,255,0.93)"
-                  glowColor="217 92 43"
-                  colors={['#2563eb', '#60a5fa', '#1d4ed8']}
-                  borderRadius={16}
-                  glowRadius={22}
-                  glowIntensity={0.55}
-                  fillOpacity={0.2}
-                  edgeSensitivity={25}
-                  className="service-detailed-card"
-                >
+                <div className="service-detailed-card">
                   <div className="service-detailed-content">
                     <h3>{plan.name} <span className="gradient-text">{plan.price}</span></h3>
                     <p>{plan.forWho}</p>
@@ -98,7 +94,7 @@ export default function HomePage() {
                       ))}
                     </ul>
                   </div>
-                </BorderGlow>
+                </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
