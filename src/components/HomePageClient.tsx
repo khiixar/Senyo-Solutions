@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import DecryptedText from '@/components/DecryptedText';
+import Lanyard from '@/components/Lanyard';
 import { FadeIn, StaggerContainer, StaggerItem, AnimatedGradientBg, ScrollProgressBar, ParticleField, MorphingBlob } from '@/components/MotionWrapper';
 
 const plans = [
@@ -45,33 +46,35 @@ export default function HomePage() {
         <AnimatedGradientBg />
         <MorphingBlob className="hero-blob-1" color="rgba(37,99,235,0.09)" size={320} />
 
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="hero-content">
-            <motion.p className="hero-eyebrow" style={{ fontSize: '1rem' }} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-              MSP &nbsp;
-            </motion.p>
-            <motion.h1 className="hero-title" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
-              <DecryptedText
-                text="Simple, secure IT support for small businesses and professional practices"
-                animateOn="view"
-                speed={120}
-                maxIterations={8}
-                sequential={true}
-                revealDirection="center"
-                parentClassName="decrypted-hero-title"
-              />
-            </motion.h1>
-            <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-              We help small businesses and professional practices stay protected and productive —
-              without expensive MSP contracts.
-            </motion.p>
-            <motion.div className="hero-ctas" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
-              <Link className="btn btn-primary btn-large" href="/contact">Book a Free Tech Review</Link>
-              <Link className="btn btn-outline btn-large" href="/pricing">See Plans & Pricing</Link>
-            </motion.div>
-            <p style={{ marginTop: 16, color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Month-to-month plans • No long-term contracts • Local support in NY & NJ
-            </p>
+        <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '100vh', gap: '40px' }}>
+          <div className="container" style={{ position: 'relative', flex: 1 }}>
+            <div className="hero-content">
+              <motion.h1 className="hero-title" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
+                <DecryptedText
+                  text="Simple, secure IT support for small businesses and professional practices"
+                  animateOn="view"
+                  speed={120}
+                  maxIterations={8}
+                  sequential={true}
+                  revealDirection="center"
+                  parentClassName="decrypted-hero-title"
+                />
+              </motion.h1>
+              <motion.p className="hero-subtitle" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+                We help small businesses and professional practices stay protected and productive —
+                without expensive MSP contracts.
+              </motion.p>
+              <motion.div className="hero-ctas" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
+                <Link className="btn btn-primary btn-large" href="/contact">Book a Free Tech Review</Link>
+                <Link className="btn btn-outline btn-large" href="/pricing">See Plans & Pricing</Link>
+              </motion.div>
+              <p style={{ marginTop: 16, color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                Month-to-month plans • No long-term contracts • Local support in NY & NJ
+              </p>
+            </div>
+          </div>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+            <Lanyard position={[0, 0, 24]} gravity={[0, -40, 0]} />
           </div>
         </div>
       </section>
