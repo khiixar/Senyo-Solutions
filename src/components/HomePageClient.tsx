@@ -147,7 +147,7 @@ export default function HomePage() {
                   <text x="228" y="52" fontFamily="Archivo,sans-serif" fontSize="16" fontWeight="700" fill="rgba(6,182,212,0.7)" textAnchor="middle">CT</text>
                   <text x="73" y="172" fontFamily="Archivo,sans-serif" fontSize="15" fontWeight="700" fill="rgba(37,99,235,0.55)" textAnchor="middle">NJ</text>
                   <text x="210" y="143" fontFamily="Archivo,sans-serif" fontSize="13" fontWeight="700" fill="rgba(6,182,212,0.65)" textAnchor="middle">Long Island</text>
-                  <text x="112" cy="136" x="112" y="136" fontFamily="Archivo,sans-serif" fontSize="9" fontWeight="700" fill="white" textAnchor="middle">NYC</text>
+                  <text x="112" y="136" fontFamily="Archivo,sans-serif" fontSize="9" fontWeight="700" fill="white" textAnchor="middle">NYC</text>
                 </svg>
               </div>
               <h3 className="coverage-map-label">Local Service Area</h3>
