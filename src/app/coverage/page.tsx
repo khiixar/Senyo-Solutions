@@ -49,7 +49,7 @@ export default function CoveragePage() {
   return (
     <>
       <Navbar />
-      <main style={{ padding: '130px 0 80px' }}>
+      <main id="main-content" style={{ padding: '130px 0 80px' }}>
         <section className="container" style={{ maxWidth: 1100 }}>
           <p className="section-eyebrow" style={{ textAlign: 'center' }}>Where We Work</p>
           <h1 className="section-title">Coverage Areas</h1>

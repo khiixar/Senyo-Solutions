@@ -30,13 +30,28 @@ export default function Navbar() {
         setIsPortalsOpen(false);
       }
     };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsPortalsOpen(false);
+        setIsMobileOpen(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleOutside);
-    return () => document.removeEventListener('mousedown', handleOutside);
+    document.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = isMobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isMobileOpen]);
 
   const closeMobile = () => {
@@ -46,24 +61,27 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="navbar-wrapper">
-        <div className="nav-utility-bar">
+      <header className="navbar-wrapper">
+        <div className="nav-utility-bar" aria-label="Contact information">
           <div className="nav-utility-inner">
+            <a className="nav-utility-item" href="tel:+15167077351">
+              <i className="fas fa-phone" aria-hidden="true" />
+              <span>(516) 707-7351</span>
+            </a>
+            <span className="nav-utility-sep" aria-hidden="true">|</span>
+            <a className="nav-utility-item" href="mailto:contact@senyosolutions.com">
+              <i className="fas fa-envelope" aria-hidden="true" />
+              <span>contact@senyosolutions.com</span>
+            </a>
+            <span className="nav-utility-sep" aria-hidden="true">|</span>
             <span className="nav-utility-item">
-              <i className="fas fa-phone" /> (516) 707-7351
-            </span>
-            <span className="nav-utility-sep">|</span>
-            <span className="nav-utility-item">
-              <i className="fas fa-envelope" /> contact@senyosolutions.com
-            </span>
-            <span className="nav-utility-sep">|</span>
-            <span className="nav-utility-item">
-              <i className="fas fa-location-dot" /> Long Island, NYC, NJ, CT &amp; Westchester
+              <i className="fas fa-location-dot" aria-hidden="true" />
+              <span>Long Island, NYC, NJ, CT &amp; Westchester</span>
             </span>
           </div>
         </div>
 
-        <nav className="navbar">
+        <nav className="navbar" aria-label="Primary">
           <div className="nav-container">
             <div className="nav-logo">
               <Link href="/" className="logo-link" onClick={closeMobile}>
@@ -71,7 +89,7 @@ export default function Navbar() {
               </Link>
             </div>
 
-            <ul className="nav-menu" role="menubar" aria-label="Main navigation">
+            <ul className="nav-menu" aria-label="Main navigation">
               {mainLinks.map((link) => (
                 <li key={link.href} className="nav-item">
                   <Link href={link.href} className="nav-link">
@@ -85,13 +103,19 @@ export default function Navbar() {
                 className="nav-item nav-item-dropdown"
                 onMouseEnter={() => setIsPortalsOpen(true)}
                 onMouseLeave={() => setIsPortalsOpen(false)}
+                onBlur={(event) => {
+                  const nextFocused = event.relatedTarget as Node | null;
+                  if (nextFocused && portalsRef.current?.contains(nextFocused)) return;
+                  setIsPortalsOpen(false);
+                }}
               >
                 <button
                   type="button"
                   className="nav-link dropdown-toggle"
                   onClick={() => setIsPortalsOpen((prev) => !prev)}
-                  aria-haspopup="menu"
+                  aria-haspopup="true"
                   aria-expanded={isPortalsOpen}
+                  aria-controls="portals-menu"
                 >
                   Portals <span className={`dropdown-caret ${isPortalsOpen ? 'open' : ''}`}>▾</span>
                 </button>
@@ -99,16 +123,16 @@ export default function Navbar() {
                 <AnimatePresence>
                   {isPortalsOpen && (
                     <motion.ul
+                      id="portals-menu"
                       className="services-dropdown"
-                      role="menu"
                       initial={{ opacity: 0, y: 8, scale: 0.98 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 6, scale: 0.98 }}
                       transition={{ duration: 0.18 }}
                     >
                       {portalLinks.map((item) => (
-                        <li key={item.href} role="none">
-                          <Link href={item.href} role="menuitem" className="dropdown-link" onClick={() => setIsPortalsOpen(false)}>
+                        <li key={item.href}>
+                          <Link href={item.href} className="dropdown-link" onClick={() => setIsPortalsOpen(false)}>
                             {item.label}
                           </Link>
                         </li>
@@ -123,8 +147,9 @@ export default function Navbar() {
               type="button"
               className={`hamburger ${isMobileOpen ? 'active' : ''}`}
               onClick={() => setIsMobileOpen((prev) => !prev)}
-              aria-label="Toggle menu"
+              aria-label="Toggle navigation menu"
               aria-expanded={isMobileOpen}
+              aria-controls="mobile-menu"
             >
               <span className="bar" />
               <span className="bar" />
@@ -132,12 +157,16 @@ export default function Navbar() {
             </button>
           </div>
         </nav>
-      </div>
+      </header>
 
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
+            id="mobile-menu"
             className="mobile-overlay"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
@@ -167,7 +196,7 @@ export default function Navbar() {
                 >
                   <Link href={link.href} className="mobile-nav-link" onClick={closeMobile}>
                     {link.label}
-                    <span className="link-arrow">→</span>
+                    <span className="link-arrow" aria-hidden="true">→</span>
                   </Link>
                 </motion.div>
               ))}
@@ -181,7 +210,7 @@ export default function Navbar() {
                 {portalLinks.map((item) => (
                   <Link key={item.href} href={item.href} className="mobile-portal-link" onClick={closeMobile}>
                     {item.label}
-                    <span className="link-arrow">→</span>
+                    <span className="link-arrow" aria-hidden="true">→</span>
                   </Link>
                 ))}
               </motion.div>

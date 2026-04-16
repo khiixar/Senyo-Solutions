@@ -113,6 +113,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
         <Suspense fallback={null}>
           <GoogleAnalyticsPageView measurementId={GA_MEASUREMENT_ID} />

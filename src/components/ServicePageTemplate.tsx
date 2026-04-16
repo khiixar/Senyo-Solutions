@@ -119,7 +119,7 @@ export default function ServicePageTemplate({
         }
       `}</style>
 
-      <main className={`service-page-main service-page-${slug}`}>
+      <main id="main-content" className={`service-page-main service-page-${slug}`}>
         <ParticleField count={30} className="service-particle-field" />
         <AnimatedGradientBg />
         <MorphingBlob className="section-blob section-blob-left" color="rgba(37,99,235,0.05)" size={320} />
