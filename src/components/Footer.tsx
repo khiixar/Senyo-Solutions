@@ -24,6 +24,7 @@ export default function Footer() {
                 <li><Link href="/services">Managed IT Plans</Link></li>
                 <li><Link href="/pricing">Pricing & Add-ons</Link></li>
                 <li><Link href="/web-services">Web Services</Link></li>
+                <li><Link href="/coverage">Coverage Areas</Link></li>
                 <li><Link href="/contact">Book a Free Tech Review</Link></li>
               </ul>
             </div>
