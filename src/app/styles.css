@@ -2074,7 +2074,7 @@ a[style*="textDecoration: underline"] {
 
 .coverage-map-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  border: none;
   border-radius: var(--radius-lg);
   padding: 36px 28px 28px;
   display: flex;
@@ -2086,16 +2086,6 @@ a[style*="textDecoration: underline"] {
   color: inherit;
   position: relative;
   overflow: hidden;
-}
-
-.coverage-map-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  opacity: 0;
-  transition: opacity var(--transition-base);
 }
 
 .coverage-map-card::after {
@@ -2112,10 +2102,6 @@ a[style*="textDecoration: underline"] {
 .coverage-map-card--link:hover {
   transform: translateY(-4px);
   cursor: pointer;
-}
-
-.coverage-map-card--link:hover::before {
-  opacity: 1;
 }
 
 .coverage-map-card--link:hover::after {
@@ -2178,7 +2164,7 @@ a[style*="textDecoration: underline"] {
 
 .coverage-area-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  border: none;
   border-radius: var(--radius-lg);
   padding: 32px 28px;
   display: flex;
@@ -2188,16 +2174,6 @@ a[style*="textDecoration: underline"] {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
-}
-
-.coverage-area-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  opacity: 0;
-  transition: opacity var(--transition-base);
 }
 
 .coverage-area-card::after {
@@ -2213,10 +2189,6 @@ a[style*="textDecoration: underline"] {
 
 .coverage-area-card:hover {
   transform: translateY(-4px);
-}
-
-.coverage-area-card:hover::before {
-  opacity: 1;
 }
 
 .coverage-area-card:hover::after {
