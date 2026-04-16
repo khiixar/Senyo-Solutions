@@ -289,7 +289,6 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   align-items: center;
   justify-content: space-between;
   height: 75px;
-  overflow: hidden;
 }
 
 .nav-logo { 
@@ -811,6 +810,7 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.75rem); }
   background: linear-gradient(135deg, rgba(37,99,235,0.04), transparent 60%);
   opacity: 0;
   transition: opacity var(--transition-base);
+  pointer-events: none;
 }
 
 .service-detailed-card:hover {
