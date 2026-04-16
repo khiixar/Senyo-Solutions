@@ -127,6 +127,55 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="coverage-section">
+        <div className="container" style={{ maxWidth: 980 }}>
+          <FadeIn direction="up">
+            <h2 className="section-title">Our Coverage Area</h2>
+            <p className="section-subtitle">Serving businesses and practices across the New York metropolitan region</p>
+          </FadeIn>
+          <div className="coverage-maps-grid">
+            <div className="coverage-map-card">
+              <div className="coverage-map-svg-wrap">
+                <svg viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg" aria-label="NY area map showing NY, NJ, CT, and Long Island">
+                  <path d="M 10,10 L 158,10 L 153,118 L 112,138 L 55,132 L 10,98 Z" fill="rgba(37,99,235,0.18)" stroke="rgba(37,99,235,0.55)" strokeWidth="1.5" strokeLinejoin="round"/>
+                  <path d="M 158,10 L 308,10 L 308,88 L 153,88 L 153,118 L 158,10 Z" fill="rgba(6,182,212,0.16)" stroke="rgba(6,182,212,0.5)" strokeWidth="1.5" strokeLinejoin="round"/>
+                  <path d="M 112,138 L 55,132 L 28,168 L 62,202 L 103,198 L 112,168 Z" fill="rgba(37,99,235,0.13)" stroke="rgba(37,99,235,0.4)" strokeWidth="1.5" strokeLinejoin="round"/>
+                  <path d="M 112,143 L 308,118 L 305,155 L 178,163 L 112,156 Z" fill="rgba(6,182,212,0.14)" stroke="rgba(6,182,212,0.4)" strokeWidth="1.5" strokeLinejoin="round"/>
+                  <circle cx="112" cy="140" r="7" fill="rgba(37,99,235,0.85)"/>
+                  <circle cx="112" cy="140" r="3" fill="white"/>
+                  <text x="75" y="68" fontFamily="Archivo,sans-serif" fontSize="20" fontWeight="800" fill="rgba(37,99,235,0.65)" textAnchor="middle">NY</text>
+                  <text x="228" y="52" fontFamily="Archivo,sans-serif" fontSize="16" fontWeight="700" fill="rgba(6,182,212,0.7)" textAnchor="middle">CT</text>
+                  <text x="73" y="172" fontFamily="Archivo,sans-serif" fontSize="15" fontWeight="700" fill="rgba(37,99,235,0.55)" textAnchor="middle">NJ</text>
+                  <text x="210" y="143" fontFamily="Archivo,sans-serif" fontSize="13" fontWeight="700" fill="rgba(6,182,212,0.65)" textAnchor="middle">Long Island</text>
+                  <text x="112" cy="136" x="112" y="136" fontFamily="Archivo,sans-serif" fontSize="9" fontWeight="700" fill="white" textAnchor="middle">NYC</text>
+                </svg>
+              </div>
+              <h3 className="coverage-map-label">Local Service Area</h3>
+              <p className="coverage-map-sub">NY &bull; NJ &bull; CT &bull; Long Island</p>
+            </div>
+
+            <Link href="/coverage" className="coverage-map-card coverage-map-card--link">
+              <div className="coverage-map-svg-wrap">
+                <svg viewBox="0 0 350 210" xmlns="http://www.w3.org/2000/svg" aria-label="Map of the United States">
+                  <path d="M 48,26 L 44,52 L 41,80 L 43,112 L 49,136 L 67,136 L 97,120 L 112,140 L 136,132 L 149,128 L 157,136 L 176,166 L 192,140 L 222,120 L 247,104 L 261,90 L 266,70 L 261,54 L 271,34 L 256,20 L 200,18 L 154,22 L 108,18 L 70,20 Z" fill="rgba(37,99,235,0.12)" stroke="rgba(37,99,235,0.45)" strokeWidth="1.5" strokeLinejoin="round"/>
+                  <path d="M 120,42 L 162,37 L 168,57 L 117,60 Z" fill="rgba(6,182,212,0.25)" stroke="rgba(6,182,212,0.4)" strokeWidth="1"/>
+                  <path d="M 157,52 L 172,50 L 177,86 L 152,89 Z" fill="rgba(6,182,212,0.2)" stroke="rgba(6,182,212,0.35)" strokeWidth="1"/>
+                  <path d="M 172,45 L 197,41 L 207,70 L 177,76 Z" fill="rgba(6,182,212,0.2)" stroke="rgba(6,182,212,0.35)" strokeWidth="1"/>
+                  <path d="M 191,70 L 227,65 L 231,80 L 187,82 Z" fill="rgba(6,182,212,0.18)" stroke="rgba(6,182,212,0.3)" strokeWidth="1"/>
+                  <path d="M 226,60 L 251,58 L 255,70 L 221,72 Z" fill="rgba(6,182,212,0.18)" stroke="rgba(6,182,212,0.3)" strokeWidth="1"/>
+                  <circle cx="262" cy="72" r="6" fill="rgba(37,99,235,0.9)"/>
+                  <circle cx="262" cy="72" r="2.5" fill="white"/>
+                  <text x="262" y="60" fontFamily="Archivo,sans-serif" fontSize="9" fontWeight="700" fill="rgba(37,99,235,0.9)" textAnchor="middle">NY</text>
+                </svg>
+              </div>
+              <h3 className="coverage-map-label">View Coverage Details</h3>
+              <p className="coverage-map-sub">See all areas we serve</p>
+              <span className="coverage-map-cta">Explore Coverage &rarr;</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="trusted-by-strip" aria-label="Powered by industry tools">
         <p className="trusted-by-label">Powered By</p>
         <div className="trusted-by-logos">
