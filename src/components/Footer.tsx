@@ -33,7 +33,7 @@ export default function Footer() {
                 <p><i className="fas fa-phone"></i> (516) 707-7351</p>
                 <p suppressHydrationWarning><i className="fas fa-envelope"></i> contact@senyosolutions.com</p>
                 <p><i className="fas fa-location-dot"></i> Long Island, New York</p>
-                <p><i className="fas fa-map"></i> Serving NY State, Long Island & New Jersey</p>
+                <p><i className="fas fa-map"></i> Serving Long Island, NYC, NJ, CT &amp; Westchester</p>
               </div>
             </div>
           </div>

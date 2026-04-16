@@ -58,7 +58,7 @@ export default function Navbar() {
             </span>
             <span className="nav-utility-sep">|</span>
             <span className="nav-utility-item">
-              <i className="fas fa-location-dot" /> Long Island, NY &amp; New Jersey
+              <i className="fas fa-location-dot" /> Long Island, NYC, NJ, CT &amp; Westchester
             </span>
           </div>
         </div>
