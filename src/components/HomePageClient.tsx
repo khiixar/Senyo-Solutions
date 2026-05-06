@@ -160,18 +160,10 @@ export default function HomePage() {
           <ul className="trusted-by-logos" aria-label="Platforms and tools we use">
             <li className="trusted-logo">
               <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <circle cx="20" cy="20" r="20" fill="#25C16F"/>
-                <path d="M13 12h10a5 5 0 0 1 0 10H13V12z" fill="white"/>
-                <rect x="13" y="24" width="6" height="4" rx="1" fill="white"/>
+                <rect width="40" height="40" rx="8" fill="#EF443B"/>
+                <path d="M20 10l9 18h-6l-3-6-3 6h-6l9-18z" fill="white"/>
               </svg>
-              <span>Freshdesk</span>
-            </li>
-            <li className="trusted-logo">
-              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect width="40" height="40" rx="8" fill="#1A1A2E"/>
-                <polygon points="20,6 24,16 35,16 26,23 29,34 20,27 11,34 14,23 5,16 16,16" fill="#FFC200"/>
-              </svg>
-              <span>NinjaRMM</span>
+              <span>AnyDesk</span>
             </li>
             <li className="trusted-logo">
               <svg viewBox="0 0 40 40" fill="none" xmlns="https://images.vexels.com/media/users/3/148162/isolated/preview/c3267358473adbc91b32f26dfafc5e16-abstract-blue-square-background.png" aria-hidden="true">
