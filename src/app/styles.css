@@ -2079,6 +2079,14 @@ a[style*="textDecoration: underline"] {
   height: 40px;
 }
 
+.trusted-logo img {
+  height: 40px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  display: block;
+}
+
 .trusted-logo span {
   font-size: 0.72rem;
   font-weight: 700;
@@ -2094,6 +2102,10 @@ a[style*="textDecoration: underline"] {
   .trusted-logo svg {
     width: 32px;
     height: 32px;
+  }
+  .trusted-logo img {
+    height: 32px;
+    max-width: 96px;
   }
 }
 

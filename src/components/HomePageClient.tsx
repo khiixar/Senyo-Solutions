@@ -159,10 +159,7 @@ export default function HomePage() {
           <h2 id="powered-by-title" className="trusted-by-label">Powered By</h2>
           <ul className="trusted-by-logos" aria-label="Platforms and tools we use">
             <li className="trusted-logo">
-              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect width="40" height="40" rx="8" fill="#EF443B"/>
-                <path d="M20 10l9 18h-6l-3-6-3 6h-6l9-18z" fill="white"/>
-              </svg>
+              <img src="/images/anydesk-logo.png" alt="AnyDesk" />
               <span>AnyDesk</span>
             </li>
             <li className="trusted-logo">
