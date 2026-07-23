@@ -21,48 +21,63 @@ export default function WebServicesPage() {
   return (
     <>
       <Navbar />
-      <main id="main-content" style={{ padding: '130px 0 80px' }}>
-        <section className="container" style={{ maxWidth: 980 }}>
-          <p className="section-eyebrow" style={{ textAlign: 'center' }}>Web Services</p>
-          <h1 className="section-title">Website Design & Hosting</h1>
-          <p className="section-subtitle">
-            We handle your tech, including your online presence. Web services are offered as a complementary value-add to our MSP support.
+      <main id="main-content" className="page-hero">
+        <div className="container">
+          <p className="kicker">The web thing</p>
+          <h1 className="display-serif page-hero-title">
+            A website that <span className="serif-italic">actually feels like yours.</span>
+          </h1>
+          <p className="section-lede page-hero-lede">
+            We build honest little websites — the kind that load fast, read clearly, and don't make you cringe when someone Googles you. Then we host them and keep them tidy.
           </p>
+        </div>
+      </main>
 
-          <div className="services-detailed-grid">
-            <article className="service-detailed-card">
-              <div className="service-detailed-content">
-                <h3>Website Design & Development</h3>
-                <ul>
-                  <li>Professional website design for businesses and professionals</li>
-                  <li>Mobile-friendly development and performance optimization</li>
-                  <li>Secure contact form and conversion-focused page structure</li>
-                </ul>
-              </div>
+      <section className="plans-section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="plans-grid-studio" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+            <article className="plan-studio-card tilt-left">
+              <h3 className="plan-studio-name">Design &amp; build</h3>
+              <p className="plan-studio-who">Fresh sites, small refreshes, or full re-dos.</p>
+              <ul className="plan-studio-list">
+                <li>A site that reads like a person wrote it</li>
+                <li>Works on phones without you asking</li>
+                <li>Contact forms that don't lose messages</li>
+                <li>Pages built to actually convert, not decorate</li>
+              </ul>
             </article>
 
-            <article className="service-detailed-card">
-              <div className="service-detailed-content">
-                <h3>Hosting & Maintenance</h3>
-                <ul>
-                  <li>Managed hosting plans</li>
-                  <li>Website updates and ongoing support</li>
-                  <li>Domain setup and management</li>
-                </ul>
-              </div>
+            <article className="plan-studio-card tilt-right">
+              <h3 className="plan-studio-name">Host &amp; maintain</h3>
+              <p className="plan-studio-who">The quiet, ongoing part.</p>
+              <ul className="plan-studio-list">
+                <li>Managed hosting — we deal with the server nonsense</li>
+                <li>Little tweaks, copy changes, new pages</li>
+                <li>Domains &amp; DNS handled properly</li>
+                <li>Backups &amp; SSL you don't have to think about</li>
+              </ul>
             </article>
           </div>
+        </div>
+      </section>
 
-          <div className="work-cta" style={{ marginTop: 28 }}>
-            <h3>Pricing</h3>
-            <p>Web service projects are quoted based on scope. Ask for a custom quote or starter package options.</p>
-            <div className="hero-ctas">
-              <Link href="/contact" className="btn btn-primary">Contact for Quote</Link>
-              <Link href="/services" className="btn btn-outline">View IT Services</Link>
+      <section className="web-cta-section">
+        <div className="container">
+          <div className="web-cta-card tilt-left">
+            <span className="tape" aria-hidden="true"></span>
+            <p className="kicker">Pricing</p>
+            <h3 className="web-cta-title">We quote once we actually see it.</h3>
+            <p className="web-cta-body">
+              Web projects are all different sizes. Show us what you have (or what you wish you had) and we'll come back with a real number — not a sales pitch.
+            </p>
+            <div className="hero-editorial-ctas">
+              <Link href="/contact" className="btn-hand">Ask for a quote</Link>
+              <Link href="/services" className="btn-hand btn-hand--paper">See IT services</Link>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
       <Footer />
     </>
   );

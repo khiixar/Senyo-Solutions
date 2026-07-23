@@ -3,34 +3,58 @@
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { FadeIn, StaggerContainer, StaggerItem, AnimatedGradientBg, ParticleField, ScrollProgressBar } from '@/components/MotionWrapper';
+import { FadeIn, StaggerContainer, StaggerItem, ScrollProgressBar } from '@/components/MotionWrapper';
 
 const managedPlans = [
   {
     name: 'Starter',
-    price: '$99/month',
-    features: ['Monitoring and patching', 'Backup checks', 'Antivirus', 'Email support', 'Remote IT support'],
+    price: '$99',
+    per: '/mo',
+    who: 'Solo operators & 1–3 person shops',
+    features: [
+      'We watch your machines and patch them quietly',
+      'We check your backups actually work',
+      'Antivirus that stays out of your way',
+      'Email us anytime — a person replies',
+      "Remote fix-it sessions when you're stuck",
+    ],
   },
   {
     name: 'Standard',
-    price: '$149/month',
-    features: ['Everything in Starter', 'Priority response', 'Quarterly reviews', 'MFA/security guidance', 'Account hygiene support'],
+    price: '$149',
+    per: '/mo',
+    tag: 'most picked',
+    who: 'Small practices, 4–12 people',
+    features: [
+      'Everything in Starter',
+      'You jump the line when something breaks',
+      "A quarterly sit-down to look at what's next",
+      'MFA setup so nobody guesses their way in',
+      'Account clean-up so your team list matches reality',
+    ],
   },
   {
     name: 'Premium',
-    price: '$199/month',
-    features: ['Everything in Standard', 'Highest priority support', 'Limited on-site time', 'Hands-on oversight'],
+    price: '$199',
+    per: '/mo',
+    who: "Busy offices that can't afford downtime",
+    features: [
+      'Everything in Standard',
+      'Top of the queue when the WiFi dies',
+      'A few on-site hours built in',
+      'Hands-on eyes on your setup all month',
+    ],
   },
 ];
 
 const addOns = [
-  'On-site support: $75–$125/hour',
-  'Emergency same-day support (premium surcharge)',
-  'New computer setup or migration (flat-rate)',
-  'Microsoft 365 setup or cleanup (flat-rate)',
-  'Wi-Fi and small office network optimization (flat-rate)',
-  'Backup restore / recovery testing (flat-rate or hourly)',
-  'Printer and scanner troubleshooting (hourly or bundled)',
+  { label: 'On-site visits', detail: '$75–$125/hr, flat-rated when we can' },
+  { label: 'Same-day emergencies', detail: 'Premium surcharge, no drama' },
+  { label: 'New computer setup or migration', detail: 'Flat rate per machine' },
+  { label: 'Microsoft 365 setup or clean-up', detail: 'Flat quote once we look' },
+  { label: 'Wi-Fi & small office networking', detail: 'Flat rate, one visit usually' },
+  { label: 'Backup restores & recovery testing', detail: 'Flat or hourly, your call' },
+  { label: 'Printer & scanner exorcisms', detail: 'Hourly, sometimes bundled' },
 ];
 
 export default function ServicesPage() {
@@ -39,32 +63,46 @@ export default function ServicesPage() {
       <ScrollProgressBar />
       <Navbar />
 
-      <main id="main-content" className="hero" style={{ minHeight: 'auto', paddingBottom: 70, position: 'relative' }}>
-        <ParticleField count={16} />
-        <AnimatedGradientBg />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      <main id="main-content" className="page-hero">
+        <div className="container">
           <FadeIn direction="up">
-            <h1 className="section-title">IT Services</h1>
-            <p className="section-subtitle">
-              Reliable, professional IT support for small businesses and practices across New York and New Jersey.
+            <p className="kicker">What we actually do</p>
+            <h1 className="display-serif page-hero-title">
+              IT for the small teams <span className="serif-italic">that keep the lights on.</span>
+            </h1>
+            <p className="section-lede page-hero-lede">
+              Three plans, a handful of add-ons, and one promise: we pick up the phone, we explain what happened, and we don't charge you for the mystery.
             </p>
           </FadeIn>
         </div>
       </main>
 
-      <section className="digital-services">
+      <section className="plans-section">
         <div className="container">
           <FadeIn direction="up">
-            <h2 className="section-title">Managed IT Plans</h2>
+            <p className="kicker">Plans</p>
+            <h2 className="section-title-serif">Pick a plan. Change it later.</h2>
+            <p className="section-lede">
+              Month-to-month, no long lock-ins. Start where it makes sense, move up when you outgrow it.
+            </p>
           </FadeIn>
-          <StaggerContainer className="services-detailed-grid">
-            {managedPlans.map((plan) => (
+          <StaggerContainer className="plans-grid-studio">
+            {managedPlans.map((plan, i) => (
               <StaggerItem key={plan.name}>
-                <article className="service-detailed-card">
-                  <div className="service-detailed-content">
-                    <h3>{plan.name} <span className="gradient-text">{plan.price}</span></h3>
-                    <ul>{plan.features.map((f) => <li key={f}>{f}</li>)}</ul>
+                <article className={`plan-studio-card ${i === 1 ? 'tilt-right' : i === 0 ? 'tilt-left' : ''}`}>
+                  {plan.tag && <span className="plan-flag">{plan.tag}</span>}
+                  <h3 className="plan-studio-name">{plan.name}</h3>
+                  <div>
+                    <span className="plan-studio-price">{plan.price}</span>
+                    <span className="plan-studio-per">{plan.per}</span>
                   </div>
+                  <p className="plan-studio-who">{plan.who}</p>
+                  <ul className="plan-studio-list">
+                    {plan.features.map((f) => (
+                      <li key={f}>{f}</li>
+                    ))}
+                  </ul>
+                  <Link href="/contact" className="btn-hand plan-studio-cta">Start with {plan.name}</Link>
                 </article>
               </StaggerItem>
             ))}
@@ -72,31 +110,50 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="our-work">
+      <section className="addons-section">
         <div className="container" style={{ maxWidth: 980 }}>
           <FadeIn direction="up">
-            <h2 className="section-title">Add-ons & One-Time Services</h2>
-          </FadeIn>
-          <div className="service-detailed-card" style={{ marginTop: 20 }}>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-              {addOns.map((item) => (
-                <li key={item} style={{ padding: '8px 0', color: 'var(--text-secondary)' }}>
-                  <i className="fas fa-check-circle" style={{ marginRight: 10, color: 'var(--primary)' }}></i>{item}
-                </li>
-              ))}
-            </ul>
-            <p style={{ marginTop: 16, color: 'var(--text-muted)' }}>
-              On-site work is billed separately unless included in Premium. Emergency/after-hours support is billed at premium rates.
-              Project work is quoted separately.
+            <p className="kicker">A la carte</p>
+            <h2 className="section-title-serif">One-off help, honestly priced.</h2>
+            <p className="section-lede">
+              Not everything fits into a monthly plan. When you just need a hand, here's what that looks like.
             </p>
+          </FadeIn>
+
+          <div className="addons-list">
+            {addOns.map((item) => (
+              <div key={item.label} className="addon-row">
+                <span className="addon-check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 12 Q 8 14 10 17 Q 14 8 20 5" />
+                  </svg>
+                </span>
+                <div>
+                  <div className="addon-label">{item.label}</div>
+                  <div className="addon-detail">{item.detail}</div>
+                </div>
+              </div>
+            ))}
           </div>
 
-          <div className="work-cta" style={{ marginTop: 28 }}>
-            <h3>Website Services Available</h3>
-            <p>Need help with your online presence too? We offer website development, hosting, updates, and domain management.</p>
-            <div className="hero-ctas">
-              <Link href="/web-services" className="btn btn-outline">View Web Services</Link>
-              <Link href="/pricing" className="btn btn-primary">Compare Pricing</Link>
+          <p className="addons-footnote">
+            On-site work is billed separately unless it's baked into Premium. After-hours emergencies run at premium rates. Bigger projects get a proper quote before we start.
+          </p>
+        </div>
+      </section>
+
+      <section className="web-cta-section">
+        <div className="container">
+          <div className="web-cta-card tilt-right">
+            <span className="tape tape--blue" aria-hidden="true"></span>
+            <p className="kicker">P.S. — we also do the web thing</p>
+            <h3 className="web-cta-title">Websites, hosting, domains, all the boring plumbing.</h3>
+            <p className="web-cta-body">
+              If your site is embarrassing, slow, or held together with an old developer's spit, we can quietly take it over.
+            </p>
+            <div className="hero-editorial-ctas">
+              <Link href="/web-services" className="btn-hand btn-hand--paper">See web services</Link>
+              <Link href="/pricing" className="btn-hand btn-hand--warm">Compare pricing</Link>
             </div>
           </div>
         </div>
