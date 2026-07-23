@@ -2622,3 +2622,124 @@ footer .footer-bottom,
   border-top: 1px solid rgba(247,241,227,0.15) !important;
   color: rgba(247,241,227,0.55) !important;
 }
+
+/* Phase 3e — Coverage studio */
+.coverage-studio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-top: 8px;
+}
+.coverage-tile { padding: 28px 26px; }
+.coverage-town-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.coverage-town-list li {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  background: rgba(36,83,198,0.08);
+  color: var(--primary-ink);
+  border: 1px solid rgba(36,83,198,0.2);
+  border-radius: 999px;
+  padding: 4px 12px;
+  letter-spacing: 0.01em;
+}
+
+/* Phase 3f — FAQ studio */
+.faq-studio-list {
+  display: grid;
+  gap: 0;
+  background: var(--paper);
+  border: 1.5px solid var(--border-ink);
+  border-radius: 12px;
+  box-shadow: 5px 5px 0 var(--border-ink);
+  overflow: hidden;
+}
+.faq-studio-item + .faq-studio-item {
+  border-top: 1.5px dashed rgba(26,25,18,0.2);
+}
+.faq-studio-item.is-open {
+  background: rgba(244,211,94,0.08);
+}
+.faq-studio-q {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: left;
+  padding: 22px 26px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.faq-studio-q:hover .faq-studio-q-text { color: var(--primary-ink); }
+.faq-studio-q-text { flex: 1; }
+.faq-studio-toggle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-ink);
+  background: var(--paper);
+  color: var(--primary-ink);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 2px 2px 0 var(--border-ink);
+  transition: transform 0.15s ease;
+}
+.faq-studio-toggle.is-open {
+  background: var(--highlight);
+  transform: rotate(90deg);
+}
+.faq-studio-a {
+  margin: 0;
+  padding: 0 26px 22px;
+  color: var(--ink);
+  opacity: 0.82;
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Phase 3g — Legal pages studio */
+.legal-prose h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.35rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin: 32px 0 10px;
+}
+.legal-prose h2:first-of-type { margin-top: 20px; }
+.legal-prose p {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  opacity: 0.82;
+  line-height: 1.75;
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+.legal-updated-hand {
+  font-family: var(--font-hand) !important;
+  color: var(--primary-ink) !important;
+  font-size: 1.15rem !important;
+  opacity: 1 !important;
+  margin: 0 0 8px !important;
+  display: inline-block;
+  transform: rotate(-1.2deg);
+}

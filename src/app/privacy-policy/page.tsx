@@ -2,7 +2,7 @@
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { FadeIn, AnimatedGradientBg, MorphingBlob } from '@/components/MotionWrapper';
+import { FadeIn } from '@/components/MotionWrapper';
 
 const sections = [
   { title: '1. Introduction', content: 'Senyo Solutions respects your privacy. This policy explains how we collect, use, and protect information when you use our website and services.' },
@@ -21,28 +21,31 @@ export default function PrivacyPolicyPage() {
     <>
       <Navbar />
 
-      <div className="legal-hero" style={{ position: 'relative', overflow: 'hidden' }}>
-        <AnimatedGradientBg />
-        <MorphingBlob color="rgba(37,99,235,0.05)" size={350} position={{ top: '-10%', left: '-5%' }} />
-        <FadeIn direction="up"><h1>Privacy <span className="gradient-text">Policy</span></h1></FadeIn>
-        <FadeIn direction="up" delay={0.15}><p>Your privacy matters to us.</p></FadeIn>
-      </div>
+      <main id="main-content">
+        <section className="page-hero">
+          <div className="container" style={{ maxWidth: 820 }}>
+            <p className="kicker">The fine print</p>
+            <h1 className="page-hero-title">
+              Privacy <span className="serif-italic">Policy</span>
+            </h1>
+            <p className="page-hero-lede">Plain-english version: we don&rsquo;t sell your data. Ever.</p>
+          </div>
+        </section>
 
-      <div className="legal-body">
-        <div className="legal-container">
-          <FadeIn direction="up">
-            <span className="legal-updated"><i className="fas fa-calendar-alt" style={{ marginRight: '6px' }}></i>Last updated: April 2026</span>
-          </FadeIn>
-
-          {sections.map((section, index) => (
-            <FadeIn key={index} direction="up" delay={0.05 * index}>
-              <h2>{section.title}</h2>
-              <p>{section.content}</p>
-              {index < sections.length - 1 && <hr className="legal-divider" />}
+        <section className="container" style={{ maxWidth: 780, paddingBottom: 96 }}>
+          <div className="legal-prose sticker-card tilt-none" style={{ padding: '40px 36px' }}>
+            <FadeIn direction="up">
+              <p className="legal-updated-hand">Last updated: April 2026</p>
             </FadeIn>
-          ))}
-        </div>
-      </div>
+            {sections.map((section, index) => (
+              <FadeIn key={index} direction="up" delay={0.04 * index}>
+                <h2>{section.title}</h2>
+                <p>{section.content}</p>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </>

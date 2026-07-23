@@ -46,41 +46,47 @@ const areas = [
 ];
 
 export default function CoveragePage() {
+  const tilts = ['tilt-left', 'tilt-right', 'tilt-none', 'tilt-right', 'tilt-left'];
   return (
     <>
       <Navbar />
-      <main id="main-content" style={{ padding: '130px 0 80px' }}>
-        <section className="container" style={{ maxWidth: 1100 }}>
-          <p className="section-eyebrow" style={{ textAlign: 'center' }}>Where We Work</p>
-          <h1 className="section-title">Coverage Areas</h1>
-          <p className="section-subtitle">
-            On-site and remote IT support across the New York metropolitan region — no long-term contracts required.
-          </p>
+      <main id="main-content">
+        <section className="page-hero">
+          <div className="container" style={{ maxWidth: 900 }}>
+            <p className="kicker">Where we show up</p>
+            <h1 className="page-hero-title">
+              We work across the <span className="serif-italic">tri-state</span> — on paper and in person.
+            </h1>
+            <p className="page-hero-lede">
+              On-site when you need hands, remote when you don&rsquo;t. No long drives billed as &ldquo;travel time.&rdquo;
+            </p>
+          </div>
+        </section>
 
-          <div className="coverage-areas-grid">
-            {areas.map((area) => (
-              <div key={area.name} className="coverage-area-card">
-                <div className="coverage-area-body">
-                  <h3>{area.name}</h3>
-                  <p>{area.description}</p>
-                  <ul className="coverage-area-towns">
-                    {area.towns.map((town) => (
-                      <li key={town}>{town}</li>
-                    ))}
-                  </ul>
-                </div>
+        <section className="container" style={{ maxWidth: 1100, paddingBottom: 80 }}>
+          <div className="coverage-studio-grid">
+            {areas.map((area, i) => (
+              <div key={area.name} className={`sticker-card ${tilts[i % tilts.length]} coverage-tile`}>
+                <h3 className="display-serif" style={{ fontSize: '1.5rem', margin: '0 0 10px' }}>{area.name}</h3>
+                <p style={{ margin: '0 0 16px', color: 'var(--ink)', opacity: 0.82 }}>{area.description}</p>
+                <ul className="coverage-town-list">
+                  {area.towns.map((town) => (
+                    <li key={town}>{town}</li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
 
-          <div className="service-detailed-card" style={{ marginTop: 48, textAlign: 'center' }}>
-            <h3 style={{ marginBottom: 12 }}>Not sure if we cover your area?</h3>
-            <p style={{ color: 'var(--text-muted)', marginBottom: 24 }}>
-              Reach out — we regularly expand our service area and may already serve your location.
+          <div className="sticker-card tilt-none" style={{ marginTop: 56, textAlign: 'center', padding: '40px 32px' }}>
+            <p className="hand" style={{ fontSize: '1.35rem', color: 'var(--primary-ink)', marginBottom: 8 }}>P.S.</p>
+            <h3 className="display-serif" style={{ fontSize: '1.6rem', margin: '0 0 12px' }}>Not sure if we cover your spot?</h3>
+            <p style={{ color: 'var(--ink)', opacity: 0.78, marginBottom: 24, maxWidth: 520, marginInline: 'auto' }}>
+              Ask us. We stretch the map when it makes sense &mdash; sometimes we&rsquo;re already down the road.
             </p>
-            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link className="btn btn-primary" href="/contact">Contact Us</Link>
-              <Link className="btn btn-outline" href="/services">View Services</Link>
+            <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link className="btn-hand btn-hand--primary" href="/contact">Say hi</Link>
+              <Link className="btn-hand btn-hand--paper" href="/services">See what we do</Link>
             </div>
           </div>
         </section>
