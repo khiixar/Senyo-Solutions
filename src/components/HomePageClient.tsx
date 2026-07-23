@@ -51,9 +51,6 @@ export default function HomePage() {
       <section id="home" className="hero hero-editorial">
         <div className="container hero-editorial-grid">
           <div className="hero-editorial-left">
-            <FadeIn direction="up" delay={0.05}>
-              <span className="kicker">Long Island &middot; NY &amp; NJ &middot; Est. small</span>
-            </FadeIn>
             <FadeIn direction="up" delay={0.15}>
               <h1 className="display-serif hero-editorial-title">
                 Quiet, dependable IT

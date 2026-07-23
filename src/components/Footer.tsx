@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="footer-content">
             <div className="footer-section">
               <div className="footer-logo">
-                <img src="/images/logo.svg" alt="Senyo Solutions" className="footer-logo-img" />
+                <img src="/images/logo-footer.svg" alt="Senyo Solutions" className="footer-logo-img" />
               </div>
               <p>
                 Quiet, dependable IT for the small businesses and practices actual humans run. We handle the boring parts — the machines, the mail, the backups, the websites — so you can get back to your work.

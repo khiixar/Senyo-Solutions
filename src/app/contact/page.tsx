@@ -22,7 +22,6 @@ export default function ContactPage() {
       <Navbar />
       <main id="main-content" className="page-hero">
         <div className="container">
-          <p className="kicker">Say hello</p>
           <h1 className="display-serif page-hero-title">
             Let's grab fifteen minutes. <span className="serif-italic">On us.</span>
           </h1>
@@ -36,7 +35,6 @@ export default function ContactPage() {
         <div className="container contact-grid">
           <div className="contact-form-card">
             <span className="tape tape--blue" aria-hidden="true"></span>
-            <p className="kicker" style={{ marginBottom: 4 }}>The form</p>
             <h2 className="section-title-serif" style={{ marginTop: 0, marginBottom: 20 }}>
               Tell us <span className="serif-italic">a little about your setup.</span>
             </h2>
