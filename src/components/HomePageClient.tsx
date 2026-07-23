@@ -157,19 +157,6 @@ export default function HomePage() {
       <section className="trusted-by-strip" aria-label="Partners with industry tools">
         <p className="trusted-by-label">Partners With</p>
         <div className="trusted-by-logos">
-          <div className="trusted-logo" aria-label="Freshdesk">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="20" cy="20" r="20" fill="#25C16F"/>
-              <path d="M13 12h10a5 5 0 0 1 0 10H13V12z" fill="white"/>
-              <rect x="13" y="24" width="6" height="4" rx="1" fill="white"/>
-            </svg>
-          </div>
-          <div className="trusted-logo" aria-label="NinjaRMM">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="40" height="40" rx="8" fill="#1A1A2E"/>
-              <polygon points="20,6 24,16 35,16 26,23 29,34 20,27 11,34 14,23 5,16 16,16" fill="#FFC200"/>
-            </svg>
-          </div>
           <div className="trusted-logo" aria-label="ConnectWise">
             <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="40" height="40" rx="8" fill="#005DA8"/>
