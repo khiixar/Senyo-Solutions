@@ -52,7 +52,7 @@ export default function HomePage() {
         <div className="container hero-editorial-grid">
           <div className="hero-editorial-left">
             <FadeIn direction="up" delay={0.05}>
-              <span className="kicker">Hello &mdash; we&rsquo;re Senyo Solutions</span>
+              <span className="kicker">Long Island &middot; NY &amp; NJ &middot; Est. small</span>
             </FadeIn>
             <FadeIn direction="up" delay={0.15}>
               <h1 className="display-serif hero-editorial-title">
