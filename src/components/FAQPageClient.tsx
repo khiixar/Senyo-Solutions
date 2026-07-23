@@ -41,7 +41,7 @@ export default function FAQPageClient() {
     <>
       <Navbar />
 
-      <main style={{ padding: '120px 20px 100px', position: 'relative', overflow: 'hidden' }}>
+      <main id="main-content" style={{ padding: '120px 20px 100px', position: 'relative', overflow: 'hidden' }}>
         <ParticleField count={20} />
         <AnimatedGradientBg />
         <MorphingBlob className="section-blob section-blob-left" color="rgba(37,99,235,0.05)" size={320} />

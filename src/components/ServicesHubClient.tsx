@@ -39,7 +39,7 @@ export default function ServicesPage() {
       <ScrollProgressBar />
       <Navbar />
 
-      <main className="hero" style={{ minHeight: 'auto', paddingBottom: 70, position: 'relative' }}>
+      <main id="main-content" className="hero" style={{ minHeight: 'auto', paddingBottom: 70, position: 'relative' }}>
         <ParticleField count={16} />
         <AnimatedGradientBg />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>

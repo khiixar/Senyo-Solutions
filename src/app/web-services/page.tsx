@@ -21,7 +21,7 @@ export default function WebServicesPage() {
   return (
     <>
       <Navbar />
-      <main style={{ padding: '130px 0 80px' }}>
+      <main id="main-content" style={{ padding: '130px 0 80px' }}>
         <section className="container" style={{ maxWidth: 980 }}>
           <p className="section-eyebrow" style={{ textAlign: 'center' }}>Web Services</p>
           <h1 className="section-title">Website Design & Hosting</h1>
