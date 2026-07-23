@@ -93,7 +93,7 @@ export default function ContactPage() {
           </div>
 
           <aside className="contact-aside">
-            <div className="sticker-card sticker-card--blue tilt-right">
+            <div className="sticker-card sticker-card--navy tilt-right">
               <p className="kicker" style={{ marginBottom: 8 }}>Or, the old-fashioned way</p>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', margin: '0 0 14px', color: 'var(--paper)' }}>
                 Prefer to call?

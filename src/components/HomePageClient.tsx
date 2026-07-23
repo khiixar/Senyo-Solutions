@@ -88,7 +88,7 @@ export default function HomePage() {
           </div>
 
           <FadeIn direction="up" delay={0.3} className="hero-editorial-right">
-            <aside className="sticker-card sticker-card--blue tilt-right tape tape--blue hero-notecard">
+            <aside className="sticker-card sticker-card--blue tilt-right hero-notecard">
               <p className="hand hero-notecard-heading">A few things we care about:</p>
               <ul className="hero-notecard-list">
                 <li><strong>No lock-in.</strong> Month-to-month, always.</li>
@@ -149,7 +149,7 @@ export default function HomePage() {
             {plans.map((plan) => (
               <StaggerItem key={plan.name}>
                 <div
-                  className={`sticker-card ${plan.tape ? 'sticker-card--blue tape tape--blue' : ''} ${plan.tilt} plan-studio-card`}
+                  className={`sticker-card ${plan.tape ? 'sticker-card--blue is-featured' : ''} ${plan.tilt} plan-studio-card`}
                   style={{ borderTopColor: plan.accent }}
                 >
                   {plan.tape && <span className="hand plan-flag">most picked</span>}
@@ -213,7 +213,7 @@ export default function HomePage() {
       <section className="web-cta-section">
         <div className="container" style={{ maxWidth: 900 }}>
           <FadeIn direction="up">
-            <aside className="sticker-card tilt-right tape web-cta-card">
+            <aside className="sticker-card tilt-right web-cta-card">
               <span className="kicker">Also &mdash; while you&rsquo;re here</span>
               <h3 className="web-cta-title">
                 Need a <span className="scribble scribble--terra">website</span> too?
