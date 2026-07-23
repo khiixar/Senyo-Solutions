@@ -136,7 +136,7 @@ export default function HomePage() {
           <div className="coverage-maps-grid">
             <div className="coverage-map-card">
               <div className="coverage-map-svg-wrap">
-                <img src="/Area.png" alt="Local service area map" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <img src="/map-world.png" alt="Local service area map" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <h3 className="coverage-map-label">Local Service Area</h3>
               <p className="coverage-map-sub">NY &bull; NJ &bull; CT &bull; Long Island</p>
@@ -144,7 +144,7 @@ export default function HomePage() {
 
             <Link href="/coverage" className="coverage-map-card coverage-map-card--link">
               <div className="coverage-map-svg-wrap">
-                <img src="/map-world.png" alt="Map of the United States" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <img src="/Area.png" alt="Map of the United States" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </div>
               <h3 className="coverage-map-label">View Coverage Details</h3>
               <p className="coverage-map-sub">See all areas we serve</p>
@@ -154,8 +154,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="trusted-by-strip" aria-label="Powered by industry tools">
-        <p className="trusted-by-label">Powered By</p>
+      <section className="trusted-by-strip" aria-label="Partners with industry tools">
+        <p className="trusted-by-label">Partners With</p>
         <div className="trusted-by-logos">
           <div className="trusted-logo" aria-label="Freshdesk">
             <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -163,14 +163,12 @@ export default function HomePage() {
               <path d="M13 12h10a5 5 0 0 1 0 10H13V12z" fill="white"/>
               <rect x="13" y="24" width="6" height="4" rx="1" fill="white"/>
             </svg>
-            <span>Freshdesk</span>
           </div>
           <div className="trusted-logo" aria-label="NinjaRMM">
             <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="40" height="40" rx="8" fill="#1A1A2E"/>
               <polygon points="20,6 24,16 35,16 26,23 29,34 20,27 11,34 14,23 5,16 16,16" fill="#FFC200"/>
             </svg>
-            <span>NinjaRMM</span>
           </div>
           <div className="trusted-logo" aria-label="ConnectWise">
             <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -178,7 +176,14 @@ export default function HomePage() {
               <path d="M28 13a10 10 0 1 0 0 14" stroke="white" strokeWidth="3" strokeLinecap="round" fill="none"/>
               <path d="M24 17a5 5 0 1 0 0 6" stroke="white" strokeWidth="3" strokeLinecap="round" fill="none"/>
             </svg>
-            <span>ConnectWise</span>
+          </div>
+          <div className="trusted-logo" aria-label="Microsoft">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="15" height="15" fill="#F25022"/>
+              <rect x="21" y="4" width="15" height="15" fill="#7FBA00"/>
+              <rect x="4" y="21" width="15" height="15" fill="#00A4EF"/>
+              <rect x="21" y="21" width="15" height="15" fill="#FFB900"/>
+            </svg>
           </div>
         </div>
       </section>
