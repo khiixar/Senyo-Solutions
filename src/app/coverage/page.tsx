@@ -4,8 +4,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Coverage Areas' },
-  description: 'Senyo Solutions provides managed IT support across Long Island, New York City, New Jersey, Connecticut, and Westchester NY.',
+  title: { absolute: 'IT Support Coverage Areas | Long Island, NYC, NJ, CT | Senyo Solutions' },
+  description: 'Senyo Solutions provides managed IT support and MSP services across Long Island, New York City, New Jersey, Connecticut, and Westchester NY.',
   alternates: {
     canonical: 'https://senyosolutions.com/coverage',
   },

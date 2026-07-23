@@ -3,8 +3,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Contact' },
-  description: 'Book a free tech review with Senyo Solutions for IT support, web services, or general inquiries. Serving Long Island, New York, and New Jersey.',
+  title: { absolute: 'Contact Senyo Solutions | IT Support & MSP Services in Long Island, NY' },
+  description: 'Contact Senyo Solutions to book a free tech review for managed IT support, MSP services, or web services. Serving Long Island, New York, and New Jersey.',
   alternates: {
     canonical: 'https://senyosolutions.com/contact',
   },

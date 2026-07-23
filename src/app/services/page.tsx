@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import ServicesHubClient from '@/components/ServicesHubClient';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Services' },
+  title: { absolute: 'Managed IT Services & Support Plans for Small Businesses | Senyo Solutions' },
   description:
-    'Explore Senyo Solutions managed IT plans, MSP add-ons, and complementary web services for small practices in New York and New Jersey.',
+    'Explore Senyo Solutions managed IT service plans, MSP add-ons, and complementary web services for small businesses and practices in Long Island, New York, and New Jersey.',
   alternates: {
     canonical: 'https://senyosolutions.com/services',
   },
